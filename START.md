@@ -29,6 +29,17 @@ the receiver: nothing enters the computer until the receiver presses the button.
    close the box. Then open *System Settings* → *Privacy & Security*, scroll down to the line that
    says DAP-Share was blocked, and press **Open Anyway**.
 
+   **If the Mac still refuses**, there is a way that always works. Open the program *Terminal*
+   (press ⌘ and space, type `Terminal`, press return), paste this line and press return:
+
+   ```
+   xattr -dr com.apple.quarantine /Applications/DAP-Share.app
+   ```
+
+   Nothing is printed when it works. It removes the mark the Mac puts on downloaded files, for this
+   app only. Then double-click the app as usual. If you left the app in *Downloads*, write
+   `~/Downloads/DAP-Share.app` at the end of the line instead.
+
 3. **Type your name** in the box that asks for it, and press OK. The person you share with sees it.
 
 4. **Your browser opens the screen**, and Finder opens your share folder. At the top of the
@@ -109,6 +120,7 @@ When you and another person are friends in the app, neither of you has to share 
 | It says, or what happens | What it means | Do this |
 |---|---|---|
 | "cannot be opened because it is from an unidentified developer", or "Apple could not verify" | The Mac's check of downloaded files, the first time | Right-click the file and choose *Open*. On macOS 15 or later: *System Settings* → *Privacy & Security* → *Open Anyway* |
+| The Mac still refuses, or there is no *Open Anyway* | The mark on downloaded files is still on the app | Step 2 under *Start*, **If the Mac still refuses**: one line in Terminal |
 | "DAP-Share needs Python 3" | The computer has no Python | Install it from python.org and open the app again |
 | `relay: off` or `relay: not connected` | Your computer does not reach the relay | Check your internet; close the window and start again |
 | `peer not registered` | The other agent is not connected right now | Ask them to open the app and check that the screen shows `relay: connected` |
