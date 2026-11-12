@@ -29,16 +29,22 @@ the receiver: nothing enters the computer until the receiver presses the button.
    close the box. Then open *System Settings* → *Privacy & Security*, scroll down to the line that
    says DAP-Share was blocked, and press **Open Anyway**.
 
-   **If the Mac still refuses**, there is a way that always works. Open the program *Terminal*
-   (press ⌘ and space, type `Terminal`, press return), paste this line and press return:
+   **If the Mac still refuses**, open the app from the inside. No typing is needed:
 
-   ```
-   xattr -dr com.apple.quarantine /Applications/DAP-Share.app
-   ```
+   1. **Right-click** `DAP-Share.app` and choose **Show Package Contents**. A window opens with
+      one folder, `Contents`.
+   2. Open `Contents`, and then the folder `MacOS` inside it. It holds one file, `DAP-Share`.
+   3. **Right-click** that file, choose **Open With**, and then **Terminal**. If Terminal is not
+      in the list, choose *Other…*, open the folder *Utilities* and pick *Terminal* there.
+   4. If the Mac asks whether you are sure, press **Open**. A Terminal window shows a few lines,
+      and your browser opens the screen. The Terminal window can be closed.
 
-   Nothing is printed when it works. It removes the mark the Mac puts on downloaded files, for this
-   app only. Then double-click the app as usual. If you left the app in *Downloads*, write
-   `~/Downloads/DAP-Share.app` at the end of the line instead.
+   If a double-click on the app is refused again another day, open it the same way.
+
+   Whoever prefers to type can instead open *Terminal* and run
+   `xattr -dr com.apple.quarantine /Applications/DAP-Share.app` (with the app's own place at the
+   end if it is not in *Applications*). It removes the Mac's mark on this downloaded app, and
+   after that a double-click is enough.
 
 3. **Type your name** in the box that asks for it, and press OK. The person you share with sees it.
 
@@ -120,7 +126,7 @@ When you and another person are friends in the app, neither of you has to share 
 | It says, or what happens | What it means | Do this |
 |---|---|---|
 | "cannot be opened because it is from an unidentified developer", or "Apple could not verify" | The Mac's check of downloaded files, the first time | Right-click the file and choose *Open*. On macOS 15 or later: *System Settings* → *Privacy & Security* → *Open Anyway* |
-| The Mac still refuses, or there is no *Open Anyway* | The mark on downloaded files is still on the app | Step 2 under *Start*, **If the Mac still refuses**: one line in Terminal |
+| The Mac still refuses, or there is no *Open Anyway* | The mark on downloaded files is still on the app | Step 2 under *Start*, **If the Mac still refuses**: right-click the file inside the app, *Open With* → *Terminal* |
 | "DAP-Share needs Python 3" | The computer has no Python | Install it from python.org and open the app again |
 | `relay: off` or `relay: not connected` | Your computer does not reach the relay | Check your internet; close the window and start again |
 | `peer not registered` | The other agent is not connected right now | Ask them to open the app and check that the screen shows `relay: connected` |
