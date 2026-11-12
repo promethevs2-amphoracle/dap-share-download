@@ -84,6 +84,10 @@ switches.
    press **Accept**. You are friends when both have said yes; nothing more to do on your side. If
    they are away, the request is sent when they are back.
 
+4. To stop someone reaching you, press **Block** next to their name or request. They get nothing
+   from you and their requests are not shown; they are not told. **Unblock** is under your friends.
+   What the directory shows and keeps: https://dapshare.app/privacy.html
+
 ## With friends: no code, no button
 
 When you and another person are friends in the app, neither of you has to share file by file.
