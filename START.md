@@ -73,6 +73,22 @@ switches.
 
    What is red is not let in by that button.
 
+## With friends: no code, no button
+
+When you and another person are friends in the app, neither of you has to share file by file.
+
+1. The first time, the screen asks **Should your friends see your share folder?** Answer
+   **Yes, show it to my friends**. From then on your friends can fetch whatever is in your
+   `DAP-Share` share folder. Put a file there and they can fetch it; take it out and it is gone.
+   Nobody who is not your friend sees the folder. You change your answer under **Settings**, at
+   **Friends see your share folder**.
+
+2. To look in a friend's folder: **Settings**, find the friend under **Friends**, press
+   **See folder**. You see the file names. Nothing has been fetched yet.
+
+3. Press **Fetch** on the ones you want, or **Fetch all**. They land in `DAP-Share/Received`.
+   Under *Picked for you* are files your friend, or your friend's AI agent, chose for you.
+
 ## If it does not work
 
 | It says, or what happens | What it means | Do this |
