@@ -9,40 +9,46 @@ the receiver: nothing enters the computer until the receiver presses the button.
 
 ## You need
 
-- A **Mac** with **Python 3.6 or later**. If Python is missing you will see it in step 2 below;
+- A **Mac** with **Python 3.6 or later**. If Python is missing you will see it in step 3 below;
   install it from python.org and start again.
-- **`DAP-Share.app`**, which you get by unpacking `DAP-Share.zip` from the download page.
+- **`DAP-Share.zip`** from the download page, https://dapshare.app. Step 1 below.
 - **A code** that the two of you agree on, at least six characters. For example `tuesday-2026`.
 
 ## Start
 
-1. **Move the app to Applications.** Drag `DAP-Share.app` to *Applications* in Finder's sidebar.
+1. **Download and unpack.** On https://dapshare.app press **Download for Mac**. If your browser
+   asks where to save the file, choose a place you will find again, for example the Desktop, and
+   press **Save**. Double-click `DAP-Share.zip` there. Next to it you get `DAP-Share`, the green
+   icon with the eyes.
 
-2. **Open it the first time.** In *Applications*, **right-click** `DAP-Share` and choose **Open**,
-   and then **Open** once more in the box that appears.
+2. **Move the app to Applications.** Drag `DAP-Share` to *Applications* in Finder's sidebar. If
+   you had DAP-Share before, the Mac asks whether to replace the older one: press **Replace**.
 
-   The Mac asks the first time because the app was downloaded and its developer is not registered
-   with Apple. It says nothing about what the app does. After the first time a double-click is
-   enough.
+3. **Open it from the inside.** The Mac does not open a downloaded app by a double-click when its
+   developer is not registered with Apple. That says nothing about what the app does. Start it
+   like this instead; no typing is needed:
 
-   **On macOS 15 or later** the right-click does not offer this. Double-click the app once and
-   close the box. Then open *System Settings* → *Privacy & Security*, scroll down to the line that
-   says DAP-Share was blocked, and press **Open Anyway**.
+   1. In *Applications*, **right-click** `DAP-Share` and choose **Show Package Contents**. A
+      window opens with one folder, `Contents`.
+   2. Open `Contents`, and then the folder `MacOS` inside it. It holds one file, `DAP-Share`.
+   3. **Right-click** that file, choose **Open With**, and then **Terminal**. If Terminal is not
+      in the list, choose *Other…*, open the folder *Utilities* and pick *Terminal* there.
+   4. The Mac says that "DAP-Share" is a Unix application downloaded from the Internet and asks
+      whether you are sure you want to open it. Press **Open**. A Terminal window shows a few
+      lines; it can be closed.
 
-   **If the Mac still refuses**, there is a way that always works. Open the program *Terminal*
-   (press ⌘ and space, type `Terminal`, press return), paste this line and press return:
+   Open the app the same way after you have downloaded a new version.
 
-   ```
-   xattr -dr com.apple.quarantine /Applications/DAP-Share.app
-   ```
+   *Other ways, if you prefer them.* On some Macs it is enough to right-click the app, choose
+   **Open**, and **Open** once more in the box. On macOS 15 or later: double-click the app, close
+   the box, then *System Settings* → *Privacy & Security* → **Open Anyway**. Whoever prefers to
+   type can open *Terminal* and run `xattr -dr com.apple.quarantine /Applications/DAP-Share.app`,
+   which removes the Mac's mark on this downloaded app; after that a double-click is enough.
 
-   Nothing is printed when it works. It removes the mark the Mac puts on downloaded files, for this
-   app only. Then double-click the app as usual. If you left the app in *Downloads*, write
-   `~/Downloads/DAP-Share.app` at the end of the line instead.
+4. **Type your name** in the box that asks for it, and press OK. The person you share with sees it.
+   The box comes only the very first time.
 
-3. **Type your name** in the box that asks for it, and press OK. The person you share with sees it.
-
-4. **Your browser opens the screen**, and Finder opens your share folder. At the top of the
+5. **Your browser opens the screen**, and Finder opens your share folder. At the top of the
    screen is your name and *Your address*, a line that starts with `dap:crypto:`. To the right it
    should say `relay: connected`.
 
@@ -119,8 +125,7 @@ When you and another person are friends in the app, neither of you has to share 
 
 | It says, or what happens | What it means | Do this |
 |---|---|---|
-| "cannot be opened because it is from an unidentified developer", or "Apple could not verify" | The Mac's check of downloaded files, the first time | Right-click the file and choose *Open*. On macOS 15 or later: *System Settings* → *Privacy & Security* → *Open Anyway* |
-| The Mac still refuses, or there is no *Open Anyway* | The mark on downloaded files is still on the app | Step 2 under *Start*, **If the Mac still refuses**: one line in Terminal |
+| "cannot be opened because it is from an unidentified developer", or "Apple could not verify" | The Mac's check of downloaded files, the first time | Open the app from the inside, step 3 under *Start*: right-click the file inside the app, *Open With* → *Terminal*. Other ways are listed there |
 | "DAP-Share needs Python 3" | The computer has no Python | Install it from python.org and open the app again |
 | `relay: off` or `relay: not connected` | Your computer does not reach the relay | Check your internet; close the window and start again |
 | `peer not registered` | The other agent is not connected right now | Ask them to open the app and check that the screen shows `relay: connected` |
