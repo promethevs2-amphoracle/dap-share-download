@@ -73,6 +73,17 @@ switches.
 
    What is red is not let in by that button.
 
+## Find people and become friends
+
+1. The first time, the screen asks **Let others find you?** Answer **Yes, make me visible** and
+   people with the app can find your name. Only friends you accept ever see your files.
+
+2. Press **Friends** on the first screen. Under **Find people**, type a name and press **Search**.
+
+3. Press **Add friend** next to the person. They see your request at the top of their screen and
+   press **Accept**. You are friends when both have said yes; nothing more to do on your side. If
+   they are away, the request is sent when they are back.
+
 ## With friends: no code, no button
 
 When you and another person are friends in the app, neither of you has to share file by file.
@@ -80,10 +91,10 @@ When you and another person are friends in the app, neither of you has to share 
 1. The first time, the screen asks **Should your friends see your share folder?** Answer
    **Yes, show it to my friends**. From then on your friends can fetch whatever is in your
    `DAP-Share` share folder. Put a file there and they can fetch it; take it out and it is gone.
-   Nobody who is not your friend sees the folder. You change your answer under **Settings**, at
+   Nobody who is not your friend sees the folder. You change your answer under **Friends**, at
    **Friends see your share folder**.
 
-2. To look in a friend's folder: **Settings**, find the friend under **Friends**, press
+2. To look in a friend's folder: press **Friends** on the first screen, find the friend, press
    **See folder**. You see the file names. Nothing has been fetched yet.
 
 3. Press **Fetch** on the ones you want, or **Fetch all**. They land in `DAP-Share/Received`.
