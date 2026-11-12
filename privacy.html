@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAP-Share: privacy</title>
+    <meta name="description" content="What DAP-Share's directory shows, what the relay keeps, and how to leave.">
+    <link rel="icon" href="assets/logo/favicon.ico" sizes="any">
+    <link rel="icon" href="assets/logo/app-icon.svg" type="image/svg+xml">
+    <style>
+        :root { --bg: #0b0c10; --card: #13151c; --accent: #39FF14; --text: #f1f5f9; --muted: #94a3b8; --border: #1e293b; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+               margin: 0; padding: 0 20px; line-height: 1.6; }
+        main { max-width: 720px; margin: 0 auto; padding: 48px 0 24px; }
+        h1 { font-size: 2rem; margin: 0 0 6px; }
+        h2 { font-size: 1.15rem; margin: 32px 0 8px; color: var(--accent); }
+        p, li { color: #cbd5e1; }
+        .lead { color: var(--muted); margin-top: 0; }
+        a { color: var(--accent); }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 4px 20px; margin: 20px 0; }
+        .lang { color: var(--muted); font-size: .95rem; }
+        hr { border: 0; border-top: 1px solid var(--border); margin: 48px 0; }
+        footer { max-width: 720px; margin: 0 auto; padding: 24px 0 48px; color: var(--muted); font-size: .9rem; }
+    </style>
+</head>
+<body>
+<main>
+    <p class="lang"><a href="#sv">På svenska</a> · <a href="./">dapshare.app</a></p>
+    <h1>Privacy</h1>
+    <p class="lead">What DAP-Share's directory shows about you, what the relay keeps, and how to leave. Updated 12 November 2026.</p>
+
+    <h2>Who is responsible</h2>
+    <p>DAP-Share and its relay at relay.dapshare.app are run by Spiridon Iconomou, a sole trader in Sweden.
+       Questions, requests and complaints: <a href="mailto:kontakt@dapshare.app">kontakt@dapshare.app</a>.</p>
+
+    <h2>Your files never pass through us</h2>
+    <p>Files go from one person's app to another's, encrypted end to end. The relay passes on encrypted data it cannot
+       read, and keeps none of it. Nothing you share is stored anywhere but on the two computers.</p>
+
+    <h2>The directory: only if you say yes</h2>
+    <div class="card">
+        <p>The app asks once: <em>Let others find you?</em> Only if you answer yes are you listed. Then the directory holds:</p>
+        <ul>
+            <li>the name you chose in the app, and</li>
+            <li>your app's address (it looks like <code>dap:crypto:…</code>).</li>
+        </ul>
+        <p>Nothing else: no email, no phone number, no location, no list of your friends or files. You are listed only
+           while your app is running and connected. The list is kept in the relay's memory and is never written to
+           disk; when your app disconnects, you are gone from it.</p>
+    </div>
+    <p>Other people with the app can search the directory and send you a friend request. Only friends you accept see
+       anything you share.</p>
+
+    <h2>What the relay sees while you are connected</h2>
+    <ul>
+        <li>Which app addresses are connected, and which of them talk to each other and when. This is needed to connect
+            them. It is not written to disk or to the relay's log.</li>
+        <li>The internet address your connection comes from, as any server does. The relay program does not store it.</li>
+        <li>Counts for the operator, such as how many apps are connected. They never name anyone.</li>
+    </ul>
+
+    <h2>How to leave</h2>
+    <ul>
+        <li>In the app: <strong>Friends</strong>, then <strong>Stop being visible</strong>. You are removed from the directory at once.</li>
+        <li>Quitting the app also takes you out of it, until you open the app again.</li>
+        <li>To stop someone reaching you: <strong>Block</strong> next to their name. They get nothing from you, their
+            requests are not shown, and they are not told.</li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>The legal basis for the directory is your consent, which you give by answering yes and can take back at any
+       time as above. Since nothing about you is stored beyond your connection, there is normally nothing to hand
+       out or delete; if you think there is, write to <a href="mailto:kontakt@dapshare.app">kontakt@dapshare.app</a>.
+       You may also complain to the Swedish Authority for Privacy Protection (IMY), <a href="https://www.imy.se/">imy.se</a>.</p>
+
+    <h2>If someone misuses the directory</h2>
+    <p>If a name in the directory is offensive or pretends to be someone else, write to
+       <a href="mailto:kontakt@dapshare.app">kontakt@dapshare.app</a> with the name and the <code>dap:crypto:…</code> address.</p>
+
+    <hr id="sv">
+
+    <p class="lang">In English: <a href="#">at the top</a></p>
+    <h1>Integritet</h1>
+    <p class="lead">Vad DAP-Shares katalog visar om dig, vad reläet sparar och hur du går ur. Uppdaterad 12 november 2026.</p>
+
+    <h2>Vem som ansvarar</h2>
+    <p>DAP-Share och reläet på relay.dapshare.app drivs av Spiridon Iconomou (enskild firma, Sverige).
+       Frågor, önskemål och klagomål: <a href="mailto:kontakt@dapshare.app">kontakt@dapshare.app</a>.</p>
+
+    <h2>Dina filer passerar aldrig oss</h2>
+    <p>Filer går från den enas app till den andras, krypterade hela vägen. Reläet skickar vidare krypterad data som det
+       inte kan läsa, och sparar ingenting av det. Det du delar finns bara på de två datorerna.</p>
+
+    <h2>Katalogen: bara om du säger ja</h2>
+    <div class="card">
+        <p>Appen frågar en gång: <em>Ska andra kunna hitta dig?</em> Bara om du svarar ja står du med. Då innehåller katalogen:</p>
+        <ul>
+            <li>namnet du valt i appen, och</li>
+            <li>din apps adress (den ser ut som <code>dap:crypto:…</code>).</li>
+        </ul>
+        <p>Inget annat: ingen e-post, inget telefonnummer, ingen plats, ingen lista över dina vänner eller filer. Du står
+           med bara medan din app är igång och ansluten. Listan finns i reläets minne och skrivs aldrig till disk; när
+           din app kopplar ner är du borta ur den.</p>
+    </div>
+    <p>Andra som har appen kan söka i katalogen och skicka en vänförfrågan. Bara vänner du accepterar ser något du delar.</p>
+
+    <h2>Vad reläet ser medan du är ansluten</h2>
+    <ul>
+        <li>Vilka appadresser som är anslutna, och vilka som pratar med varandra och när. Det behövs för att koppla ihop
+            dem. Det skrivs inte till disk eller till reläets logg.</li>
+        <li>Internetadressen din anslutning kommer från, som för alla servrar. Reläprogrammet sparar den inte.</li>
+        <li>Siffror för den som driver reläet, till exempel hur många appar som är anslutna. De namnger aldrig någon.</li>
+    </ul>
+
+    <h2>Så går du ur</h2>
+    <ul>
+        <li>I appen: <strong>Vänner</strong>, sedan <strong>Sluta synas</strong>. Du försvinner ur katalogen direkt.</li>
+        <li>Stänger du appen försvinner du också, tills du öppnar den igen.</li>
+        <li>För att stoppa någon: <strong>Blockera</strong> vid deras namn. De får inget från dig, deras förfrågningar
+            visas inte, och de får inte veta det.</li>
+    </ul>
+
+    <h2>Dina rättigheter</h2>
+    <p>Den rättsliga grunden för katalogen är ditt samtycke, som du ger genom att svara ja och kan ta tillbaka när som
+       helst enligt ovan. Eftersom inget om dig sparas utöver din anslutning finns det normalt inget att lämna ut eller
+       radera; tror du att det finns något, skriv till <a href="mailto:kontakt@dapshare.app">kontakt@dapshare.app</a>.
+       Du kan också klaga till Integritetsskyddsmyndigheten (IMY), <a href="https://www.imy.se/">imy.se</a>.</p>
+
+    <h2>Om någon missbrukar katalogen</h2>
+    <p>Om ett namn i katalogen är kränkande eller utger sig för att vara någon annan, skriv till
+       <a href="mailto:kontakt@dapshare.app">kontakt@dapshare.app</a> med namnet och adressen <code>dap:crypto:…</code>.</p>
+</main>
+<footer>&copy; 2026 Spiridon Iconomou. All rights reserved.</footer>
+</body>
+</html>
