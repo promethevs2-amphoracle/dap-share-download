@@ -1,0 +1,48 @@
+/* DAP-Share, the page at /remote/. Copyright (c) 2026 Spiridon Iconomou. All rights reserved. */
+/* The page at /remote/ (docs/REMOTE.md §5): what is around the screen on the owner's phone. The
+   screen's own style is in index.html; this only adds the cover that is in front of it until the
+   phone is connected, and the view for files. */
+body { padding-top: max(16px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+.rcover { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 12; background: var(--bg); overflow-y: auto; -webkit-overflow-scrolling: touch; padding: max(20px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom)); box-sizing: border-box; }
+#remoteFiles { z-index: 11; }
+/* The screen behind the cover is put away while the cover is in front (the build starts the page that way). */
+body.rcovered > .container { display: none; }
+/* What the screen says and its camera stay in front of the cover. */
+.scanner { z-index: 30; }
+.toast, .busy { z-index: 40; }
+.rbox { max-width: 520px; margin: 0 auto; text-align: center; }
+.rmark { display: block; margin: clamp(8px, 5vh, 40px) auto 10px; border-radius: 18px; }
+.rname { font-size: 1.2rem; margin-bottom: 18px; }
+.rbox h2 { font-size: 1.5rem; color: var(--text); text-transform: none; letter-spacing: 0; font-weight: 700; margin: 0 0 10px; }
+.rbox p { color: #94a3b8; line-height: 1.5; margin: 0 0 14px; }
+.rbox ol { text-align: left; color: #cbd5e1; line-height: 1.6; padding-left: 22px; margin: 0 0 14px; }
+.rcard { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px; margin: 0 0 14px; text-align: left; }
+.rcard h3 { font-size: 1.02rem; color: var(--text); margin: 0 0 8px; }
+.rcard p:last-child, .rcard ol:last-child { margin-bottom: 0; }
+.rcard.rwhy { border-color: rgba(251,191,36,.5); background: rgba(251,191,36,.07); }
+.rcard.rwhy p { color: var(--text); }
+.rcard.rfirst { border-color: rgba(57,255,20,.45); background: rgba(57,255,20,.06); }
+.rbox label.fld { text-align: left; margin-bottom: 12px; }
+.rbox label.fld input, .rpaste input { padding: 12px; font-size: 1rem; border-radius: 10px; }
+.rpaste { display: flex; gap: 8px; margin-top: 14px; } .rpaste input { flex: 1; min-width: 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.rbox button.big { display: block; width: 100%; padding: 14px; border-radius: 12px; }
+.rbtns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+.rdigits { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: clamp(3rem, 16vw, 4.4rem); font-weight: 700; letter-spacing: .22em; color: var(--accent); margin: 6px 0 12px; padding-left: .22em; }
+.rfoot { margin-top: 22px; font-size: .85rem; } .rfoot a { color: var(--muted); }
+.rwait { color: var(--muted); }
+/* Shown by nothing but time: a browser that never ran remote.js still says what is wrong. */
+.rlate { opacity: 0; animation: rlate 0s 8s forwards; }
+@keyframes rlate { to { opacity: 1; } }
+/* ---- files on the computer ---- */
+.rfiles { max-width: 660px; margin: 0 auto; }
+.rfiles h2 { font-size: 1.5rem; color: var(--text); text-transform: none; letter-spacing: 0; font-weight: 700; margin: 10px 0 14px; }
+.rfile { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+.rfile:first-child { border-top: 0; }
+.rfile .rfname { overflow-wrap: anywhere; min-width: 0; } .rfile button { flex: none; }
+.rjob { border-top: 1px solid var(--border); padding: 10px 0 0; margin-top: 10px; }
+.rjob:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+.rjob .rbar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin: 8px 0; }
+.rjob .rbar i { display: block; height: 100%; width: 0; background: var(--accent); }
+.rjob .rbtns { justify-content: flex-start; margin-top: 8px; }
+.rjob a.rsave { color: var(--accent); font-size: .9rem; align-self: center; }
+#remoteForget { margin-top: 6px; }

@@ -27,7 +27,7 @@
 <main>
     <p class="lang"><a href="#sv">På svenska</a> · <a href="./">dapshare.app</a></p>
     <h1>Privacy</h1>
-    <p class="lead">What DAP-Share's directory shows about you, what the relay keeps, and how to leave. Updated 12 November 2026.</p>
+    <p class="lead">What DAP-Share's directory shows about you, what the relay keeps, what a phone used as a remote keeps, and how to leave. Updated 13 November 2026.</p>
 
     <h2>Who is responsible</h2>
     <p>DAP-Share and its relay at relay.dapshare.app are run by Spiridon Iconomou, a sole trader in Sweden.
@@ -55,9 +55,30 @@
     <ul>
         <li>Which app addresses are connected, and which of them talk to each other and when. This is needed to connect
             them. It is not written to disk or to the relay's log.</li>
-        <li>The internet address your connection comes from, as any server does. The relay program does not store it.</li>
+        <li>The internet address your connection comes from, as any server does. So that one address cannot crowd
+            everyone else out, the relay counts how many attempts each address has made in the last minute or so and
+            how many connections it has open. The counts are in the relay's memory only, are never written to disk
+            or to the relay's log, and are gone within minutes.</li>
         <li>Counts for the operator, such as how many apps are connected. They never name anyone.</li>
     </ul>
+
+    <h2>Your phone as a remote</h2>
+    <p>You can make your phone a remote for your own computer, with the page at dapshare.app/remote. Then:</p>
+    <ul>
+        <li>The page keeps three things in your phone's browser: a key that is the phone's own, your computer's
+            address and key, and your computer's name. They stay on the phone. They are never sent to us.</li>
+        <li>Your computer keeps a list of the phones you have said yes to, three at most, with the name each phone
+            gave and when it was last used. The list is on your computer only.</li>
+        <li>What you do from the phone, and files you fetch or send, go between the phone and your computer encrypted
+            end to end. They pass the relay, which cannot read them and keeps none of it.</li>
+    </ul>
+    <p>To undo it: on the computer, <strong>Settings</strong>, then <strong>Remove</strong> next to the phone. On the
+       phone, <strong>Forget this computer</strong> removes what the page kept.</p>
+
+    <h2>The pages at dapshare.app</h2>
+    <p>The download page, this page and the remote's page are delivered by GitHub (GitHub Pages). GitHub sees the
+       internet address of whoever opens them, as any web host does. We do not get those addresses. The pages use no
+       cookies and no visitor statistics.</p>
 
     <h2>How to leave</h2>
     <ul>
@@ -81,7 +102,7 @@
 
     <p class="lang">In English: <a href="#">at the top</a></p>
     <h1>Integritet</h1>
-    <p class="lead">Vad DAP-Shares katalog visar om dig, vad reläet sparar och hur du går ur. Uppdaterad 12 november 2026.</p>
+    <p class="lead">Vad DAP-Shares katalog visar om dig, vad reläet sparar, vad en telefon som används som fjärrkontroll sparar och hur du går ur. Uppdaterad 13 november 2026.</p>
 
     <h2>Vem som ansvarar</h2>
     <p>DAP-Share och reläet på relay.dapshare.app drivs av Spiridon Iconomou (enskild firma, Sverige).
@@ -108,9 +129,30 @@
     <ul>
         <li>Vilka appadresser som är anslutna, och vilka som pratar med varandra och när. Det behövs för att koppla ihop
             dem. Det skrivs inte till disk eller till reläets logg.</li>
-        <li>Internetadressen din anslutning kommer från, som för alla servrar. Reläprogrammet sparar den inte.</li>
+        <li>Internetadressen din anslutning kommer från, som för alla servrar. För att en adress inte ska kunna tränga
+            undan alla andra räknar reläet hur många försök varje adress har gjort den senaste minuten ungefär, och
+            hur många anslutningar den har öppna. Siffrorna finns bara i reläets minne, skrivs aldrig till disk
+            eller till reläets logg, och är borta inom några minuter.</li>
         <li>Siffror för den som driver reläet, till exempel hur många appar som är anslutna. De namnger aldrig någon.</li>
     </ul>
+
+    <h2>Din telefon som fjärrkontroll</h2>
+    <p>Du kan göra din telefon till en fjärrkontroll för din egen dator, med sidan på dapshare.app/remote. Då gäller:</p>
+    <ul>
+        <li>Sidan sparar tre saker i telefonens webbläsare: en nyckel som är telefonens egen, din dators adress och
+            nyckel, och din dators namn. De stannar på telefonen. De skickas aldrig till oss.</li>
+        <li>Din dator har en lista över de telefoner du har sagt ja till, högst tre, med namnet varje telefon uppgav
+            och när den senast användes. Listan finns bara på din dator.</li>
+        <li>Det du gör från telefonen, och filer du hämtar eller skickar, går mellan telefonen och din dator
+            krypterat hela vägen. Det passerar reläet, som inte kan läsa det och inte sparar något av det.</li>
+    </ul>
+    <p>För att ångra: på datorn, <strong>Inställningar</strong>, sedan <strong>Ta bort</strong> vid telefonen. På
+       telefonen tar <strong>Glöm den här datorn</strong> bort det sidan sparade.</p>
+
+    <h2>Sidorna på dapshare.app</h2>
+    <p>Nedladdningssidan, den här sidan och fjärrkontrollens sida levereras av GitHub (GitHub Pages). GitHub ser
+       internetadressen hos den som öppnar dem, som alla webbhotell gör. Vi får inte de adresserna. Sidorna använder
+       inga kakor och ingen besöksstatistik.</p>
 
     <h2>Så går du ur</h2>
     <ul>
