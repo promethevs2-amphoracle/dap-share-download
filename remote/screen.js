@@ -37,16 +37,8 @@
       "Ny kod": "New code",
       "Ingen kod syntes på bilden. Försök igen, närmare och rakt framifrån.": "No code could be seen in the picture. Try again, closer and straight on.",
       "Bilden gick inte att läsa": "The picture could not be read",
-      "Säger Safari att bara HTTPS tillåts? Inställningar → Appar → Safari → stäng av varningen för osäker anslutning. Skanna sedan koden igen.": "Does Safari say only HTTPS is allowed? Settings → Apps → Safari → turn off the warning about connections that are not secure. Then scan the code again.",
-      "Använd från telefonen": "Use from your phone",
-      "Telefonen blir en skärm för agenten på den här datorn. Samma Wi-Fi. Bara den som skannar koden kommer in.": "Your phone becomes a screen for the agent on this computer. Same Wi-Fi. Only whoever scans the code gets in.",
-      "Av. Slå på och skanna koden med telefonens kamera.": "Off. Turn it on and scan the code with your phone's camera.",
-      "Öppna kameran på telefonen och rikta den mot koden.": "Open the camera on your phone and point it at the code.",
-      "Tryck på länken som dyker upp.": "Tap the link that appears.",
-      "Lägg till sidan på hemskärmen: Dela → Lägg till på hemskärmen.": "Add it to your home screen: Share → Add to Home Screen.",
       "Slå på": "Turn on",
       "Stäng av": "Turn off",
-      "Stäng av telefonen? Den kommer inte in igen förrän du skannar en ny kod.": "Turn off the phone? It cannot get in again until you scan a new code.",
       "dela själv till vänner, inom gränser": "share with friends by itself, within limits",
       "dela själv till vänner, utan gränser": "share with friends by itself, without limits",
       "Får läsa filerna i ditt bibliotek": "May read the files in your library",
@@ -525,7 +517,6 @@
   const kb = (n) => (n < 1024 ? n + " B" : n < 1048576 ? Math.round(n / 1024) + " kB" : (n / 1048576).toFixed(1) + " MB");
   const when = (iso) => new Date(iso).toLocaleTimeString(LOCALE);
   let state = null;
-  let phoneDrawn = null;
   let relayFilled = false;
   let remoteCode = null; // the pairing code this page was given: { expires_at, made }. The agent never repeats a code.
   let removeAsk = null;  // the phone the owner pressed Remove on, until the second press
@@ -559,11 +550,11 @@
     // The code stays up while the agent says that very code is out: used, run out or taken back, it goes.
     // (A state that was asked for before the code was made says nothing about it.)
     if (remoteCode && asked > remoteCode.made && !(rc.code && rc.code.expires_at === remoteCode.expires_at)) remoteCode = null;
-    const showing = !!remoteCode;
+    const showing = !!remoteCode && !p;
     const full = rc.phones.length >= rc.max;
     $("remotePair").hidden = !showing;
     if (showing) $("remoteUntil").textContent = tr("Koden gäller en gång, i fem minuter: till {t}.", { t: new Date(remoteCode.expires_at * 1000).toLocaleTimeString(LOCALE) });
-    $("remotePairBtn").hidden = showing;
+    $("remotePairBtn").hidden = showing || !!p;
     $("remotePairBtn").disabled = full;
     const hint = full ? tr("Alla {max} platserna är tagna. Ta bort en telefon för att ansluta en ny.", { max: rc.max })
       : !rc.available ? tr("Just nu kan ingen kod göras: telefonen når datorn genom agentens relä, och det saknas eller har inget namn.") : "";
@@ -619,15 +610,6 @@
         : !login.available ? "Går inte att slå på härifrån: macOS kör appen från en tillfällig plats. Dra DAP-Share till Program i Finder och öppna den därifrån."
         : login.elsewhere ? "Den pekar på en plats där appen inte ligger nu, så DAP-Share startar inte vid inloggning. Stäng av och slå på igen."
         : "Gäller från nästa gång du loggar in. Den startar tyst, utan att öppna skärmen. Den pekar på där appen ligger nu: flyttar du appen, stäng av och slå på igen.");
-    }
-    // The phone's screen: only the computer's own screen can turn it on, and only it gets the link.
-    const ph = far ? undefined : state.me.phone;
-    $("phoneCard").hidden = !ph;
-    if (ph) {
-      $("phoneQr").hidden = !ph.on; $("phoneSteps").hidden = !ph.on; $("phoneTip").hidden = !ph.on; $("phoneOff").hidden = !!ph.on;
-      $("phoneBtn").textContent = tr(ph.on ? "Stäng av" : "Slå på");
-      $("phoneBtn").className = ph.on ? "danger" : "";
-      if (ph.on && ph.url !== phoneDrawn) { drawQr(ph.url, $("phoneCanvas")); phoneDrawn = ph.url; }
     }
     $("interestsCard").hidden = state.me.interests === undefined; // an agent that keeps no card (the Node agent) shows none
     if (state.me.interests !== undefined && (far || (document.activeElement !== $("interestsIn") && !$("interestsIn").dataset.dirty))) $("interestsIn").value = state.me.interests || "";
@@ -1025,13 +1007,6 @@
   }
   $("copyClaudeBtn").onclick = () => copyText($("claudeCfg").textContent).then((ok) => toast(tr(ok ? "Kopierat. Klistra in i Claude Desktop." : "Markera raderna och kopiera dem själv")));
   $("copyCodexBtn").onclick = () => copyText($("codexCfg").textContent).then((ok) => toast(tr(ok ? "Kopierat. Klistra in i ~/.codex/config.toml." : "Markera raderna och kopiera dem själv")));
-  $("phoneBtn").onclick = async () => {
-    const on = !(state && state.me.phone && state.me.phone.on);
-    if (!on && !confirm(tr("Stäng av telefonen? Den kommer inte in igen förrän du skannar en ny kod."))) return;
-    const r = await post("phone", { on });
-    if (!r.ok) toast(tr("Gick inte: ") + r.error);
-    refresh();
-  };
   // ---- Connect a phone: the agent makes a code that works once, for five minutes; it is drawn here and nowhere else ----
   $("remotePairBtn").onclick = async () => {
     const r = await post("remote/pair");

@@ -172,7 +172,6 @@
   </header>
 
   <!-- Only what a person must answer shows up here: friend requests, what the AI agent proposes, and what waits for a yes. -->
-  <div id="pairAsk"></div>
   <div id="requests"></div>
   <div id="asks"></div>
   <div id="listAsk"></div>
@@ -386,28 +385,13 @@
         </button>
       </section>
 
-      <section class="scard swide" id="phoneCard" hidden>
-        <div class="shead"><h3>Använd från telefonen</h3><span class="small">Telefonen blir en skärm för agenten på den här datorn. Samma Wi-Fi. Bara den som skannar koden kommer in.</span></div>
-        <div class="phoneRow">
-          <div class="qrbox" id="phoneQr" hidden><canvas id="phoneCanvas"></canvas></div>
-          <div class="phoneText">
-            <p id="phoneOff">Av. Slå på och skanna koden med telefonens kamera.</p>
-            <ol class="small" id="phoneSteps" hidden>
-              <li>Öppna kameran på telefonen och rikta den mot koden.</li>
-              <li>Tryck på länken som dyker upp.</li>
-              <li>Lägg till sidan på hemskärmen: Dela → Lägg till på hemskärmen.</li>
-            </ol>
-            <p class="small tip" id="phoneTip" hidden>Säger Safari att bara HTTPS tillåts? Inställningar → Appar → Safari → stäng av varningen för osäker anslutning. Skanna sedan koden igen.</p>
-            <button id="phoneBtn">Slå på</button>
-          </div>
-        </div>
-      </section>
-
       <!-- The owner's phone as a remote, from anywhere (docs/REMOTE.md). Only the computer's own screen has this card:
            a phone becomes a remote by a yes here, and by nothing a phone, a friend or the relay says. -->
       <section class="scard swide" id="remoteCard" hidden>
         <div class="shead"><h3>Din telefon, var du än är</h3><span class="small">Telefonen når agenten på den här datorn över internet, krypterat hela vägen. Den får göra det du gör här, utom att ändra inställningarna. Högst tre telefoner.</span></div>
         <div id="remotePhones"></div>
+        <!-- A phone has scanned the code: its question takes the code's place, where the owner is looking. -->
+        <div id="pairAsk"></div>
         <div class="phoneRow" id="remotePair" hidden>
           <div class="qrbox"><canvas id="remoteCanvas"></canvas></div>
           <div class="phoneText">
