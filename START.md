@@ -50,10 +50,10 @@ the receiver: nothing enters the computer until the receiver presses the button.
 
 5. **Your browser opens the screen**, and Finder opens your share folder. At the top of the
    screen is your name and *Your address*, a line that starts with `dap:crypto:`. To the right it
-   should say `relay: connected`.
+   should say **online** (or *connecting …* for a moment).
 
 The app has no window of its own: the screen in the browser is its window. Opening the app again
-opens the screen again. To stop it, press **Stop DAP-Share** at the top of the screen.
+opens the screen again. To stop it: **Settings**, the card *This computer*, **Stop DAP-Share**.
 
 Your files are kept in the folder **`DAP-Share`** in your home folder, with a dark icon and a green
 tab, not inside the app. Dragging that folder to Finder's sidebar keeps it one click away.
@@ -121,6 +121,58 @@ When you and another person are friends in the app, neither of you has to share 
 3. Press **Fetch** on the ones you want, or **Fetch all**. They land in `DAP-Share/Received`.
    Under *Picked for you* are files your friend, or your friend's AI agent, chose for you.
 
+## Your phone, from anywhere
+
+Your own phone can show the same screen as your computer, wherever you are: over the internet,
+encrypted all the way. The phone may do what you do on the screen, except change the settings.
+At most three phones.
+
+The computer has to be on and awake, with DAP-Share running. A phone cannot wake a computer
+that sleeps; see *So that the phone finds the computer awake* below.
+
+**Connect a phone**
+
+1. **On the computer:** press **Settings** on the screen. Under **Your phone, from anywhere**,
+   press **Connect a phone**. A square code appears. It works once, for five minutes.
+
+2. **On the phone:** open `https://dapshare.app/remote` in Safari. Tap the Share button (the
+   square with the arrow) and choose **Add to Home Screen**. A DAP-Share icon lands on the Home
+   Screen. (On Android: the browser's menu, then *Add to Home screen*.)
+
+3. **Open that icon**, not the page in Safari: the icon has a memory of its own, and that is
+   where the phone remembers your computer. Tap **Scan the code on my computer** and point the
+   camera at the code on the computer's screen. If the phone asks whether the page may use the
+   camera, allow it.
+
+4. **Compare the four digits.** The phone shows four digits. The computer's screen now asks
+   *A phone wants to be your remote* and shows four digits too. If they are the same, press
+   **Yes, allow** on the computer. If they differ, or the computer asks when you have not just
+   scanned the code yourself, press **No**.
+
+5. The phone now shows your screen. From now on, opening the icon is enough.
+
+**Files between the phone and the computer:** on the phone's first screen, press
+**Files on the computer**. **Save to phone** fetches a file from the computer. **Choose files**
+sends one from the phone; it lands in your share folder on the computer. At most 200 MB per file.
+
+**Remove a phone:** on the computer, press **Settings**. Under **Your phone, from anywhere**,
+press **Remove** next to the phone, and then **Yes, remove**. It is out at once, and cannot get in
+again until you connect it anew. Do this if a phone is lost. *Forget this computer* on the phone
+only makes the phone forget: the computer keeps the phone in its list until you remove it there.
+
+**So that the phone finds the computer awake:** on the computer, press **Settings**. Under
+**This computer** there are two switches:
+
+1. **Keep this Mac awake while DAP-Share runs**: press **Turn on**. The Mac then does not fall
+   asleep by itself. A laptop still sleeps when its lid is closed, so leave it on its charger with
+   the lid open. The display may turn off; that does not matter.
+
+2. **Start DAP-Share when I log in**: press **Turn on**. From the next time you log in to the Mac,
+   DAP-Share starts by itself, quietly, without opening the screen. If you move the app to another
+   folder, turn this off and on again. It also works for an app you opened from the inside
+   (step 3): DAP-Share then starts its own launcher at login, the way you opened it, so the Mac
+   does not stop it. Not yet tried on a real Mac: if it does not start, tell us.
+
 ## If it does not work
 
 | It says, or what happens | What it means | Do this |
@@ -128,11 +180,14 @@ When you and another person are friends in the app, neither of you has to share 
 | "cannot be opened because it is from an unidentified developer", or "Apple could not verify" | The Mac's check of downloaded files, the first time | Open the app from the inside, step 3 under *Start*: right-click the file inside the app, *Open With* → *Terminal*. Other ways are listed there |
 | "DAP-Share needs Python 3" | The computer has no Python | Install it from python.org and open the app again |
 | `relay: off` or `relay: not connected` | Your computer does not reach the relay | Check your internet; close the window and start again |
-| `peer not registered` | The other agent is not connected right now | Ask them to open the app and check that the screen shows `relay: connected` |
+| `peer not registered` | The other agent is not connected right now | Ask them to open the app and check that the screen says **online** |
 | `timed out` | The other computer does not answer | The same; often they switched network or the computer went to sleep |
 | The meeting worked but no file came | The code did not match | Check that you typed exactly the same code |
 | The file under *Share* cannot be ticked | It is a program or an unknown format | Programs are never shared. Try a picture, a PDF or a text file |
 | Nothing seems to happen when you open the app | It is already running | Look for the screen in your browser; opening the app again opens it |
+| On the phone: "The computer does not answer" | The computer is asleep or off, or DAP-Share is not running on it | Wake the computer and open DAP-Share there; the phone connects by itself (after a sleep the computer finds the relay again within about a minute and a half). To keep it from happening: *Keep this Mac awake*, under *Your phone, from anywhere* above |
+| On the phone: "No longer a remote" | The phone was removed on the computer | Press **Connect a phone** on the computer and scan the new code |
+| On the phone: "The code no longer works" | The code works once, for five minutes | Press **Connect a phone** on the computer for a new one |
 
 ## What you just relied on
 
@@ -140,7 +195,8 @@ When you and another person are friends in the app, neither of you has to share 
 - Your agent checked that the one it reached really was the `dap:crypto:…` you entered.
 - The file was not run. It was placed in your folder as an ordinary file, and only when you
   pressed the button.
-- The screen can only be reached from your own computer.
+- The screen can only be reached from your own computer, and from a phone you have said yes to
+  on the computer itself, after comparing the four digits.
 
 The relay never sees what is shared.
 

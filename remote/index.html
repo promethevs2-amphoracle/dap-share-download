@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<!-- DAP-Share, the page at /remote/. Copyright (c) 2026 Spiridon Iconomou. All rights reserved. -->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; connect-src wss: ws://127.0.0.1:* ws://localhost:*; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b0c10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DAP-Share">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="app-icon.png">
+<title>DAP-Share – min agent</title>
+<script src="vendor/qrcode.js"></script>
+<script src="vendor/jsQR.js"></script>
+<style>
+  :root { --bg: #0b0c10; --panel: #13151c; --accent: #39FF14; --warn: #f43f5e; --text: #e2e8f0; --muted: #64748b; --border: #1e293b; --amber: #fbbf24; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 16px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  header { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 20px; }
+  h1, h2, h3 { margin: 0; font-weight: 600; } h1 { font-size: 1.3rem; } h2 { font-size: 1rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .wide { grid-column: 1 / -1; }
+  .badge { border-radius: 20px; padding: 4px 10px; font-size: .8rem; border: 1px solid rgba(57,255,20,.25); color: var(--accent); background: rgba(57,255,20,.08); }
+  .badge.off { color: var(--muted); border-color: var(--border); background: transparent; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8rem; color: var(--muted); word-break: break-all; }
+  .meeting { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .meeting .line { font-size: 1.05rem; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .dot.green { background: var(--accent); } .dot.red { background: var(--warn); }
+  button { background: var(--accent); color: #052e16; border: 0; border-radius: 8px; padding: 10px 16px; font-weight: 600; cursor: pointer; font-size: .95rem; }
+  button.big { font-size: 1.05rem; padding: 12px 22px; }
+  button.quiet { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  button.danger { background: transparent; color: var(--warn); border: 1px solid rgba(244,63,94,.4); }
+  button:disabled { opacity: .4; cursor: default; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; } td, th { padding: 8px 6px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; } th { color: var(--muted); font-weight: 500; }
+  .small { font-size: .8rem; color: var(--muted); }
+  input, select { background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: .9rem; width: 100%; box-sizing: border-box; }
+  .row { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; } .row > * { flex: 1; min-width: 140px; }
+  label.chk { display: flex; align-items: center; gap: 8px; font-size: .9rem; } label.chk input { width: auto; }
+  pre.qr { background: var(--bg); border: 1px dashed var(--border); border-radius: 8px; padding: 12px; white-space: pre-wrap; word-break: break-all; font-size: .8rem; }
+  .addr { margin-top: 4px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; } .addr .mono { color: var(--text); font-size: .9rem; }
+  button.tiny { padding: 4px 10px; font-size: .8rem; }
+  a.lang { color: var(--muted); font-size: .8rem; margin-left: 6px; }
+  h3.how { font-size: .8rem; color: var(--muted); font-weight: 600; margin: 14px 0 6px; } h3.how:first-of-type { margin-top: 0; }
+  .sep { border-top: 1px solid var(--border); margin: 14px 0 12px; }
+  header .hdr { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .grow { flex: 1 1 auto; align-self: center; }
+  details.opts { margin: 4px 0 10px; } details.opts summary, details.more > summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+  details.more { margin-top: 16px; } details.more[open] > summary { margin-bottom: 12px; }
+  details.more section { min-width: 0; }
+  #requests:empty { display: none; } #requests { margin-bottom: 16px; }
+  /* What needs the owner's answer stands out on every screen: a friend request, a proposal from the AI agent. */
+  #requests .meeting, #asks .meeting, #liveAsk .meeting, #listAsk .meeting, #pairAsk .meeting { border-color: rgba(57,255,20,.5); background: rgba(57,255,20,.07); border-radius: 12px; padding: 14px 16px; font-size: 1.02rem; }
+  button.folderTile { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; background: rgba(57,255,20,.06); color: var(--text); border: 1px solid rgba(57,255,20,.35); border-radius: 12px; padding: 10px 14px; margin: 2px 0 12px; font-weight: 400; }
+  button.folderTile:hover:not(:disabled) { background: rgba(57,255,20,.12); border-color: var(--accent); }
+  button.folderTile:disabled { opacity: 1; cursor: default; border-color: var(--border); background: transparent; }
+  button.folderTile img { flex: none; display: block; }
+  button.folderTile.received { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.3); margin: 16px 0 0; }
+  button.folderTile.received:hover:not(:disabled) { background: rgba(255,255,255,.08); border-color: #fff; }
+  button.folderTile.received .ftAct { color: #fff; }
+  button.folderTile.library { margin: 14px 0 0; }
+  .ft { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .ftName { font-weight: 600; font-size: 1rem; overflow-wrap: anywhere; }
+  .ftAct { color: var(--accent); font-size: .85rem; font-weight: 600; }
+  button.folderTile:disabled .ftAct { display: none; }
+  label.fld { display: flex; flex-direction: column; gap: 4px; }
+  [hidden] { display: none !important; } /* a class that sets display must not un-hide what is hidden */
+  .qrbox { background: #fff; border-radius: 10px; padding: 12px; display: inline-block; margin-top: 10px; }
+  .qrbox canvas { display: block; width: min(260px, 70vw); height: auto; image-rendering: pixelated; }
+  .scanner { position: fixed; inset: 0; background: #000; z-index: 20; display: none; flex-direction: column; align-items: center; justify-content: center; }
+  .scanner video { width: 100%; max-height: 80vh; object-fit: cover; }
+  .scanner .hint { color: #fff; padding: 12px; text-align: center; }
+  .scanner button { margin: 10px; }
+  .frame { position: absolute; width: 60vmin; height: 60vmin; border: 3px solid var(--accent); border-radius: 14px; pointer-events: none; }
+  .empty { color: var(--muted); font-style: italic; padding: 8px 0; }
+  /* The loader: the mark blinks and looks around while the app waits. Still for reduced motion. */
+  .loader { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-style: normal; }
+  .loader img { width: 28px; height: 28px; border-radius: 7px; display: block; }
+  .busy { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); background: var(--panel); border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px 8px 10px; display: none; z-index: 20; }
+  .busy .loader { color: var(--text); }
+  /* ---- one question first, then one thing at a time ---- */
+  .meRow { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  button.homeBtn { background: none; border: 0; padding: 0; border-radius: 10px; flex: none; }
+  button.homeBtn img { display: block; border-radius: 10px; }
+  .view { margin-top: 8px; }
+  h2.q { font-size: clamp(1.6rem, 4vw, 2.1rem); color: var(--text); text-transform: none; letter-spacing: -.01em; font-weight: 700; text-align: center; margin: clamp(16px, 6vh, 56px) 0 8px; }
+  .lead { color: #94a3b8; text-align: center; margin: 0 0 clamp(20px, 4vh, 36px); font-size: 1rem; }
+  .choices { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; max-width: 660px; margin: 0 auto; }
+  button.choice { width: 300px; max-width: 100%; min-height: 230px; background: var(--panel); color: var(--text); border: 1px solid var(--border); border-radius: 20px; padding: 32px 20px 24px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; text-align: center; font-weight: 400; }
+  button.choice:hover, button.choice:focus-visible { border-color: var(--accent); box-shadow: 0 18px 50px -24px rgba(57,255,20,.5); outline: none; }
+  button.choice b { font-size: 1.3rem; font-weight: 700; }
+  .csub { color: #94a3b8; font-size: .9rem; max-width: 230px; line-height: 1.4; }
+  .cicon { width: 76px; height: 76px; border-radius: 22px; background: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .cicon.line { background: transparent; border: 3px solid var(--accent); }
+  .cicon svg { width: 40px; height: 40px; display: block; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: clamp(18px, 3vw, 30px); max-width: 660px; margin: 0 auto; }
+  .grid > .card, .card.widecard { max-width: none; min-width: 0; margin: 0; }
+  .qrwrap { text-align: center; } .qrwrap .qrbox { margin: 6px 0 12px; }
+  h2.t { font-size: 1.4rem; color: var(--text); text-transform: none; letter-spacing: 0; font-weight: 700; margin: 0 0 6px; }
+  .lead2 { color: #94a3b8; margin: 0 0 18px; }
+  button.full { display: block; width: 100%; margin-top: 12px; }
+  button.big.full { padding: 14px; font-size: 1.05rem; border-radius: 12px; margin-top: 18px; }
+  button.back { margin: 0 0 4px; }
+  button.notice { display: block; width: 100%; text-align: left; background: rgba(57,255,20,.08); color: var(--text); border: 1px solid rgba(57,255,20,.35); border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; font-weight: 600; }
+  .stepper { list-style: none; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 0; margin: 4px 0 22px; flex-wrap: wrap; }
+  .stepper li { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: .9rem; }
+  .stepper li + li:before { content: ""; width: 32px; height: 1px; background: #334155; margin-right: 2px; }
+  .stepper i { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #334155; display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-weight: 700; font-size: .8rem; }
+  .stepper li.on { color: var(--text); } .stepper li.on i { background: var(--accent); border-color: var(--accent); color: #000; }
+  .stepper li.done i { border-color: var(--accent); color: var(--accent); }
+  .row.codeIn input { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 1.1rem; letter-spacing: .04em; padding: 12px; flex: 3; }
+  .row.codeIn button { flex: 1; min-width: 100px; }
+  .codeBig { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: clamp(1.3rem, 4.5vw, 2rem); letter-spacing: .12em; color: var(--accent); text-align: center; background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 16px 10px; margin: 0 0 14px; overflow-wrap: anywhere; user-select: all; }
+  .apps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; } @media (max-width: 520px) { .apps { grid-template-columns: repeat(2, 1fr); } }
+  button.app { background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 14px; padding: 14px 6px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: .9rem; }
+  button.app:hover { border-color: var(--accent); }
+  svg.brand { width: 30px; height: 30px; display: block; }
+  .card label.fld { margin-bottom: 12px; } .card label.fld input { padding: 12px; font-size: 1rem; border-radius: 10px; }
+  h3.how.arrived { margin-top: 24px; }
+  h2.q.sq { margin-top: 8px; text-align: left; font-size: 1.6rem; }
+  .sgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; } @media (max-width: 800px) { .sgrid { grid-template-columns: 1fr; } }
+  .scard { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 20px 22px; min-width: 0; }
+  .scard.swide { grid-column: 1 / -1; }
+  .shead { margin-bottom: 14px; } .shead h3 { font-size: 1.1rem; margin: 0 0 4px; color: var(--text); } .shead .small { display: block; line-height: 1.5; }
+  .scard select { padding: 12px; font-size: 1rem; border-radius: 10px; }
+  .agents { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 6px; } @media (max-width: 600px) { .agents { grid-template-columns: 1fr; } }
+  .agent .small { margin: 8px 2px 0; line-height: 1.5; }
+  button.agentBtn { width: 100%; flex-direction: row; justify-content: center; gap: 12px; padding: 16px; font-size: 1rem; font-weight: 600; }
+  .srow { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--border); }
+  .srow > span:first-child { color: var(--text); }
+  .tscroll { overflow-x: auto; }
+  .phoneRow { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+  .phoneRow .qrbox { margin: 0; }
+  .phoneText { flex: 1; min-width: 220px; } .phoneText .tip { margin: 0 0 12px; border-left: 2px solid var(--amber); padding-left: 10px; } .phoneText ol { padding-left: 18px; line-height: 1.7; margin: 0 0 12px; }
+  /* The owner's phone as a remote: the four digits to compare with the phone, and the second press before a phone is removed. */
+  .digits { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: clamp(2rem, 7vw, 2.8rem); font-weight: 700; letter-spacing: .3em; color: var(--accent); margin: 8px 0 6px; }
+  .pairName { font-size: 1.05rem; margin-top: 2px; overflow-wrap: anywhere; }
+  .srow .confirm { text-align: right; } .srow .confirm .small { display: block; margin-bottom: 6px; }
+  #remotePhones { margin-bottom: 14px; } #remotePhones .srow:first-child { border-top: 0; padding-top: 0; }
+  #remoteHere { margin-top: 4px; color: var(--accent); }
+  /* The two settings of the computer itself: a sentence under each, and the switch kept on one line. */
+  .srow .why { display: block; margin-top: 4px; line-height: 1.5; } .srow .sset { flex: none; white-space: nowrap; }
+  textarea { background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 12px; font: inherit; font-size: 1rem; width: 100%; box-sizing: border-box; resize: vertical; }
+  #findHint a, #listAsk a { color: var(--accent); }
+  .likes { color: #cbd5e1; font-size: .85rem; margin-top: 4px; font-style: italic; }
+  label.chk.friendChk { margin: 6px 0 2px; color: var(--text); }
+  .toast { position: fixed; bottom: 16px; right: 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; max-width: 360px; display: none; }
+</style>
+<link rel="stylesheet" href="remote.css">
+</head>
+<body class="rcovered">
+<div class="container">
+  <header>
+    <div class="meRow">
+      <button class="homeBtn" data-go="home" title="DAP-Share"><img src="app-icon.svg" width="40" height="40" alt="DAP-Share"></button>
+      <div>
+        <h1 id="who">Min agent</h1>
+        <div class="addr"><span class="small">Din adress:</span> <span class="mono" id="myId"></span> <button class="quiet tiny" id="copyBtn">Kopiera</button></div>
+        <!-- Only on the owner's phone as a remote: whose agent this is, and that the phone reaches it from somewhere else. -->
+        <div class="small" id="remoteHere" hidden></div>
+      </div>
+    </div>
+    <div class="hdr">
+      <span class="badge off" id="relayBadge">offline</span>
+      <button class="quiet tiny" id="moreToggle" data-go="settings">Inställningar</button>
+    </div>
+  </header>
+
+  <!-- Only what a person must answer shows up here: friend requests, what the AI agent proposes, and what waits for a yes. -->
+  <div id="pairAsk"></div>
+  <div id="requests"></div>
+  <div id="asks"></div>
+  <div id="listAsk"></div>
+  <div id="liveAsk"></div>
+  <button class="notice" id="homeNotice" data-go="receive" hidden></button>
+  <button class="quiet tiny back" id="backBtn" data-go="home" hidden>Tillbaka</button>
+
+  <!-- One question first; then one thing at a time. -->
+  <section class="view" data-view="home">
+    <h2 class="q">Vad vill du göra?</h2>
+    <p class="lead">Filer går från din agent till deras, krypterat. Inget öppnas utan ditt ja.</p>
+    <div class="choices">
+      <button class="choice" data-go="send" id="goSend">
+        <span class="cicon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6 11l6-6 6 6" fill="none" stroke="#0A0B0F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <b>Skicka filer</b><span class="csub">Välj filer, få en kod, säg till den andra.</span>
+      </button>
+      <button class="choice" data-go="receive" id="goReceive">
+        <span class="cicon line"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6 13l6 6 6-6" fill="none" stroke="#39FF14" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <b>Ta emot filer</b><span class="csub">Klistra in adressen och koden du fått.</span>
+      </button>
+      <button class="choice" data-go="meet" id="goMeet">
+        <span class="cicon line"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#39FF14"><rect x="4" y="4" width="6" height="6" rx="1.2"/><rect x="14" y="4" width="6" height="6" rx="1.2"/><rect x="4" y="14" width="6" height="6" rx="1.2"/><rect x="14" y="14" width="2.6" height="2.6"/><rect x="17.4" y="17.4" width="2.6" height="2.6"/></g></svg></span>
+        <b>Mötas på plats</b><span class="csub">Visa din QR-kod eller skanna den andras.</span>
+      </button>
+      <button class="choice" data-go="friends" id="goFriends">
+        <span class="cicon line"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="#39FF14" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.7-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9.5" r="2.4"/><path d="M16.5 14.2c2.2.2 3.6 1.7 4 4.3"/></g></svg></span>
+        <b>Vänner</b><span class="csub">Hitta folk och se vad dina vänner delar.</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="view" data-view="send" hidden>
+    <ol class="stepper" id="stepper"><li data-s="1"><i>1</i><span>Välj filer</span></li><li data-s="2"><i>2</i><span>Dela</span></li><li data-s="3"><i>3</i><span>Säg till</span></li></ol>
+    <div class="card" id="sharePanel">
+      <div class="step" data-step="1">
+        <h2 class="t">Välj vad du vill skicka</h2>
+        <p class="lead2">Lägg filer i din DAP-Share-mapp och bocka för dem här.</p>
+        <!-- The share folder, as it looks in Finder: one click opens it. -->
+        <button class="folderTile" id="openFolderBtn" disabled>
+          <img src="folder-icon.svg" width="64" height="64" alt="">
+          <span class="ft"><span class="ftName">Din DAP-Share-mapp</span><span class="ftAct" id="folderAct">Öppna mappen</span><span class="small" id="folderHint"></span></span>
+        </button>
+        <table><tbody id="folder"></tbody></table>
+        <button class="big full" id="toStep2">Nästa</button>
+      </div>
+      <div class="step" data-step="2" hidden>
+        <h2 class="t">Dela</h2>
+        <p class="lead2" id="chosen"></p>
+        <div id="codeRow">
+          <p class="small">Koden som den andra personen behöver. Du kan byta den.</p>
+          <div class="row codeIn"><input id="shareCodeIn" placeholder="koden ni kommit överens om (minst 6 tecken)" hidden><button class="quiet" id="newCodeBtn">Ny kod</button></div>
+        </div>
+        <div class="row"><input id="listedIn" placeholder="adresser, dap:crypto:… med komma emellan" hidden></div>
+        <details class="opts"><summary>Fler val</summary>
+          <div class="row">
+            <label class="fld"><span class="small">Vem får dem</span>
+              <select id="audienceIn">
+                <option value="ANYONE_WITH_CODE">den som har en kod</option>
+                <option value="MET_IN_PERSON">den jag träffar fysiskt (skannar min kod)</option>
+                <option value="FRIENDS">mina vänner</option>
+                <option value="LISTED">namngivna adresser</option>
+              </select>
+            </label>
+            <label class="fld"><span class="small">Hur länge, i timmar</span>
+              <input id="hoursIn" type="number" min="1" max="720" value="24">
+            </label>
+          </div>
+          <div class="row"><input id="shareCtxIn" placeholder="sammanhang (valfritt, t.ex. nordic-ai-summit-2026)"></div>
+        </details>
+        <button class="big full" id="shareBtn">Dela</button>
+        <button class="quiet full" data-step-go="1">Byt filer</button>
+      </div>
+      <div class="step" data-step="3" hidden>
+        <div id="policies" class="empty" hidden></div>
+        <h2 class="t">Säg till den andra personen</h2>
+        <p class="lead2" id="shareNext" hidden>De behöver din adress och koden. Ett tryck skriver meddelandet åt dig.</p>
+        <div class="codeBig" id="codeBig" hidden></div>
+        <div id="sendBox" hidden>
+          <div class="apps">
+            <button class="app" data-send="whatsapp"><svg class="brand" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>WhatsApp</span></button>
+            <button class="app" data-send="telegram"><svg class="brand" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#26A5E4" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg><span>Telegram</span></button>
+            <button class="app" data-send="email"><svg class="brand" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="1.5" y="4" width="21" height="16" rx="3" fill="#39FF14"/><path d="M4.5 8l7.5 5.5L19.5 8" fill="none" stroke="#0A0B0F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>E-post</span></button>
+            <button class="app" data-send="sms"><svg class="brand" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#34DA50" d="M5.285 0A5.273 5.273 0 0 0 0 5.285v13.43A5.273 5.273 0 0 0 5.285 24h13.43A5.273 5.273 0 0 0 24 18.715V5.285A5.273 5.273 0 0 0 18.715 0ZM12 4.154a8.809 7.337 0 0 1 8.809 7.338A8.809 7.337 0 0 1 12 18.828a8.809 7.337 0 0 1-2.492-.303A8.656 7.337 0 0 1 5.93 19.93a9.929 7.337 0 0 0 1.54-2.155 8.809 7.337 0 0 1-4.279-6.283A8.809 7.337 0 0 1 12 4.154"/></svg><span>Meddelanden</span></button>
+          </div>
+          <button class="quiet full" data-send="copy">Kopiera meddelandet</button>
+        </div>
+        <button class="quiet full" data-step-go="1">Dela fler filer</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" data-view="receive" hidden>
+    <div class="card">
+      <h2 class="t">Ta emot filer</h2>
+      <p class="lead2">Klistra in det den andra personen skickade.</p>
+      <label class="fld"><span class="small">Deras adress</span><input id="dapIn" placeholder="den andras adress, dap:crypto:…"></label>
+      <label class="fld"><span class="small">Koden</span><input id="codeIn" placeholder="kod (om ni kommit överens om en)"></label>
+      <details class="opts" id="waysBox"><summary id="waysToggle">Fler sätt att nå den andra</summary>
+        <div class="row"><input id="hostIn" placeholder="eller datorns adress (t.ex. 192.168.1.20)"><input id="portIn" placeholder="port"></div>
+        <div class="row"><input id="relayIn" placeholder="relä, värd:port"><input id="ctxIn" placeholder="sammanhang (valfritt)"></div>
+      </details>
+      <label class="chk friendChk"><input type="checkbox" id="friendIn"> Skicka också en vänförfrågan</label>
+      <button class="big full" id="meetBtn">Hämta</button>
+      <h3 class="how arrived">Framme, förseglat tills du säger ja</h3>
+      <div id="meetings"><span class="loader"><picture><source srcset="icon.svg" media="(prefers-reduced-motion: reduce)"><img src="icon-animated.svg" alt="" width="28" height="28"></picture><span>hämtar läget …</span></span></div>
+      <!-- Where what was let in ends up: the same folder shape as the share folder, in black and white. -->
+      <button class="folderTile received" id="receivedBtn" disabled>
+        <img src="received-icon.svg" width="64" height="64" alt="">
+        <span class="ft"><span class="ftName">Din mapp för mottaget</span><span class="ftAct">Öppna mappen</span><span class="small" id="receivedHint">Det du släpper in hamnar här.</span></span>
+      </button>
+    </div>
+  </section>
+
+  <section class="view" data-view="meet" hidden>
+    <div class="grid">
+      <div class="card">
+        <h2 class="t">Visa min kod</h2>
+        <p class="small">Den andra personen skannar koden i rummet. Den gäller en gång, i fem minuter, och bevisar att ni verkligen träffades.</p>
+        <div class="qrwrap">
+          <div class="qrbox" id="qrBox" hidden><canvas id="qrCanvas"></canvas></div>
+          <p class="small" id="qrUntil"></p>
+          <button class="quiet" id="tokenBtn">Visa kod</button>
+        </div>
+        <details class="opts"><summary>Koden som text</summary><pre class="qr" id="qr" hidden></pre></details>
+      </div>
+      <div class="card">
+        <h2 class="t">Skanna den andras kod</h2>
+        <div class="row"><button id="scanBtn">Skanna kod</button></div>
+        <!-- Where the browser will not stream the camera (the phone's screen is on plain http), a photo
+             of the code does the same: the phone opens its camera, and the code is read from the picture. -->
+        <input type="file" id="scanPhoto" accept="image/*" capture="environment" hidden>
+        <label class="chk friendChk"><input type="checkbox" id="friendIn2"> Skicka också en vänförfrågan</label>
+        <div class="row"><input id="qrIn" placeholder="…eller klistra in koden som text"><button class="quiet" id="meetQrBtn">Möt</button></div>
+        <h3 class="how">I närheten</h3>
+        <div id="nearby"><span class="loader"><picture><source srcset="icon.svg" media="(prefers-reduced-motion: reduce)"><img src="icon-animated.svg" alt="" width="28" height="28"></picture><span>söker …</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Friends: find people, ask them, and look in the folders of the ones who said yes. -->
+  <section class="view" data-view="friends" hidden>
+    <h2 class="q sq">Vänner</h2>
+    <div class="sgrid">
+      <section class="scard swide" id="findCard" hidden>
+        <div class="shead"><h3>Hitta folk</h3><span class="small" id="findHint"></span></div>
+        <div class="srow" id="listedRow"><span>Andra kan hitta dig</span><span><span class="badge off" id="listedBadge"></span> <button class="quiet tiny" id="listedBtn"></button></span></div>
+        <div class="row" style="margin-top:12px"><input id="findIn" placeholder="sök på namn, eller klistra in en adress (dap:crypto:…)"><button id="findBtn">Sök</button></div>
+        <div id="found"></div>
+      </section>
+
+      <section class="scard swide">
+        <div class="shead"><h3>Dina vänner</h3><span class="small">En väns säkra filer kommer in utan knapp. Ni blir vänner när båda har sagt ja.</span></div>
+        <div class="srow" id="liveRow" hidden><span>Vänner ser din delningsmapp</span><span><span class="badge off" id="liveBadge"></span> <button class="quiet tiny" id="liveBtn"></button></span></div>
+        <table><tbody id="contacts"></tbody></table>
+        <div id="shelf"></div>
+        <div class="small" id="asked"></div>
+        <div id="blockedList"></div>
+        <div class="small" id="met"></div>
+      </section>
+    </div>
+  </section>
+
+  <section class="view" data-view="settings" id="moreBox" hidden>
+    <h2 class="q sq">Inställningar</h2>
+    <div class="sgrid">
+
+      <!-- Only on the owner's phone as a remote: why the settings are not here. -->
+      <section class="scard swide" id="remoteNote" hidden>
+        <div class="shead"><h3>Fjärrkontroll</h3><span class="small" id="remoteNoteText"></span></div>
+      </section>
+
+      <section class="scard swide" id="advisorPanel" hidden>
+        <div class="shead"><h3>Din AI-agent</h3><span class="small" id="advisorHint"></span></div>
+        <label class="fld" id="levelRow" hidden><span class="small">Vad den får göra</span>
+          <select id="levelIn">
+            <option value="off">ingenting, avstängd</option>
+            <option value="0">titta: ser mappen och läget</option>
+            <option value="1">föreslå: du säger ja eller nej (rekommenderas)</option>
+            <option value="2">dela själv till vänner, inom gränser</option>
+            <option value="3">dela själv till vänner, utan gränser</option>
+          </select>
+        </label>
+        <label class="chk" id="readLibRow" hidden><input type="checkbox" id="readLibIn"> Får läsa filerna i ditt bibliotek</label>
+        <div id="connectBox" hidden>
+          <div class="agents">
+            <div class="agent">
+              <button class="app agentBtn" id="copyClaudeBtn"><svg class="brand" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#D97757" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><span>Kopiera för Claude Desktop</span></button>
+              <p class="small">Klistra in i Claude Desktop: Settings → Developer → Edit Config. Spara och starta om Claude.</p>
+            </div>
+            <div class="agent">
+              <button class="app agentBtn" id="copyCodexBtn"><svg class="brand" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#FFFFFF" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg><span>Kopiera för Codex</span></button>
+              <p class="small">Klistra in i <span class="mono">~/.codex/config.toml</span> och starta om Codex. ChatGPT:s chatt når inte program på din dator.</p>
+            </div>
+          </div>
+          <details class="opts"><summary>Visa raderna</summary>
+            <pre class="qr" id="claudeCfg"></pre>
+            <pre class="qr" id="codexCfg"></pre>
+          </details>
+        </div>
+        <div id="proposals"></div>
+      </section>
+
+      <section class="scard swide" id="interestsCard" hidden>
+        <div class="shead"><h3>Det du gillar</h3><span class="small">Visas för dina vänner, så att deras AI-agent vet vad du gillar. Med egna ord: ämnen, platser, musik, projekt.</span></div>
+        <textarea id="interestsIn" rows="3" maxlength="500" placeholder="t.ex. design, Lissabon, jazz, AI-agenter"></textarea>
+        <div class="row" style="margin-top:10px"><button id="interestsBtn">Spara</button><span class="small grow" id="interestsHint"></span></div>
+        <!-- The library: what the owner's AI agent picks from for friends. One click shows it in Finder. -->
+        <button class="folderTile library" id="libraryBtn" hidden disabled>
+          <img src="folder-icon.svg" width="64" height="64" alt="">
+          <span class="ft"><span class="ftName">Ditt bibliotek</span><span class="ftAct">Öppna mappen</span><span class="small" id="libraryHint"></span></span>
+        </button>
+      </section>
+
+      <section class="scard swide" id="phoneCard" hidden>
+        <div class="shead"><h3>Använd från telefonen</h3><span class="small">Telefonen blir en skärm för agenten på den här datorn. Samma Wi-Fi. Bara den som skannar koden kommer in.</span></div>
+        <div class="phoneRow">
+          <div class="qrbox" id="phoneQr" hidden><canvas id="phoneCanvas"></canvas></div>
+          <div class="phoneText">
+            <p id="phoneOff">Av. Slå på och skanna koden med telefonens kamera.</p>
+            <ol class="small" id="phoneSteps" hidden>
+              <li>Öppna kameran på telefonen och rikta den mot koden.</li>
+              <li>Tryck på länken som dyker upp.</li>
+              <li>Lägg till sidan på hemskärmen: Dela → Lägg till på hemskärmen.</li>
+            </ol>
+            <p class="small tip" id="phoneTip" hidden>Säger Safari att bara HTTPS tillåts? Inställningar → Appar → Safari → stäng av varningen för osäker anslutning. Skanna sedan koden igen.</p>
+            <button id="phoneBtn">Slå på</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- The owner's phone as a remote, from anywhere (docs/REMOTE.md). Only the computer's own screen has this card:
+           a phone becomes a remote by a yes here, and by nothing a phone, a friend or the relay says. -->
+      <section class="scard swide" id="remoteCard" hidden>
+        <div class="shead"><h3>Din telefon, var du än är</h3><span class="small">Telefonen når agenten på den här datorn över internet, krypterat hela vägen. Den får göra det du gör här, utom att ändra inställningarna. Högst tre telefoner.</span></div>
+        <div id="remotePhones"></div>
+        <div class="phoneRow" id="remotePair" hidden>
+          <div class="qrbox"><canvas id="remoteCanvas"></canvas></div>
+          <div class="phoneText">
+            <ol class="small">
+              <li>Öppna dapshare.app/remote på telefonen och lägg sidan på hemskärmen: Dela → Lägg till på hemskärmen.</li>
+              <li>Öppna den från hemskärmen och tryck på Skanna koden på min dator.</li>
+              <li>Jämför de fyra siffrorna på telefonen med dem som visas här, och svara sedan här.</li>
+            </ol>
+            <p class="small" id="remoteUntil"></p>
+            <button class="quiet" id="remoteCancelBtn">Avbryt</button>
+          </div>
+        </div>
+        <p class="small" id="remoteHint" hidden></p>
+        <button id="remotePairBtn">Anslut en telefon</button>
+      </section>
+
+      <section class="scard">
+        <div class="shead"><h3>Den här datorn</h3><span class="small" id="me"></span></div>
+        <div class="srow"><span>Synlig på nätverket</span><span class="badge off" id="mdnsBadge">syns inte på nätverket</span></div>
+        <div class="srow"><span>Språk</span><a class="lang" id="langLink" href="?lang=en">English</a></div>
+        <!-- The two settings of the computer itself (docs/REMOTE.md §6): only on the computer's own screen, and only
+             where they can work (a Mac with caffeinate; the app started from its bundle). Hidden until the state says so. -->
+        <div class="srow" id="awakeRow" hidden><span>Håll den här Macen vaken medan DAP-Share är igång<span class="small why">Då når telefonen den dygnet runt, när den sitter i laddaren med locket öppet. En bärbar Mac med stängt lock sover ändå, och utan laddare tar batteriet slut.</span></span><span class="sset"><span class="badge off" id="awakeBadge"></span> <button class="quiet tiny" id="awakeBtn"></button></span></div>
+        <div class="srow" id="loginRow" hidden><span>Starta DAP-Share när jag loggar in<span class="small why" id="loginWhy">Gäller från nästa gång du loggar in. Den startar tyst, utan att öppna skärmen. Den pekar på där appen ligger nu: flyttar du appen, stäng av och slå på igen.</span></span><span class="sset"><span class="badge off" id="loginBadge"></span> <button class="quiet tiny" id="loginBtn"></button></span></div>
+        <div class="srow" id="quitRow"><span>DAP-Share</span><button class="danger tiny" id="quitBtn" hidden>Stäng av DAP-Share</button></div>
+      </section>
+
+      <section class="scard swide">
+        <div class="shead"><h3>Inkorg</h3><span class="small">Allt som kommit in, med granskningens rapport.</span></div>
+        <div class="tscroll"><table><thead><tr><th></th><th>Fil</th><th>Från</th><th>Vad</th><th>Rapport</th><th>Status</th><th></th></tr></thead><tbody id="inbox"></tbody></table></div>
+      </section>
+
+      <section class="scard swide">
+        <div class="shead"><h3>Journal</h3><span class="small">Vem, när, typ och storlek. Aldrig innehåll.</span></div>
+        <table><tbody id="journal"></tbody></table>
+      </section>
+    </div>
+  </section>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+<div class="busy" id="busy" role="status" aria-live="polite"></div>
+<div class="scanner" id="scanner">
+  <video id="video" playsinline muted></video>
+  <div class="frame"></div>
+  <div class="hint" id="scanHint">Rikta kameran mot den andres kod</div>
+  <button class="quiet" id="scanClose">Avbryt</button>
+</div>
+
+<!-- The page at /remote/ (docs/REMOTE.md §5): what scripts/build-remote.py adds to the screen. This
+     cover is in front of the screen until the phone is connected to its computer; remote.js fills
+     it. The last line needs no script at all: it comes into view by itself on a phone whose
+     browser is too old to start remote.js, and remote.js takes it away as its first act. -->
+<div class="rcover" id="remote">
+  <div class="rbox">
+    <img class="rmark" src="app-icon.svg" width="72" height="72" alt="">
+    <h1 class="rname">DAP-Share</h1>
+    <div id="remoteBody">
+      <p class="rwait">Startar … / Starting …</p>
+      <p class="rlate">Det här behöver en nyare telefon: sidan kom aldrig igång. Uppdatera telefonens system och försök igen. / This needs a newer phone: the page never started. Update the phone's system and try again.</p>
+    </div>
+  </div>
+</div>
+<div class="rcover" id="remoteFiles" hidden></div>
+<script src="remote.js"></script>
+</body>
+</html>
