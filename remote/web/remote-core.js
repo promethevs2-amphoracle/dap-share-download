@@ -61,6 +61,8 @@ const ACK_MS = 10000;
 export const GONE_TWICE_MS = 3000;
 /** The three places a file can be fetched from (§3.2). What is still sealed is in none of them. */
 export const PLACES = ["received", "share", "library"];
+/** The two places a file from the phone may land in (§3.2). Never received: that holds only what the owner let in from others. */
+export const PUT_PLACES = ["share", "library"];
 const QUEUE_MAX = 64;
 const enc = new TextEncoder();
 
@@ -72,8 +74,11 @@ const enc = new TextEncoder();
  *   not-connected, closed, timeout, out-of-step    the main line is not up, ended, or answered wrongly
  *   one-at-a-time, too-much-waiting                a pairing or a file is going on already; too many questions wait
  *   too-big, empty, bad-input, cancelled           said here, before anything was sent
- *   refused                                        the agent said no to a file (`status`, `message` in the owner's language)
+ *   refused                                        the agent said no to a file (`status`, `message` in the owner's language), or, with
+ *                                                  `reason` "place", did not say it would put a file where it was meant to go
  *   cut                                            a file ended before all of it had come
+ *   unsure                                         nobody can tell from here whether it was done: the line ended at the last word,
+ *                                                  or the agent answered something that does not say (`status` is then what it said)
  *   paired, not-paired, storage                    there is a pairing already; there is none; the browser keeps nothing
  * or one of link.js's own (offline, no-answer, slow-down, relay-unreachable, wrong-peer, ...).
  * `kind` sorts them for the person holding the phone: unreachable, slow-down, no-connection,
@@ -86,6 +91,21 @@ export function remoteError(code, message, more) {
   e.kind = kindOf(code);
   if (more) Object.assign(e, more);
   return e;
+}
+
+/**
+ * What the agent does with files, as its own state says (`me.files`, §3.2 and §4): the places
+ * a file from the phone may land in, and whether it removes files. Never read out of a version
+ * number. An agent before 0.9.0 says nothing of the kind: it puts every file from the phone in
+ * its share folder whatever the head line says, and refuses `files/remove` as it refuses every
+ * name it does not know. So this is decided closed: the library and removal only for an agent
+ * that says so itself; for one that says nothing, the share folder when it has one, as before.
+ */
+export function filesOf(me) {
+  const says = me && typeof me === "object" && me.files && typeof me.files === "object" && !Array.isArray(me.files) ? me.files : null;
+  if (!says) return { share: !!me && typeof me === "object" && typeof me.folder === "string" && me.folder !== "", library: false, remove: false };
+  const put = Array.isArray(says.put) ? says.put : [];
+  return { share: put.indexOf("share") !== -1, library: put.indexOf("library") !== -1, remove: says.remove === true };
 }
 
 /** What a failed attempt to reach the agent means, in the four words the page has text for. */
@@ -456,12 +476,13 @@ export function createRemote({ storage, name = "phone", onState = null, openLink
     job.started = false;
     const until = clock() + CARRY_MS;
     carried.push({ job, until });
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       const i = carried.findIndex((c) => c.job === job);
       if (i === -1) return;
       carried.splice(i, 1);
       job.reject(remoteError("closed", "the line to the computer ended"));
     }, CARRY_MS);
+    if (timer && typeof timer.unref === "function") timer.unref(); // (in Node: a press that was answered meanwhile keeps no test waiting)
   }
   /** The pairing is gone or the remote stopped: nothing carried will be asked again. */
   function dropCarried() {
@@ -871,6 +892,44 @@ export function createRemote({ storage, name = "phone", onState = null, openLink
       });
     },
     /**
+     * Remove one file from the computer (§3.2, "Removing a file"): an ordinary request on the
+     * main line, so it waits its turn there and, when the line dies with it on it, is asked
+     * again on the next one with the same `once` (the agent does it once). `place` is received,
+     * share or library. `size` and `modified` are what the list said of the file when the owner
+     * pressed: the agent removes only a file that is still that one. Resolves { where, folder }:
+     * `where` is "trash" (the computer's own Trash) or "kept" (the agent's own trash; `folder`
+     * is where that is on the computer). The file is moved there, never destroyed. Rejects with
+     * refused when the agent says in so many words that no file was removed (`status` 404: not
+     * in that place's listing now, or no longer the file that was shown; 400 and 403: the
+     * agent's words, and the file is where it was), with not-connected or too-much-waiting when
+     * it was never asked, and with unsure whenever nobody can tell from here: no answer that
+     * can be read came, or the agent answered something else (`status` is then what it said,
+     * a 500 for one). The file may be gone or not.
+     */
+    async removeFile({ place, name: file, size, modified }) {
+      if (PLACES.indexOf(place) === -1 || typeof file !== "string" || !file) throw remoteError("bad-input", "a place and a name");
+      const what = { place, name: file };
+      if (Number.isSafeInteger(size)) what.size = size;
+      if (Number.isSafeInteger(modified)) what.modified = modified;
+      let a;
+      try {
+        a = await ask("POST", "files/remove", what);
+      } catch (e) {
+        const error = asRemote(e);
+        if (error.code === "not-connected" || error.code === "too-much-waiting") throw error;
+        throw remoteError("unsure", "the computer did not answer: the file may have been removed, or not");
+      }
+      const said = a.body && typeof a.body === "object" ? a.body : {};
+      if (a.status === 200) {
+        // Only an answer that says where the file went is taken as "it is in a trash now".
+        if (said.ok === true && said.where === "trash") return { where: "trash", folder: null };
+        if (said.ok === true && said.where === "kept") return { where: "kept", folder: typeof said.folder === "string" ? said.folder : null };
+      }
+      // Only the three answers that mean "no file was removed" are taken as that.
+      if (a.status === 404 || a.status === 400 || a.status === 403) throw remoteError("refused", a.status !== 404 && typeof said.error === "string" ? said.error : "", { status: a.status });
+      throw remoteError("unsure", "the computer answered something else than where the file went", { status: a.status });
+    },
+    /**
      * Fetch one file from the computer (§3.2), on a line of its own: resolves { name, size,
      * chunks } with exactly `size` bytes in `chunks`. `place` is received, share or library.
      * `onProgress(got, size)`; `signal` (an AbortSignal) stops it. With `onChunk(bytes)` the
@@ -950,17 +1009,23 @@ export function createRemote({ storage, name = "phone", onState = null, openLink
       }
     },
     /**
-     * Send one file to the computer's share folder (§3.2), on a line of its own. `data` is a
-     * File or Blob (read a slice at a time) or bytes; resolves { name } with the name it got
-     * there (`name (2).ext` when that was taken). `onProgress(sent, size)` counts what has left
-     * the phone. Rejects with too-big, empty, refused (the agent's words), cut, cancelled, gone,
-     * or unsure. The computer keeps nothing until this end has said `commit`, which it says when
-     * the computer has all of the file: Cancel before that leaves nothing there. `unsure` is the
-     * one case nobody can decide from here: the line ended after commit was said.
+     * Send one file to the computer (§3.2), on a line of its own, into the place that is named:
+     * the share folder (`place` "share", and when none is given) or the library ("library").
+     * `data` is a File or Blob (read a slice at a time) or bytes; resolves { name } with the
+     * name it got there (`name (2).ext` when that was taken). `onProgress(sent, size)` counts
+     * what has left the phone. Rejects with too-big, empty, refused (the agent's words), cut,
+     * cancelled, gone, or unsure. The computer keeps nothing until this end has said `commit`,
+     * which it says when the computer has all of the file: Cancel before that leaves nothing
+     * there. `unsure` is the one case nobody can decide from here: the line ended after commit
+     * was said. The place is always in the head line, and the agent says it back in its first
+     * answer: for any place but the share folder, an agent that does not say that very place
+     * back (one from before 0.9.0, which reads none and would put the file in its share folder)
+     * is sent no byte of the file, and this rejects with refused and `reason` "place".
      */
-    async upload({ data, name: file, onProgress = null, signal = null }) {
+    async upload({ data, name: file, place = "share", onProgress = null, signal = null }) {
       const size = data && typeof data.size === "number" ? data.size : data && typeof data.byteLength === "number" ? data.byteLength : null;
       if (size === null || typeof file !== "string" || !file) throw remoteError("bad-input", "a file and its name");
+      if (PUT_PLACES.indexOf(place) === -1) throw remoteError("bad-input", "a file from the phone goes into the share folder or the library");
       if (size > MAX_FILE) throw remoteError("too-big", "the file is larger than the ceiling", { size });
       if (size < 1) throw remoteError("empty", "the file is empty");
       if (transfer) throw remoteError("one-at-a-time", "one file at a time");
@@ -976,14 +1041,17 @@ export function createRemote({ storage, name = "phone", onState = null, openLink
         up = true;
         if (signal) signal.addEventListener("abort", stopNow);
         if (signal && signal.aborted) throw remoteError("cancelled", "stopped");
-        link.send(JSON.stringify({ id: 1, file: "put", name: file, size }));
+        link.send(JSON.stringify({ id: 1, file: "put", name: file, size, place }));
         const said = (v, what) => {
           if (v === null) throw remoteError("cut", "the line ended " + what);
           if (!v || v.id !== 1 || !Number.isInteger(v.status)) throw remoteError("out-of-step", "not an answer about the file");
           if (v.status !== 200) throw remoteError("refused", typeof v.error === "string" ? v.error : "", { status: v.status });
           return v;
         };
-        said(parse(await link.read(30000)), "before the file");
+        const first = said(parse(await link.read(30000)), "before the file");
+        // A file meant for the library goes only to an agent that has said "library": never,
+        // by an older agent's habit, into the share folder, where friends may see it.
+        if (place !== "share" && first.place !== place) throw remoteError("refused", "the computer did not say it would put the file there", { status: first.status, reason: "place" });
         await link.sendBytes(data, { onProgress });
         // The agent says when all of it has arrived; it reads more slowly than a phone sends.
         const all = parse(await link.read(Math.min(600000, 60000 + Math.ceil(size / 16))));
@@ -999,7 +1067,7 @@ export function createRemote({ storage, name = "phone", onState = null, openLink
         const last = said(parse(await link.read(30000)), "before the computer had said the file is in place");
         return { name: typeof last.name === "string" ? last.name : file, size };
       } catch (e) {
-        // After commit the phone cannot know: the file may be in the share folder or not.
+        // After commit the phone cannot know: the file may be in its place or not.
         if (committed && !(e && e.code === "refused")) throw remoteError("unsure", "the line ended as the file was being put in place: it may have arrived");
         const error = signal && signal.aborted ? remoteError("cancelled", "stopped") : asRemote(e);
         if (error.code === "gone") askAgain(my);
