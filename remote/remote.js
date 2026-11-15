@@ -100,7 +100,11 @@
     "Spara till telefonen, eller skicka en fil till datorn.": "Save to your phone, or send a file to the computer.",
     "Tillbaka": "Back",
     "Skicka en fil till datorn": "Send a file to the computer",
+    "Till delningsmappen": "To the share folder",
     "Filen hamnar i din delningsmapp på {name}. Högst {max} per fil. Ser dina vänner delningsmappen, så ser de också filen.": "The file lands in your share folder on {name}. At most {max} per file. If your friends see the share folder, they see the file too.",
+    "Till biblioteket": "To the library",
+    "Din AI-agent väljer ur biblioteket åt dina vänner, och kan dela det den väljer.": "Your AI agent picks from the library for your friends, and may share what it picks.",
+    "Datorn har varken delningsmapp eller bibliotek att lägga en fil i.": "The computer has neither a share folder nor a library to put a file in.",
     "Välj filer": "Choose files",
     "Mottaget": "Received",
     "Det du har släppt in på datorn.": "What you have let in on the computer.",
@@ -113,6 +117,18 @@
     "Tomt.": "Empty.",
     "Listan gick inte att hämta.": "The list could not be fetched.",
     "Spara till telefonen": "Save to phone",
+    "Ta bort": "Remove",
+    "Ta bort {name} från datorn?": "Remove {name} from the computer?",
+    "Ja, ta bort": "Yes, remove",
+    "Nej": "No",
+    "Flyttad till papperskorgen på {name}.": "Moved to the Trash on {name}.",
+    "Flyttad till DAP-Shares egen papperskorg på {name}.": "Moved to DAP-Share's own trash on {name}.",
+    "Den ligger i mappen {folder} på datorn.": "It is in the folder {folder} on the computer.",
+    "Datorn svarade inte. Filen kan vara borta eller ligga kvar: titta i listan.": "The computer did not answer. The file may be gone or still there: look at the list.",
+    "Datorn kunde inte säga hur det gick. Filen kan vara borta eller ligga kvar: titta i listan.": "The computer could not say how it went. The file may be gone or still there: look at the list.",
+    "Tar bort {name} …": "Removing {name} …",
+    "En fil håller på att tas bort: det görs om datorn svarar igen inom två minuter.": "A file is being removed: that is done if the computer answers again within two minutes.",
+    "Datorn har en äldre DAP-Share, som inte lägger filer i biblioteket. Ingenting skickades. Uppdatera DAP-Share på datorn.": "The computer has an older DAP-Share, which does not put files in the library. Nothing was sent. Update DAP-Share on the computer.",
     "större än {max}: kan inte hämtas hit": "larger than {max}: cannot be fetched here",
     "Hämtar från datorn …": "Fetching from the computer …",
     "Skickar till datorn …": "Sending to the computer …",
@@ -122,9 +138,11 @@
     "Spara eller dela": "Save or share",
     "Ladda ner": "Download",
     "Framme på datorn, i delningsmappen, som {name}.": "Arrived on the computer, in the share folder, as {name}.",
+    "Framme på datorn, i biblioteket, som {name}.": "Arrived on the computer, in the library, as {name}.",
     "Datorn tar emot det sista …": "The computer is taking in the last of it …",
     "Avbrutet. Ingenting sparades.": "Stopped. Nothing was saved.",
     "Anslutningen bröts i sista stund. Filen kan ha kommit fram: titta i listan över delningsmappen innan du skickar den igen.": "The connection was lost at the very end. The file may have arrived: look in the list of the share folder before you send it again.",
+    "Anslutningen bröts i sista stund. Filen kan ha kommit fram: titta i listan över biblioteket innan du skickar den igen.": "The connection was lost at the very end. The file may have arrived: look in the list of the library before you send it again.",
     "Läggs på plats …": "Being put in place …",
     "Sidan kom inte hela vägen fram. Kontrollera att telefonen har internet och ladda om sidan.": "The page did not arrive whole. Check that the phone has internet and reload the page.",
     "Håll sidan öppen tills det är klart.": "Keep the page open until it is done.",
@@ -264,6 +282,10 @@
     e.remote = true;
     return Promise.reject(e);
   };
+  // ---- the three folders at the top of the screen (docs/SCREEN.md §1). A phone has no Finder to show
+  // the computer's folders in: a press there opens this page's own view of the files on the
+  // computer, at that place. Set before the screen's script starts, as the door above is. ----
+  window.DAP_FOLDER = function (place) { openFiles(String(place)); };
   // A question the screen asked when the line went away: said in a word, not left as an error nobody sees.
   window.addEventListener("unhandledrejection", function (ev) {
     if (!ev.reason || ev.reason.remote !== true) return;
@@ -382,11 +404,17 @@
       el("h2", { text: t(texts[0]), id: "remoteProblem", "data-phase": s.phase }),
       p(t(texts[1], { name: name })),
       next,
+      carriedNote(),
       el("div", { class: "rbtns" }, [el("button", { type: "button", id: "remoteRetry", text: t("Försök nu"), click: function () { if (remote) remote.retryNow(); } })]),
       el("div", { class: "rbtns" }, [forgetControl(name)])
     ]);
     count();
     tick = setInterval(count, 1000);
+  }
+
+  /** On the cover while a press on Ja, ta bort waits for the computer: it is asked again when the line is up (§3.1), and the owner is told so. */
+  function carriedNote() {
+    return removing ? el("p", { class: "small", id: "remoteCarried", text: t("En fil håller på att tas bort: det görs om datorn svarar igen inom två minuter.") }) : null;
   }
 
   function reveal() {
@@ -402,7 +430,14 @@
 
   function onState(s) {
     if (incomplete) return;
-    if (s.phase === "connected") { clearInterval(tick); tick = null; return reveal(); }
+    if (s.phase === "connected") {
+      clearInterval(tick);
+      tick = null;
+      // A list that could not be fetched, or a removal nobody could tell the end of, while the
+      // line was down: the lists are asked for again now, so "look at the list" has a list.
+      if (unsure && !filesBox.hidden) loadLists();
+      return reveal();
+    }
     if (s.phase === "starting") return show([p(t("Startar …"), "rwait")]);
     if (s.phase === "none") return firstScreen(s.why);
     if (s.phase === "pairing") {
@@ -424,6 +459,7 @@
       var name = s.name || t("datorn");
       return show([
         el("p", { class: "rwait", id: "remoteConnecting", text: t(s.lost ? N("Anslutningen till {name} bröts. Ansluter igen …") : N("Ansluter till {name} …"), { name: name }) }),
+        carriedNote(),
         el("div", { class: "rbtns" }, [forgetControl(name)])
       ]);
     }
@@ -437,20 +473,41 @@
     return failure(s); // unreachable, slow-down, no-connection, mismatch
   }
 
-  // ---- files: what is on the computer, to the phone; and a file from the phone to the computer's share folder ----
+  // ---- files: what is on the computer, to the phone or to the computer's trash; and a file from
+  // the phone to the computer's share folder or its library ----
   var working = false; // a file is on its way: one at a time
-  var waiting = [];    // files chosen to send, in order
+  var waiting = [];    // files chosen to send, in order, each with the place it is meant for
+  var removing = false; // a file is being removed: one at a time, and none while a file is on its way
+  var removingRow = null; // ... and its row, which says so until the computer has answered
   var urls = [];       // addresses made for fetched files, given back when their rows go
   var jobsBox = null;
   var listBoxes = {};
-  function fileWhy(e, max) {
+  var rows = {};       // the rows of each list, to put a question that was left open away
+  var fetching = {};   // how many times each list is being asked for right now: its rows are from before, and nothing in them can be pressed
+  var unsure = false;  // a list could not be fetched, or a removal ended with nobody knowing how: asked again when the line is up
+  var saidBoxes = {};  // above each list: what became of the file that was last removed there
+  var whereBoxes = {}; // the choice of where a file from the phone lands: { label, input } for each place
+  var sentTo = [];     // the places files are being sent to: their lists are asked for again when the last one is done
+  // What the agent has and knows, as its state says (asked whenever the lists are). Until it
+  // has answered, what every agent does: a file from the phone goes to the share folder.
+  var can = { share: true, library: false, remove: false };
+  var shown = null;    // the place a folder button asked for: kept in view while the lists above it fill
+  var CARDS = ["share", "received", "library"]; // the cards and their lists, in the order of the screen's three folders
+  var loads = 0;       // how many times the lists have been asked for
+  function fileWhy(e, max, place) {
     var code = e && e.code;
+    var text;
+    // An agent that did not say it would put the file in the library got no byte of it (remote-core.js, upload).
+    if (code === "refused" && e.reason === "place") return t("Datorn har en äldre DAP-Share, som inte lägger filer i biblioteket. Ingenting skickades. Uppdatera DAP-Share på datorn.");
     if (code === "refused") return e.status === 404 ? t("Filen finns inte kvar på datorn.") : t("Datorn sa nej: ") + (screen ? screen.trServer(e.message) : e.message);
     if (code === "too-big") return t("Filen är större än {max}.", { max: max });
     if (code === "empty") return t("Filen är tom.");
     if (code === "cut") return t("Överföringen bröts innan filen var hel. Ingenting sparades. Försök igen.");
     if (code === "cancelled") return t("Avbrutet. Ingenting sparades.");
-    if (code === "unsure") return t("Anslutningen bröts i sista stund. Filen kan ha kommit fram: titta i listan över delningsmappen innan du skickar den igen.");
+    if (code === "unsure") {
+      text = place === "library" ? N("Anslutningen bröts i sista stund. Filen kan ha kommit fram: titta i listan över biblioteket innan du skickar den igen.") : N("Anslutningen bröts i sista stund. Filen kan ha kommit fram: titta i listan över delningsmappen innan du skickar den igen.");
+      return t(text);
+    }
     if (code === "one-at-a-time") return t("En fil i taget: vänta tills den förra är klar.");
     if (code === "unreadable") return t("Telefonen kunde inte läsa filen.");
     if (e && e.kind) return t("Datorn går inte att nå just nu.");
@@ -501,13 +558,34 @@
       } else if (!on && awake) { awake.release(); awake = null; }
     } catch (e) { awake = null; }
   }
+  /** One thing at a time: while a file is on its way or one is being removed, no file in the lists can be saved or removed. */
+  function busy() { return working || waiting.length > 0 || removing; }
+  function freeze() {
+    var off = busy();
+    CARDS.forEach(function (place) {
+      if (!listBoxes[place]) return;
+      // (A list that is being asked for again shows what was there before: nothing of that can be pressed.)
+      var old = off || fetching[place] > 0;
+      [].forEach.call(listBoxes[place].querySelectorAll("button[data-save], button[data-remove], button[data-remove-yes]"), function (b) { b.disabled = old; });
+    });
+  }
+  /** Every question that was left open in a place's rows is put away: Ja, ta bort is only ever pressed after Ta bort, in the same look at the list. */
+  function settle(place) {
+    (rows[place] || []).forEach(function (row) { if (row !== removingRow) row.back(); });
+  }
+  /** A place's list is about to be asked for: until it has come, its rows are what was there before. */
+  function hold(place) {
+    fetching[place] = (fetching[place] || 0) + 1;
+    settle(place);
+    freeze();
+  }
   function setWorking(on) {
     working = on;
     keepAwake(on);
-    [].forEach.call(filesBox.querySelectorAll("button[data-save]"), function (b) { b.disabled = on; });
+    freeze();
   }
   function fetchFile(place, f) {
-    if (working || waiting.length || !remote) return;
+    if (busy() || !remote) return;
     clearJobs();
     var max = kb(core.MAX_FILE);
     var j = job(f.name);
@@ -545,15 +623,17 @@
   }
   function sendNext() {
     if (working || !remote) return;
-    if (!waiting.length) return loadLists(); // all of them have been tried: what is in the share folder now
+    // All of them have been tried: what is now in the places they were sent to.
+    if (!waiting.length) return void sentTo.splice(0).forEach(function (place) { loadList(place); });
     var item = waiting.shift();
+    if (sentTo.indexOf(item.place) === -1) sentTo.push(item.place);
     var max = kb(core.MAX_FILE);
     // (A file that is empty or over the ceiling is refused by remote-core.js before any line is opened, and said below.)
     var stop = typeof AbortController === "function" ? new AbortController() : null;
     setWorking(true);
     if (stop) item.job.stoppable(function () { stop.abort(); });
     remote.upload({
-      data: item.file, name: item.file.name, signal: stop ? stop.signal : null,
+      data: item.file, name: item.file.name, place: item.place, signal: stop ? stop.signal : null,
       onProgress: function (sent, size, committed) {
         // Until the phone has said "put it in place" Cancel leaves nothing on the computer;
         // after that it would come too late, so it is no longer offered.
@@ -562,80 +642,246 @@
         else item.job.progress(sent, size, t("Skickar till datorn …"));
       }
     }).then(function (r) {
-      item.job.end("done", t("Framme på datorn, i delningsmappen, som {name}.", { name: r.name }));
+      var text = item.place === "library" ? N("Framme på datorn, i biblioteket, som {name}.") : N("Framme på datorn, i delningsmappen, som {name}.");
+      item.job.end("done", t(text, { name: r.name }));
     }, function (e) {
-      item.job.end("failed", fileWhy(e, max));
+      item.job.end("failed", fileWhy(e, max, item.place));
     }).then(function () {
       setWorking(false);
       sendNext();
     });
   }
+  /** The card of the place that was asked for, at the top of the view: under the row with Tillbaka, which stays in sight. */
+  function bring() {
+    if (!shown || filesBox.hidden) return;
+    var top = filesBox.querySelector(".rtop");
+    var under = top ? top.offsetHeight : 0;
+    [].forEach.call(filesBox.querySelectorAll("[data-place]"), function (card) {
+      if (card.getAttribute("data-place") === shown) filesBox.scrollTop += card.getBoundingClientRect().top - filesBox.getBoundingClientRect().top - under - 12;
+    });
+  }
+  /** The card that was asked for is marked, so that a press is answered also where nothing can move; no place, no mark. */
+  function mark(place) {
+    [].forEach.call(filesBox.querySelectorAll("[data-place]"), function (card) { card.classList.toggle("rasked", card.getAttribute("data-place") === place); });
+  }
+  function closeFiles() {
+    filesBox.hidden = true;
+    CARDS.forEach(settle); // a question left open does not wait behind the screen for the next time the view is opened
+    shown = null;
+    covered();
+    window.scrollTo(0, 0);
+  }
+  /** Above a place's list: what became of the file that was last removed there. Its row is gone by then.
+   *  Said in the screen's own passing line as well, which is in sight however far down the list the row was. */
+  function say(place, state, file, text, more) {
+    var box = saidBoxes[place];
+    while (box.firstChild) box.removeChild(box.firstChild);
+    box.hidden = !state;
+    if (!state) return;
+    box.setAttribute("data-state", state);
+    box.appendChild(el("b", { text: file }));
+    box.appendChild(el("div", { class: "small", text: text }));
+    if (more) box.appendChild(el("div", { class: "small", text: more }));
+    if (screen) screen.toast(file + ": " + text);
+  }
+  /** Ja, ta bort was pressed (docs/REMOTE.md §3.2): the file goes to a trash on the computer, and the page says which.
+   *  What the row showed of the file goes with the question: the computer removes that file, not another that has its name by now. */
+  function removeFile(place, f, row) {
+    if (busy() || !remote) return;
+    var name = (remote.pairing && remote.pairing.name) || t("datorn");
+    removing = true;
+    removingRow = row;
+    freeze();
+    row.working(true);
+    say(place, null);
+    remote.removeFile({ place: place, name: f.name, size: f.size, modified: f.modified }).then(function (r) {
+      var text = r.where === "kept" ? N("Flyttad till DAP-Shares egen papperskorg på {name}.") : N("Flyttad till papperskorgen på {name}.");
+      say(place, "done", f.name, t(text, { name: name }), r.where === "kept" && r.folder ? t("Den ligger i mappen {folder} på datorn.", { folder: r.folder }) : null);
+      return true;
+    }, function (e) {
+      var code = e && e.code;
+      // Refused: the computer says no file was removed. It was not there any more, or not the one the
+      // list showed (404), or it is where it was and the computer says why. Unsure: asked, and no
+      // answer came, or one that does not say (a fault on the computer after the file had moved, say).
+      // Anything else was never asked.
+      var text = e && e.status ? N("Datorn kunde inte säga hur det gick. Filen kan vara borta eller ligga kvar: titta i listan.") : N("Datorn svarade inte. Filen kan vara borta eller ligga kvar: titta i listan.");
+      say(place, "failed", f.name, code === "refused" ? fileWhy(e) : code === "unsure" ? t(text) : t("Datorn går inte att nå just nu."));
+      if (code === "unsure") unsure = true;
+      return code === "unsure" || (code === "refused" && e.status === 404);
+    }).then(function (changed) {
+      var note = $("remoteCarried");
+      if (note) note.hidden = true;
+      removing = false;
+      removingRow = null;
+      row.working(false);
+      freeze();
+      if (changed) loadList(place); // what is there now
+      else row.back(); // the computer said the file is where it was, or was never asked: its row is as before the question
+    });
+  }
+  /** One file in a place's list: its name, and what can be done with it. Ta bort asks in the row itself, in place of the buttons, before anything is sent. */
+  function fileRow(place, f, max) {
+    var when = new Date(f.modified * 1000).toLocaleDateString(LOCALE, { year: "numeric", month: "short", day: "numeric" });
+    var over = f.size > core.MAX_FILE;
+    var row = {};
+    var acts = el("div", { class: "ract" }, [
+      over ? null : el("button", { class: "quiet tiny", type: "button", "data-save": f.name, disabled: busy(), text: t("Spara till telefonen"), click: function () { fetchFile(place, f); } }),
+      can.remove ? el("button", { class: "quiet tiny", type: "button", "data-remove": f.name, disabled: busy(), text: t("Ta bort"), click: function () { acts.hidden = true; sure.hidden = false; } }) : null
+    ]);
+    row.no = el("button", { class: "quiet tiny", type: "button", "data-remove-no": f.name, text: t("Nej"), click: function () { row.back(); } });
+    var ask = el("p", { class: "small", text: t("Ta bort {name} från datorn?", { name: f.name }) });
+    var answers = el("div", { class: "ract" }, [
+      el("button", { class: "danger tiny", type: "button", "data-remove-yes": f.name, disabled: busy(), text: t("Ja, ta bort"), click: function () { removeFile(place, f, row); } }),
+      row.no
+    ]);
+    var sure = el("div", { class: "rsure", hidden: true }, [ask, answers]);
+    row.back = function () { sure.hidden = true; acts.hidden = false; };
+    // While the press is on its way the row says so, in place of the question and its two answers.
+    row.working = function (on) {
+      ask.textContent = on ? t("Tar bort {name} …", { name: f.name }) : t("Ta bort {name} från datorn?", { name: f.name });
+      answers.hidden = on;
+      if (on) sure.setAttribute("data-working", "1"); else sure.removeAttribute("data-working");
+    };
+    rows[place].push(row);
+    return el("div", { class: "rfile" }, [
+      el("span", { class: "rfname" }, [el("span", { text: f.name }), el("div", { class: "small", text: kb(f.size) + " · " + when + (over ? " · " + t("större än {max}: kan inte hämtas hit", { max: max }) : "") })]),
+      acts,
+      sure
+    ]);
+  }
+  /** One place's list, asked for now. With held, the caller has already said that it is being asked for. */
+  function loadList(place, held) {
+    if (!remote || !core) return Promise.resolve();
+    var max = kb(core.MAX_FILE);
+    var box = listBoxes[place];
+    if (!held) hold(place);
+    if (!box.firstChild) box.appendChild(el("div", { class: "empty", text: t("hämtar listan …") }));
+    var fill = function (r) {
+      fetching[place] -= 1;
+      while (box.firstChild) box.removeChild(box.firstChild);
+      rows[place] = [];
+      if (!r || !Array.isArray(r.files)) {
+        unsure = true;
+        return void box.appendChild(el("div", { class: "empty", text: t("Listan gick inte att hämta.") }));
+      }
+      if (!r.files.length) return void box.appendChild(el("div", { class: "empty", text: t("Tomt.") }));
+      r.files.forEach(function (f) { box.appendChild(fileRow(place, f, max)); });
+    };
+    // (The rows are made as if nothing else were going on; freeze, right after, turns off what cannot be pressed now.)
+    return remote.transport("GET", "files", { place: place }).then(fill, function () { fill(null); }).then(freeze);
+  }
+  /** The place that is chosen for a file from the phone, or null when the agent has none. */
+  function chosen() {
+    return core.PUT_PLACES.filter(function (place) { return can[place] && whereBoxes[place].input.checked; })[0] || null;
+  }
+  /** The choice of where a file from the phone lands: only the places the agent has. The share folder is chosen at the start. */
+  function offer() {
+    core.PUT_PLACES.forEach(function (place) {
+      whereBoxes[place].label.hidden = !can[place];
+      if (!can[place]) whereBoxes[place].input.checked = false;
+    });
+    var first = core.PUT_PLACES.filter(function (place) { return can[place]; })[0];
+    if (first && !chosen()) whereBoxes[first].input.checked = true;
+    $("remoteSend").disabled = !first;
+    $("remoteNowhere").hidden = !!first;
+  }
+  /** What the agent has and does, from its state: the screen's own question, answered from memory when it was just asked.
+   *  The library is offered, and Ta bort, only to an agent that says itself that it puts files there and removes them
+   *  (me.files; remote-core.js, filesOf): an older one would put a file meant for the library in the share folder. */
+  function learn() {
+    return remote.transport("GET", "state", {}).then(function (s) {
+      var me = s && s.me;
+      if (!me) return;
+      can = core.filesOf(me);
+    }, function () { /* as it was: the lists say that the computer did not answer */ }).then(offer);
+  }
   function loadLists() {
     if (!remote || !core) return;
-    var max = kb(core.MAX_FILE);
-    core.PLACES.reduce(function (before, place) {
-      return before.then(function () {
-        var box = listBoxes[place];
-        if (!box.firstChild) box.appendChild(el("div", { class: "empty", text: t("hämtar listan …") }));
-        return remote.transport("GET", "files", { place: place }).then(function (r) {
-          while (box.firstChild) box.removeChild(box.firstChild);
-          if (!r || !Array.isArray(r.files)) return void box.appendChild(el("div", { class: "empty", text: t("Listan gick inte att hämta.") }));
-          if (!r.files.length) return void box.appendChild(el("div", { class: "empty", text: t("Tomt.") }));
-          r.files.forEach(function (f) {
-            var when = new Date(f.modified * 1000).toLocaleDateString(LOCALE, { year: "numeric", month: "short", day: "numeric" });
-            var over = f.size > core.MAX_FILE;
-            box.appendChild(el("div", { class: "rfile" }, [
-              el("span", { class: "rfname" }, [el("span", { text: f.name }), el("div", { class: "small", text: kb(f.size) + " · " + when + (over ? " · " + t("större än {max}: kan inte hämtas hit", { max: max }) : "") })]),
-              over ? null : el("button", { class: "quiet tiny", type: "button", "data-save": f.name, disabled: working || waiting.length > 0, text: t("Spara till telefonen"), click: function () { fetchFile(place, f); } })
-            ]));
-          });
-        }, function () {
-          while (box.firstChild) box.removeChild(box.firstChild);
-          box.appendChild(el("div", { class: "empty", text: t("Listan gick inte att hämta.") }));
-        });
-      });
-    }, Promise.resolve());
+    var mine = ++loads;
+    unsure = false;
+    // All of them are from before, from this moment: the last one comes several questions later.
+    CARDS.forEach(function (place) { if (core.PLACES.indexOf(place) !== -1) hold(place); });
+    learn().then(function () {
+      return CARDS.filter(function (place) { return core.PLACES.indexOf(place) !== -1; }).reduce(function (before, place) {
+        // (A list that filled above the place that was asked for pushed it down: it is brought up again.)
+        return before.then(function () { return loadList(place, true).then(bring); });
+      }, Promise.resolve());
+    }).then(function () { if (mine === loads) shown = null; });
   }
   function buildFiles() {
     var pick = el("input", { type: "file", id: "remotePick", multiple: true, hidden: true });
     pick.addEventListener("change", function () {
-      var chosen = [].slice.call(pick.files || []);
-      if (!chosen.length) return;
-      clearJobs();
-      chosen.forEach(function (f) { waiting.push({ file: f, job: job(f.name) }); });
+      var picked = [].slice.call(pick.files || []);
+      var place = chosen(); // where they go is what was chosen when they were picked
       pick.value = "";
+      if (!picked.length || !place) return;
+      clearJobs();
+      picked.forEach(function (f) { waiting.push({ file: f, job: job(f.name), place: place }); });
       sendNext();
     });
     jobsBox = el("div", { class: "rcard", id: "remoteJobs", hidden: true });
-    var sendText = el("p", { class: "small", id: "remoteSendText" });
+    // Where a file from the phone lands: one of two, each with what it means under it.
+    var where = function (key, title, text) {
+      var input = el("input", { type: "radio", name: "remoteWhere", value: key, checked: key === "share" });
+      var label = el("label", { class: "rwhere", "data-where": key }, [input, el("span", {}, [el("b", { text: t(title) }), text])]);
+      whereBoxes[key] = { label: label, input: input };
+      return label;
+    };
     var place = function (key, title, text) {
+      rows[key] = [];
+      fetching[key] = 0;
       listBoxes[key] = el("div", { id: "remoteList-" + key });
-      return el("div", { class: "rcard", "data-place": key }, [el("h3", { text: t(title) }), el("p", { class: "small", text: t(text) }), listBoxes[key]]);
+      saidBoxes[key] = el("div", { class: "rsaid", id: "remoteSaid-" + key, hidden: true });
+      return el("div", { class: "rcard", "data-place": key }, [el("h3", { text: t(title) }), el("p", { class: "small", text: t(text) }), saidBoxes[key], listBoxes[key]]);
+    };
+    // Once the owner moves the view, it is theirs: nothing brings a card back into view after that.
+    ["touchstart", "wheel"].forEach(function (name) { filesBox.addEventListener(name, function () { shown = null; }, { passive: true }); });
+    // The four icons stay in front of this view: a press on one leaves it, and the screen goes where the icon leads.
+    document.addEventListener("click", function (e) {
+      if (!filesBox.hidden && e.target.closest && e.target.closest("#tabs button")) closeFiles();
+    });
+    var texts = {
+      share: [N("Delningsmappen"), N("Det som ligger i din delningsmapp på datorn.")],
+      received: [N("Mottaget"), N("Det du har släppt in på datorn.")],
+      library: [N("Biblioteket"), N("Det din AI-agent väljer ur åt dina vänner.")]
     };
     filesBox.appendChild(el("div", { class: "rfiles" }, [
-      el("button", { class: "quiet tiny back", type: "button", id: "remoteFilesBack", text: t("Tillbaka"), click: function () { filesBox.hidden = true; covered(); window.scrollTo(0, 0); } }),
+      // The way back is always in sight: its row stays at the top while the cards move under it.
+      el("div", { class: "rtop" }, [el("button", { class: "quiet tiny back", type: "button", id: "remoteFilesBack", text: t("Tillbaka"), click: closeFiles })]),
       el("h2", { text: t("Filer på datorn") }),
       jobsBox,
       el("div", { class: "rcard" }, [
         el("h3", { text: t("Skicka en fil till datorn") }),
-        sendText,
+        el("div", { id: "remoteWhere" }, [
+          where("share", N("Till delningsmappen"), el("span", { class: "small", id: "remoteSendText" })),
+          where("library", N("Till biblioteket"), el("span", { class: "small", id: "remoteLibraryText", text: t("Din AI-agent väljer ur biblioteket åt dina vänner, och kan dela det den väljer.") }))
+        ]),
+        el("p", { class: "small", id: "remoteNowhere", hidden: true, text: t("Datorn har varken delningsmapp eller bibliotek att lägga en fil i.") }),
         pick,
         el("button", { type: "button", id: "remoteSend", text: t("Välj filer"), click: function () { pick.click(); } })
       ]),
-      place("received", N("Mottaget"), N("Det du har släppt in på datorn.")),
-      place("share", N("Delningsmappen"), N("Det som ligger i din delningsmapp på datorn.")),
-      place("library", N("Biblioteket"), N("Det din AI-agent väljer ur åt dina vänner.")),
+      el("div", {}, CARDS.map(function (key) { return place(key, texts[key][0], texts[key][1]); })),
       el("div", { class: "rbtns" }, [el("button", { class: "quiet", type: "button", id: "remoteFilesRefresh", text: t("Uppdatera"), click: loadLists })])
     ]));
   }
-  function openFiles() {
+  /** The files view. With a place (one of the three folders at the top of the screen, window.DAP_FOLDER)
+   *  that place's card is brought into view; the row under Dela gives none, and the view starts at its top. */
+  function openFiles(place) {
     if (!remote || !core) return;
     if (!filesBox.firstChild) buildFiles();
     var name = (remote.pairing && remote.pairing.name) || t("datorn");
     $("remoteSendText").textContent = t("Filen hamnar i din delningsmapp på {name}. Högst {max} per fil. Ser dina vänner delningsmappen, så ser de också filen.", { name: name, max: kb(core.MAX_FILE) });
+    CARDS.forEach(function (key) { say(key, null); }); // what was said about a file removed the last time the view was open
+    // Each time the view is opened the share folder is chosen again (or the first place the computer
+    // has): a choice of the library made some other time never decides where a file picked now lands.
+    core.PUT_PLACES.forEach(function (key) { whereBoxes[key].input.checked = false; });
+    offer();
     filesBox.hidden = false;
     filesBox.scrollTop = 0;
     covered();
+    shown = typeof place === "string" ? place : null;
+    mark(shown);
+    bring();
     loadLists();
   }
 
@@ -653,11 +899,11 @@
     path.setAttribute("stroke-linecap", "round");
     path.setAttribute("stroke-linejoin", "round");
     svg.appendChild(path);
-    var choices = document.querySelector('.view[data-view="home"] .choices');
-    if (choices) choices.appendChild(el("button", { class: "choice", type: "button", id: "goFiles", click: openFiles }, [
-      el("span", { class: "cicon line" }, [svg]),
-      el("b", { text: t("Filer på datorn") }),
-      el("span", { class: "csub", text: t("Spara till telefonen, eller skicka en fil till datorn.") })
+    // One more row under Dela (docs/SCREEN.md §6), after the screen's own two.
+    var rows = $("shareRows");
+    if (rows) rows.appendChild(el("button", { class: "rowBtn", type: "button", id: "goFiles", click: openFiles }, [
+      el("span", { class: "ricon" }, [svg]),
+      el("span", {}, [el("b", { text: t("Filer på datorn") }), el("span", { class: "small", text: t("Spara till telefonen, eller skicka en fil till datorn.") })])
     ]));
     var note = $("remoteNote");
     if (note) {

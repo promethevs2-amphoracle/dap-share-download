@@ -384,7 +384,134 @@
       "Fjärrkontroll": "Remote",
       "Fjärrkontroll: din telefon når {name}, krypterat hela vägen.": "Remote: your phone is reaching {name}, encrypted all the way.",
       "Det här är din telefon som fjärrkontroll för {name}. Inställningarna ändrar du på datorn: AI-agenten, det du gillar, vem som hittar dig, vad dina vänner ser, telefonerna och att stänga av.": "This is your phone as a remote for {name}. You change the settings on the computer: the AI agent, what you like, who can find you, what your friends see, the phones, and stopping the app.",
-      "Det här ändrar du på datorn.": "You change this on the computer."
+      "Det här ändrar du på datorn.": "You change this on the computer.",
+      "Visa som kod": "Show as a code",
+      "Version": "Version",
+      "Två saker att bestämma": "Two things to decide",
+      "Vänner, Dela och Inställningar finns i raden längst ner.": "Friends, Share and Settings are in the row at the bottom.",
+      "Vänner, Dela och Inställningar finns i raden till vänster.": "Friends, Share and Settings are in the row at the left.",
+      "Gick inte att kasta: filen var inte längre förseglad": "Could not discard: the file was no longer sealed",
+      "Väntar på ditt ja": "Waiting for your yes",
+      "Inget väntar.": "Nothing is waiting.",
+      "I närheten · samma wi-fi": "Nearby · same Wi-Fi",
+      "I närheten · samma wi-fi som datorn": "Nearby · the same Wi-Fi as the computer",
+      "Träffade": "Met",
+      "Träffade ({n})": "Met ({n})",
+      "Blockerade": "Blocked",
+      "Blockerade ({n})": "Blocked ({n})",
+      "Lägg till vän": "Add a friend",
+      "Skanna deras kod": "Scan their code",
+      "Skriv in en adress": "Enter an address",
+      "Den andras adress, dap:crypto:…, som de skickat dig. Förfrågan går genom reläet.": "The other person's address, dap:crypto:…, as they sent it to you. The request goes through the relay.",
+      "Koden är datorns adress. Den andra skannar den, och mötet går genom reläet.": "The code is the computer's address. The other person scans it, and the meeting goes through the relay.",
+      "Skriv den andras adress, dap:crypto:…": "Enter the other person's address, dap:crypto:…",
+      "Dela filer": "Share files",
+      "Hämta med en kod": "Fetch with a code",
+      "Ute nu": "Out now",
+      "Vänner ser din delningsmapp som den är. Lägg filer där, så behövs inget tryck.": "Friends see your share folder as it is. Put files there, and no press is needed.",
+      "Det som kommer in väntar förseglat under Hem tills du säger ja.": "What comes in waits sealed under Home until you say yes.",
+      "Det du gillar · Biblioteket": "What you like · The library",
+      "Vänner får": "Friends get",
+      "Koppla Claude eller Codex": "Connect Claude or Codex",
+      "Raderna som låter en modell tala med agenten på den här datorn. Den når aldrig knappen, slussen, vännerna eller innehållet.": "The lines that let a model talk to the agent on this computer. It never reaches the button, the airlock, the friends or the content.",
+      "Inkorg och journal": "Inbox and journal",
+      "Språk · Om · Integritet": "Language · About · Privacy",
+      "Senast avgjorda förslag": "The last proposals decided",
+      "Vem som hittar dig, vad dina vänner ser, och vems gröna filer som går rakt in.": "Who can find you, what your friends see, and whose green files go straight in.",
+      "Vänner du accepterat hämtar det som ligger i mappen, utan att du delar fil för fil.": "Friends you have accepted fetch what is in the folder, without you sharing file by file.",
+      "Gröna filer som går rakt in": "Green files that go straight in",
+      "Bara filer granskningen fann rena, aldrig program. Gula och röda väntar alltid på ditt tryck.": "Only files the review found clean, never programs. Yellow and red always wait for your press.",
+      "Vem, när, typ och storlek, med granskningens rapport. Aldrig innehåll.": "Who, when, kind and size, with the review's report. Never content.",
+      "Alla": "All",
+      "Mottaget": "Received",
+      "Skickat": "Sent",
+      "Rakt in": "Straight in",
+      "När": "When",
+      "Vem": "Who",
+      "Integritet": "Privacy",
+      "DAP-Share © 2026 Spiridon Iconomou. Alla rättigheter förbehållna. Protokollet är fritt (Apache-2.0).": "DAP-Share © 2026 Spiridon Iconomou. All rights reserved. The protocol is free (Apache-2.0).",
+      "Hem": "Home",
+      "Agent på": "Agent on",
+      "Agent av": "Agent off",
+      "Ställföreträdare på": "Deputy on",
+      "Offline": "Offline",
+      "Offline · {h} h": "Offline · {h} h",
+      "{n} väntar": "{n} waiting",
+      "Inget väntar": "Nothing waiting",
+      "Krypterat hela vägen via {host}": "Encrypted all the way via {host}",
+      "Inget relä": "No relay",
+      "Förseglat tills du säger ja.": "Sealed until you say yes.",
+      "Du väljer dina vänner. Din agent väljer ur ditt bibliotek åt var och en. Det som kommer in väntar förseglat tills du säger ja.": "You choose your friends. Your agent picks from your library for each of them. What comes in waits sealed until you say yes.",
+      "Har du fått en kod? Dela → Hämta med en kod.": "Were you given a code? Share → Fetch with a code.",
+      "{n} fil": "{n} file",
+      "{n} filer": "{n} files",
+      "{n} vänförfrågan": "{n} friend request",
+      "{n} vänförfrågningar": "{n} friend requests",
+      "{n} förslag": "{n} proposals",
+      "{n} väntar på ditt ja": "{n} waiting for your yes",
+      "Idag: ": "Today: ",
+      "{n} från {who} gick rakt in": "{n} from {who} went straight in",
+      "{n} gick rakt in": "{n} went straight in",
+      "{n} vald av din agent": "{n} picked by your agent",
+      "{n} valda av din agent": "{n} picked by your agent",
+      "{n} delning ute": "{n} share out",
+      "{n} delningar ute": "{n} shares out",
+      "{m} min kvar att svara": "{m} min left to answer",
+      "Telefon frågar": "A phone asks",
+      "Förseglat · rött först": "Sealed · red first",
+      "Ångra": "Undo",
+      "Kom {t}": "Came {t}",
+      "träffad": "met",
+      "okänd med kod": "unknown with a code",
+      "Vänförfrågningar": "Friend requests",
+      "Din agent föreslår": "Your agent proposes",
+      "Gröna filer från {name} stannade: något {colour} kom": "Green files from {name} stopped: something {colour} came",
+      "rött": "red",
+      "gult": "yellow",
+      "Slå på igen": "Turn on again",
+      "OK": "OK",
+      "Ser din mapp": "Sees your folder",
+      "{n} vald åt dig": "{n} picked for you",
+      "{n} valda åt dig": "{n} picked for you",
+      "{n} ny i {name}s mapp": "{n} new in {name}'s folder",
+      "{n} nya i {name}s mapp": "{n} new in {name}'s folder",
+      "Frågad · väntar på svar": "Asked · waiting for an answer",
+      "Ta tillbaka": "Take back",
+      "Förfrågan är tillbakatagen": "The request is taken back",
+      "Gröna filer från {name} går rakt in": "Green files from {name} go straight in",
+      "Bara filer granskningen fann rena, aldrig program. Gula och röda väntar alltid på ditt tryck. Pausas om {name} skickar något rött eller gult.": "Only files the review found clean, never programs. Yellow and red always wait for your press. Paused if {name} sends something red or yellow.",
+      "{name}s mapp · hämtas till din Mac": "{name}'s folder · fetched to your Mac",
+      "Uppdatera": "Refresh",
+      "Hämta alla ({n})": "Fetch all ({n})",
+      "Delningar till {name}: {n} ute": "Shares to {name}: {n} out",
+      "Stoppa alla": "Stop all",
+      "Stoppa": "Stop",
+      "{n} delning stoppad": "{n} share stopped",
+      "{n} delningar stoppade": "{n} shares stopped",
+      "tittar": "looks",
+      "föreslår": "proposes",
+      "delar inom regler": "shares within rules",
+      "delar fritt": "shares freely",
+      "läser biblioteket": "reads the library",
+      "hitta dig": "find you",
+      "se mappen": "see the folder",
+      "rakt in": "straight in",
+      "{n} telefon": "{n} phone",
+      "{n} telefoner": "{n} phones",
+      "vaken": "awake",
+      "startar vid inloggning": "starts at login",
+      "Inga vänner än.": "No friends yet.",
+      "Pausad: något {colour} kom": "Paused: something {colour} came",
+      "vald av din agent": "picked by your agent",
+      "delning ute": "share out",
+      "gick rakt in": "went straight in",
+      "pausade det gröna flödet": "paused the green flow",
+      "Från din telefon": "From your phone",
+      "Mötas": "Meet",
+      "bara på datorn": "only on the computer",
+      "Delat": "Shared",
+      "Bibliotek": "Library",
+      "Mappar": "Folders"
   };
   const tr = (sv, vars) => {
     let out = LANG === "en" && EN[sv] !== undefined ? EN[sv] : sv;
@@ -441,18 +568,24 @@
     [/^filen är tom$/, () => "the file is empty"],
     [/^filen är större än (.+)$/, (m) => `the file is larger than ${m[1]}`],
     [/^kan inte skriva i delningsmappen: (.*)$/, (m) => `cannot write in the share folder: ${m[1]}`],
+    [/^en fil från telefonen läggs i delningsmappen eller i biblioteket, ingen annanstans$/, () => "a file from the phone goes into the share folder or the library, nowhere else"],
+    [/^agenten har inget bibliotek$/, () => "the agent has no library"],
+    [/^kan inte skriva i biblioteket: (.*)$/, (m) => `cannot write in the library: ${m[1]}`],
+    [/^filen ligger kvar: den gick inte att flytta till papperskorgen \((.*)\)$/, (m) => `the file is still there: it could not be moved to the trash (${m[1]})`],
+    [/^det där trycket är redan använt till en annan fråga$/, () => "that press has already been used for another question"],
     // The two settings of the computer itself (docs/REMOTE.md §6).
     [/^den här datorn kan inte hållas vaken av DAP-Share$/, () => "this computer cannot be kept awake by DAP-Share"],
     [/^kunde inte hålla datorn vaken$/, () => "could not keep the computer awake"],
     [/^DAP-Share kan inte startas vid inloggning härifrån$/, () => "DAP-Share cannot be started at login from here"],
     [/^kan inte skriva inloggningsfilen: (.*)$/, (m) => `cannot write the login file: ${m[1]}`],
+    [/^bara på datorn$/, () => "only on the computer"],
   ];
   function trServer(text) {
     if (LANG !== "en" || typeof text !== "string") return text;
     for (let i = 0; i < SERVER_EN.length; i++) { const m = SERVER_EN[i][0].exec(text); if (m) return SERVER_EN[i][1](m); }
     return text;
   }
-  // The markup is written in Swedish; in English every text and placeholder that has a translation is swapped once.
+  // The markup is written in Swedish; in English every text, placeholder, title and spoken name that has a translation is swapped once.
   (function translateStatic() {
     const link = document.getElementById("langLink");
     link.textContent = LANG === "en" ? "Svenska" : "English";
@@ -467,11 +600,20 @@
       const key = node.nodeValue.trim();
       if (key && EN[key] !== undefined) node.nodeValue = node.nodeValue.replace(key, EN[key]);
     });
-    [].forEach.call(document.querySelectorAll("[placeholder]"), (el) => { const k = el.getAttribute("placeholder"); if (EN[k] !== undefined) el.setAttribute("placeholder", EN[k]); });
+    ["placeholder", "title", "aria-label"].forEach((a) => {
+      [].forEach.call(document.querySelectorAll("[" + a + "]"), (el) => { const k = el.getAttribute(a); if (EN[k] !== undefined) el.setAttribute(a, EN[k]); });
+    });
   })();
 
-  let shelfOpen = null; // the friend whose folder the owner is looking in
-  let found = null;     // the last answer from the directory, or null before any search
+  let shelfOpen = null;    // the friend whose folder the owner is looking in
+  let found = null;        // the last answer from the directory, or null before any search
+  let personOpen = null;   // the friend whose page is in front
+  let expanded = {};       // the rows in Waiting the owner opened: a delivery id, or "req:" + dap_id
+  let discarding = {};     // Discard with five seconds of undo: delivery id -> the timer that posts it
+  let pairAskHtml = "";    // the pairing question, drawn under the phones and on Hem alike
+  let offlineSince = null; // when the screen first saw the relay gone, for "Offline · 2 h"
+  let journalFilter = "all";
+  let meOpen = false;      // the sheet under the owner's name
   // ---- one door to the agent: everything the screen asks goes through api(), and nothing else here
   // talks to the agent. On the agent's own screen that is fetch to /api/share/<name>. A page that
   // reaches the agent some other way (the owner's phone as a remote, docs/REMOTE.md §5) sets
@@ -487,6 +629,11 @@
     const query = Object.keys(what).map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(what[k])).join("&");
     return fetch("api/share/" + name + (query ? "?" + query : "")).then((r) => r.json());
   }
+  // The three folders at the top (docs/SCREEN.md §1). On the computer the agent shows a folder in
+  // Finder. A page that carries the screen somewhere else (the owner's phone) and has its own way to
+  // show what is in a folder sets window.DAP_FOLDER before this script starts: (place), with place
+  // "share", "received" or "library". Without it a remote has no such button.
+  const FOLDER = typeof window.DAP_FOLDER === "function" ? window.DAP_FOLDER : null;
   // A press is taken once: the button that was pressed stays off until the agent has answered.
   // On the computer that is a blink; through a phone's line it can be seconds, and a second
   // press of Share would be a second share.
@@ -515,8 +662,9 @@
   const busy = (text) => { const b = $("busy"); if (text) { b.innerHTML = loader(text); b.style.display = "block"; } else { b.style.display = "none"; b.innerHTML = ""; } };
   const toast = (msg) => { const t = $("toast"); t.textContent = msg; t.style.display = "block"; clearTimeout(toast.t); toast.t = setTimeout(() => (t.style.display = "none"), 4000); };
   const kb = (n) => (n < 1024 ? n + " B" : n < 1048576 ? Math.round(n / 1024) + " kB" : (n / 1048576).toFixed(1) + " MB");
-  const when = (iso) => new Date(iso).toLocaleTimeString(LOCALE);
+  const when = (iso) => new Date(typeof iso === "number" ? iso * 1000 : iso).toLocaleTimeString(LOCALE);
   let state = null;
+  let stateAsked = 0;    // when the state that is here was asked for
   let relayFilled = false;
   let remoteCode = null; // the pairing code this page was given: { expires_at, made }. The agent never repeats a code.
   let removeAsk = null;  // the phone the owner pressed Remove on, until the second press
@@ -525,28 +673,27 @@
   const setHtml = (el, html) => { if (el.dapHtml !== html) { el.innerHTML = html; el.dapHtml = html; } };
   const day = (seconds) => new Date(seconds * 1000).toLocaleDateString(LOCALE, { year: "numeric", month: "short", day: "numeric" });
   const dayTime = (seconds) => new Date(seconds * 1000).toLocaleString(LOCALE, { year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
-
-  // One line per meeting. In Swedish the agent's own line is used as it is; in English it is composed from the same counts.
-  function meetingLine(m) {
-    if (LANG === "sv" && m.line) return m.line;
-    const n = m.deliveries.length, who = or(m.sender.display_name, m.sender.dap_id);
-    const files = tr(n === 1 ? "{n} fil från {who}" : "{n} filer från {who}", { n, who });
-    const colours = !m.red ? tr("alla gröna") : !m.green ? tr("alla röda") : tr(m.red === 1 ? "{g} gröna, {r} röd" : "{g} gröna, {r} röda", { g: m.green, r: m.red });
-    const tail = m.awaiting_press ? tr("väntar på ditt tryck") : m.held ? tr("det röda väntar i inkorgen") : tr("i hubben");
-    return files + ": " + colours + " – " + tail;
-  }
+  const COLOUR_ORDER = { red: 0, yellow: 1, green: 2 };
+  const AUD = () => ({ MET_IN_PERSON: tr("den jag träffar fysiskt"), FRIENDS: tr("vänner"), LISTED: tr("namngivna"), ANYONE_WITH_CODE: tr("den som har koden") });
+  const LEVEL = () => ({ 0: tr("nivå 0, titta: ser mappen och läget, inget mer"), 1: tr("nivå 1, föreslå: lägger förslag här, du säger ja eller nej"), 2: tr("nivå 2, inom regler: delar själv, men bara inom dina regler"), 3: tr("nivå 3: delar själv med vänner, utan gränser") });
+  // The agent's level in one word, for the row under Settings and the status line's sheet.
+  const levelWord = (adv) => (adv.off ? tr("av") : tr(or({ 0: "tittar", 1: "föreslår", 2: "delar inom regler", 3: "delar fritt" }[adv.level], String(adv.level))));
 
   // ---- the owner's phone as a remote (docs/REMOTE.md §2): the phones, the code to scan, and the
   // question with the four digits. `rc` is undefined everywhere but on the computer's own screen. ----
   function renderRemote(rc, asked) {
     $("remoteCard").hidden = !rc;
-    if (!rc) { setHtml($("pairAsk"), ""); return; }
-    // A phone waits for the owner's yes: asked on every view, like a friend request. The digits are
-    // the session's own; somebody in the middle cannot make the phone show the same ones.
+    $("rowPhone").hidden = !rc;
+    if (!rc) { setHtml($("pairAsk"), ""); pairAskHtml = ""; return; }
+    // A phone waits for the owner's yes: asked under the phones and on Hem. The digits are the
+    // session's own; somebody in the middle cannot make the phone show the same ones. The question
+    // is answered within five minutes of the scan, and the card says how many are left.
     const p = rc.pairing;
-    setHtml($("pairAsk"), p
-      ? `<div class="meeting"><div><b>${esc(tr("En telefon vill bli din fjärrkontroll"))}</b><div class="pairName">${esc(tr("Den kallar sig {name}", { name: p.name }))}</div><div class="digits" id="pairDigits">${esc(p.digits)}</div><div class="small">${esc(tr("Tryck ja bara om din egen telefon just nu visar samma fyra siffror. Visar den något annat, eller ingenting: tryck nej. En fjärrkontroll får göra allt du gör här, utom att ändra inställningarna."))}</div></div><div><button data-pair-yes="${esc(p.id)}">${esc(tr("Ja, tillåt"))}</button> <button class="quiet" data-pair-no="${esc(p.id)}">${esc(tr("Nej"))}</button></div></div>`
-      : "");
+    const left = p && p.asked_at ? Math.max(0, Math.ceil((p.asked_at + 300 - Date.now() / 1000) / 60)) : null;
+    pairAskHtml = p
+      ? `<div class="meeting"><div><b>${esc(tr("En telefon vill bli din fjärrkontroll"))}</b><div class="pairName">${esc(tr("Den kallar sig {name}", { name: p.name }))}</div><div class="digits" id="pairDigits">${esc(p.digits)}</div><div class="small">${esc(tr("Tryck ja bara om din egen telefon just nu visar samma fyra siffror. Visar den något annat, eller ingenting: tryck nej. En fjärrkontroll får göra allt du gör här, utom att ändra inställningarna."))}</div><div class="small">${esc(left === null ? "" : tr("{m} min kvar att svara", { m: left }))}</div></div><div><button data-pair-yes="${esc(p.id)}">${esc(tr("Ja, tillåt"))}</button> <button class="quiet" data-pair-no="${esc(p.id)}">${esc(tr("Nej"))}</button></div></div>`
+      : "";
+    setHtml($("pairAsk"), pairAskHtml);
     // The code stays up while the agent says that very code is out: used, run out or taken back, it goes.
     // (A state that was asked for before the code was made says nothing about it.)
     if (remoteCode && asked > remoteCode.made && !(rc.code && rc.code.expires_at === remoteCode.expires_at)) remoteCode = null;
@@ -560,6 +707,7 @@
       : !rc.available ? tr("Just nu kan ingen kod göras: telefonen når datorn genom agentens relä, och det saknas eller har inget namn.") : "";
     $("remoteHint").hidden = !hint;
     $("remoteHint").textContent = hint;
+    $("phoneVal").textContent = tr(rc.phones.length === 1 ? "{n} telefon" : "{n} telefoner", { n: rc.phones.length });
     if (removeAsk && !rc.phones.some((x) => x.dap_id === removeAsk)) removeAsk = null;
     setHtml($("remotePhones"), rc.phones.length
       ? rc.phones.map((x) => `<div class="srow"><span><b>${esc(x.name)}</b> <span class="badge${x.online ? "" : " off"}">${esc(tr(x.online ? "ansluten nu" : "inte ansluten nu"))}</span><div class="small">${esc(tr("Tillagd {a} · senast använd {b}", { a: day(x.added), b: dayTime(x.last_seen) }))}</div></span>` +
@@ -569,25 +717,292 @@
       : `<div class="empty">${esc(tr("Ingen telefon är ansluten än."))}</div>`);
   }
 
-  async function refresh() {
-    const asked = Date.now();
-    let now;
-    try { now = await api("GET", "state"); } catch { return; }
-    if (!now || !now.me) return; // not an answer about the agent (a refusal, or a line that is not up yet)
-    state = now;
+  // ---- what waits for the owner's yes (docs/SCREEN.md §2.3): the sealed deliveries, the friend
+  // requests, the advisor's proposals. A delivery on its way to the bin (five seconds of undo) is not counted. ----
+  function waitingNow() {
+    const held = state.inbox.filter((d) => d.status === "held" && !discarding[d.id]);
+    const requests = state.friend_requests || [];
+    const proposals = state.advisor ? state.advisor.proposals.filter((p) => p.status === "pending") : [];
+    const green = held.filter((d) => d.report.colour === "green" && !d.report.executable);
+    return { held, requests, proposals, green, total: held.length + requests.length + proposals.length };
+  }
+  // The sender's lane in words: a friend, somebody met in the room (their code was scanned), or somebody with a code.
+  function laneWord(d) {
+    if (d.lane === "friend") return tr("vän");
+    const met = (state.sessions || []).some((s) => s.peer && s.peer.dap_id === d.sender.dap_id && s.proximity);
+    return tr(met ? "träffad" : "okänd med kod");
+  }
+  const worst = (deliveries) => deliveries.map((d) => d.report.colour).sort((a, b) => or(COLOUR_ORDER[a], 1) - or(COLOUR_ORDER[b], 1))[0];
+  // A friend whose standing yes paused (docs/SCREEN.md §4.3): the line and its two answers. Only the computer may turn it on again.
+  const pausedHtml = (c, far) => `<div class="paused"><span>${esc(tr("Gröna filer från {name} stannade: något {colour} kom", { name: c.display_name, colour: tr(c.paused.colour === "red" ? "rött" : "gult") }))}</span><span>${far ? "" : `<button data-direction="${esc(c.dap_id)}" data-on="1">${esc(tr("Slå på igen"))}</button> `}<button class="quiet" data-direction="${esc(c.dap_id)}" data-on="0">${esc(tr("OK"))}</button></span></div>`;
+  // The two questions the owner answers once (docs/SCREEN.md §2.5), the same words wherever they are asked.
+  const questionList = () => `<div class="meeting"><div><b>${esc(tr("Ska andra kunna hitta dig?"))}</b><div class="small">${esc(tr("Den som har appen kan se ditt namn och skicka en vänförfrågan. Bara vänner du accepterar ser dina filer. Du kan ändra dig under Vänner."))} <a href="${esc(PRIVACY)}" target="_blank" rel="noopener">${esc(tr("Vad som visas och sparas"))}</a></div></div><div><button data-listed="yes">${esc(tr("Ja, gör mig synlig"))}</button> <button class="quiet" data-listed="no">${esc(tr("Nej"))}</button></div></div>`;
+  const questionLive = () => `<div class="meeting"><div><b>${esc(tr("Ska dina vänner se din delningsmapp?"))}</b><div class="small">${esc(tr("Då kan vänner du har accepterat hämta det som ligger i mappen, utan att du delar fil för fil. Ingen annan ser den. Du kan ändra dig under Vänner."))}</div></div><div><button data-live="yes">${esc(tr("Ja, visa den för mina vänner"))}</button> <button class="quiet" data-live="no">${esc(tr("Nej, jag väljer själv varje gång"))}</button></div></div>`;
+  // How many files a friend's folder held the last time the owner looked at it: for "N nya" in the friend's row. Best effort.
+  const seenKey = (dap_id) => "dap_seen_" + dap_id;
+  const seenCount = (dap_id) => { try { const v = localStorage.getItem(seenKey(dap_id)); return v === null ? null : Number(v); } catch (e) { return null; } };
+  const rememberSeen = (dap_id, n) => { try { localStorage.setItem(seenKey(dap_id), String(n)); } catch (e) {} };
+
+  // ---- Home (docs/SCREEN.md §2): the status line, the sheet, the one button, the green bar, the soft line ----
+  function renderHome(far, w) {
+    const adv = state.advisor;
+    const parts = [];
+    if (adv) parts.push(tr(adv.off ? "Agent av" : "Agent på"));
+    if (state.me.deputy && state.me.deputy.on) parts.push(tr("Ställföreträdare på"));
+    const online = state.me.relay_status === "registered" || state.me.relay_status === "connected";
+    if (state.me.relay && !online) {
+      if (!offlineSince) offlineSince = Date.now();
+      const h = Math.floor((Date.now() - offlineSince) / 3600000);
+      parts.push(h >= 1 ? tr("Offline · {h} h", { h }) : tr("Offline"));
+    } else {
+      offlineSince = null;
+      parts.push(w.total ? tr("{n} väntar", { n: w.total }) : tr("Inget väntar"));
+    }
+    setHtml($("statusRest"), parts.length ? " · " + parts.map((p) => `<span class="part">${esc(p)}</span>`).join(" · ") : "");
+    $("meSheet").hidden = !meOpen;
+    $("relayLine").textContent = state.me.relay ? tr("Krypterat hela vägen via {host}", { host: state.me.relay.relay.host }) : tr("Inget relä");
+    $("levelLine").hidden = !adv;
+    if (adv) $("levelWords").textContent = adv.off ? tr("Avstängd. Ingen AI-agent kommer åt DAP-Share.") : or(LEVEL()[adv.level], String(adv.level));
+    $("versionLine").textContent = or(state.me.version, "");
+    $("aboutVersion").textContent = or(state.me.version, "");
+    const friends = state.contacts.filter((c) => c.lane === "friend");
+    setHtml($("underLine"), w.total
+      ? `<div>${esc(tr("Förseglat tills du säger ja."))}</div>`
+      : `<div>${esc(tr("Du väljer dina vänner. Din agent väljer ur ditt bibliotek åt var och en. Det som kommer in väntar förseglat tills du säger ja."))}</div>` + (friends.length ? "" : `<div>${esc(tr("Har du fått en kod? Dela → Hämta med en kod."))}</div>`));
+    // The one button: a phone that asks comes first, in white; otherwise the count and its split.
+    const notice = $("homeNotice");
+    if (pairAskHtml) {
+      notice.className = "notice pair";
+      setHtml(notice, pairAskHtml.replace(' id="pairDigits"', ""));
+      notice.hidden = false;
+    } else if (w.total) {
+      const split = [];
+      if (w.held.length) split.push(tr(w.held.length === 1 ? "{n} fil" : "{n} filer", { n: w.held.length }));
+      if (w.requests.length) split.push(tr(w.requests.length === 1 ? "{n} vänförfrågan" : "{n} vänförfrågningar", { n: w.requests.length }));
+      if (w.proposals.length) split.push(tr("{n} förslag", { n: w.proposals.length }));
+      notice.className = "notice";
+      setHtml(notice, `<button class="noticeBtn" data-go="waiting"><b>${esc(tr("{n} väntar på ditt ja", { n: w.total }))}</b><span class="small">${esc(split.join(" · "))}</span></button>`);
+      notice.hidden = false;
+    } else { notice.hidden = true; notice.className = "notice"; setHtml(notice, ""); }
+    // Two or more green files: one press lets them in; above ten the list is shown first.
+    $("greenBar").hidden = w.green.length < 2;
+    $("greenBar").textContent = tr("Släpp in de gröna ({n})", { n: w.green.length });
+    $("greenBar").dataset.greenAll = String(w.green.length);
+    $("tabCount").hidden = !w.total;
+    $("tabCount").textContent = String(w.total);
+    // The soft line: what happened today, a part with a zero left out. An agent without `today` (the Node agent) shows none.
+    const today = state.today;
+    const soft = [];
+    if (today) {
+      if (today.straight_in) {
+        const names = [];
+        (today.lines || []).forEach((l) => { if (l.kind === "straight_in" && l.display_name && names.indexOf(l.display_name) < 0) names.push(l.display_name); });
+        soft.push(`<button data-journal="straight_in">${esc(names.length === 1 ? tr("{n} från {who} gick rakt in", { n: today.straight_in, who: names[0] }) : tr("{n} gick rakt in", { n: today.straight_in }))}</button>`);
+      }
+      if (today.picked) soft.push(`<button data-journal="sent">${esc(tr(today.picked === 1 ? "{n} vald av din agent" : "{n} valda av din agent", { n: today.picked }))}</button>`);
+      if (today.out) soft.push(`<button data-go="share">${esc(tr(today.out === 1 ? "{n} delning ute" : "{n} delningar ute", { n: today.out }))}</button>`);
+    }
+    $("softLine").hidden = !soft.length;
+    setHtml($("softLine"), soft.length ? esc(tr("Idag: ")) + soft.join(" · ") : "");
+  }
+
+  // ---- Waiting (docs/SCREEN.md §3): four groups, a group absent when empty; the paused standing yes; the two questions ----
+  function renderWaiting(far, w, askHtml) {
+    setHtml($("waitPair"), pairAskHtml ? `<h3 class="how">${esc(tr("Telefon frågar"))}</h3>` + pairAskHtml.replace(' id="pairDigits"', "") : "");
+    // Sealed: every held delivery, red first, then yellow, then green, the newest last. A row on its
+    // way to the bin says so and offers Undo; a row tapped opens the review's words under it.
+    const rows = state.inbox.filter((d) => d.status === "held").sort((a, b) => (or(COLOUR_ORDER[a.report.colour], 1) - or(COLOUR_ORDER[b.report.colour], 1)) || (a.received_at < b.received_at ? -1 : a.received_at > b.received_at ? 1 : 0));
+    setHtml($("meetings"), rows.length ? `<h3 class="how">${esc(tr("Förseglat · rött först"))}</h3>` + rows.map((d) => {
+      if (discarding[d.id]) return `<div class="wrow"><div class="wmain"><b>${esc(d.item.filename)}</b><div class="small">${esc(tr("Kastad"))}</div></div><div class="wbtns"><button class="quiet" data-undo="${esc(d.id)}">${esc(tr("Ångra"))}</button></div></div>`;
+      const open = !!expanded[d.id];
+      const can = d.report.colour !== "red" && !d.report.executable;
+      const who = or(d.sender.display_name, d.sender.dap_id);
+      const words = [].concat(or(d.report.findings, []), or(d.report.notes, [])).map((x) => esc(trServer(x))).join("<br>") || esc(trServer(d.report.what));
+      return `<div class="wrow${open ? " open" : ""}" data-item="${esc(d.id)}"><div class="wmain"><span class="dot ${esc(d.report.colour)}"></span><b>${esc(d.item.filename)}</b><div class="small">${esc(who)} · ${esc(laneWord(d))} · ${esc(kb(d.item.size_bytes || 0))}</div></div><div class="wbtns">${can ? `<button data-release="${esc(d.id)}">${esc(tr("Släpp in"))}</button>` : ""}<button class="danger" data-discard="${esc(d.id)}">${esc(tr("Kasta"))}</button></div></div>`
+        + (open ? `<div class="exp">${words}<span class="small">${esc(tr("Kom {t}", { t: when(d.received_at) }))}</span>${d.lane === "friend" ? "" : `<button class="quiet tiny" data-block="${esc(d.sender.dap_id)}" data-block-name="${esc(who)}">${esc(tr("Blockera"))}</button>`}</div>` : "");
+    }).join("") : "");
+    // Friend requests: a row tapped offers Block too. Over ten an hour are counted, not shown.
+    const reqs = state.friend_requests || [];
+    setHtml($("requests"), (reqs.length ? `<h3 class="how">${esc(tr("Vänförfrågningar"))}</h3>` : "") + reqs.map((r) => {
+      const open = !!expanded["req:" + r.dap_id];
+      return `<div class="meeting" data-item="${esc("req:" + r.dap_id)}"><div>${esc(tr("Vänförfrågan från"))} <b>${esc(r.display_name)}</b><div class="mono">${esc(r.dap_id)}</div></div><div><button data-accept="${esc(r.dap_id)}">${esc(tr("Acceptera"))}</button> <button class="quiet" data-decline="${esc(r.dap_id)}">${esc(tr("Avböj"))}</button>${open ? ` <button class="quiet" data-block="${esc(r.dap_id)}" data-block-name="${esc(r.display_name)}">${esc(tr("Blockera"))}</button>` : ""}</div></div>`;
+    }).join("") + (state.requests_held_back ? `<div class="small" style="margin:0 0 8px">${esc(tr(state.requests_held_back === 1 ? "1 vänförfrågan till hölls tillbaka den senaste timmen (högst 10 nya i timmen)." : "{n} vänförfrågningar till hölls tillbaka den senaste timmen (högst 10 nya i timmen).", { n: state.requests_held_back }))}</div>` : ""));
+    // What the agent proposes: the file names are on the row before Share can be pressed.
+    const aud = AUD();
+    setHtml($("asks"), (w.proposals.length ? `<h3 class="how">${esc(tr("Din agent föreslår"))}</h3>` : "") + w.proposals.map((p) => `<div class="meeting"><div>${esc(tr("Din AI-agent föreslår att du delar"))} <b>${p.files.map(esc).join(", ")}</b><div class="small">${esc(tr("till {who} i {h} h", { who: or(aud[p.audience], p.audience), h: p.hours }))}${p.context ? " · " + esc(p.context) : ""}${p.listed ? " · " + esc(tr("{n} identiteter", { n: p.listed.length })) : ""}${p.note ? " · ”" + esc(p.note) + "”" : ""} · ${when(p.at)}</div>${p.audience === "ANYONE_WITH_CODE" ? `<div class="row"><input data-code-for="${esc(p.id)}" placeholder="${esc(tr("kod (minst 6 tecken) – du väljer den, inte rådgivaren"))}"></div>` : ""}</div><div><button data-accept-proposal="${esc(p.id)}">${esc(tr("Dela"))}</button> <button class="quiet" data-reject-proposal="${esc(p.id)}">${esc(tr("Avböj"))}</button></div></div>`).join(""));
+    const paused = state.contacts.filter((c) => c.paused);
+    setHtml($("pausedBox"), paused.map((c) => pausedHtml(c, far)).join(""));
+    setHtml($("waitAsk"), askHtml);
+    $("waitEmpty").hidden = !!(w.total || pairAskHtml || paused.length);
+    $("receivedBtn").hidden = far;
+  }
+
+  // ---- Friends (docs/SCREEN.md §5.1): one row per friend with what flows, the ones asked, nearby, the folds ----
+  function renderFriends(far, w) {
+    const live = state.me.live_folder;
+    const shelves = state.shelves || [];
+    const friendIds = {}; state.contacts.forEach((c) => { friendIds[c.dap_id] = true; });
+    setHtml($("contacts"), state.contacts.map((c) => {
+      const sh = shelves.filter((x) => x.dap_id === c.dap_id)[0];
+      const picked = sh ? sh.items.filter((it) => it.picked).length : 0;
+      const liveN = sh ? sh.items.filter((it) => it.live).length : 0;
+      const seen = seenCount(c.dap_id);
+      const fresh = seen === null ? liveN : Math.max(0, liveN - seen);
+      const mine = w.held.filter((d) => d.sender.dap_id === c.dap_id);
+      const parts = [];
+      if (c.lane !== "friend") parts.push(esc(tr("främling")));
+      else if (live === true) parts.push(esc(tr("Ser din mapp")));
+      const nums = [];
+      if (picked) nums.push(esc(tr(picked === 1 ? "{n} vald åt dig" : "{n} valda åt dig", { n: picked })));
+      if (fresh) nums.push(esc(tr(fresh === 1 ? "{n} ny i {name}s mapp" : "{n} nya i {name}s mapp", { n: fresh, name: c.display_name })));
+      if (mine.length) nums.push(`<span class="dot ${esc(worst(mine))}"></span>` + esc(tr("{n} väntar", { n: mine.length })));
+      const line = parts.concat(nums.slice(0, 2)).join(" · "); // at most two numbers
+      return `<button class="frow" data-person="${esc(c.dap_id)}"><span class="fname">${esc(c.display_name)}${c.lane === "friend" && c.receive_without_button ? '<i class="check">✓</i>' : ""}</span>${line ? `<span class="small">${line}</span>` : ""}</button>`;
+    }).join("") || `<div class="empty">${esc(tr("Inga kontakter."))}</div>`);
+    // The owner's own unanswered requests, with Take back.
+    const names = state.asked_names || {};
+    const waitingFor = (state.asked || []).filter((a) => !friendIds[a]);
+    setHtml($("asked"), waitingFor.map((a) => `<div class="frow asked"><span>${esc(or(names[a], a))} · ${esc(tr("Frågad · väntar på svar"))}</span><button class="quiet tiny" data-unask="${esc(a)}">${esc(tr("Ta tillbaka"))}</button></div>`).join(""));
+    $("nearbyHead").textContent = tr(far ? "I närheten · samma wi-fi som datorn" : "I närheten · samma wi-fi");
+    const metOnly = state.met.filter((m) => !state.contacts.some((c) => c.dap_id === m.dap_id));
+    $("metFold").textContent = tr("Träffade ({n})", { n: metOnly.length });
+    setHtml($("met"), metOnly.length ? esc(tr("Träffade: ")) + metOnly.map((m) => `${esc(m.display_name)} <button class="quiet" data-befriend="${esc(m.dap_id)}">${esc(tr("gör till vän"))}</button>`).join(" · ") : `<div class="empty">${esc(tr("Tomt."))}</div>`);
+    const blockedNow = state.blocked || [];
+    $("blockedFold").textContent = tr("Blockerade ({n})", { n: blockedNow.length });
+    setHtml($("blockedList"), blockedNow.length
+      ? `<div class="small" style="margin-top:4px">${esc(tr("Blockerade. De får inget från dig och deras förfrågningar visas inte. De får inte veta att de är blockerade."))}</div>` +
+        blockedNow.map((b) => `<div class="srow"><span>${esc(b.display_name)} <span class="mono small">${esc(b.dap_id)}</span></span><button class="quiet tiny" data-unblock="${esc(b.dap_id)}">${esc(tr("Häv blockering"))}</button></div>`).join("")
+      : `<div class="empty">${esc(tr("Tomt."))}</div>`);
+  }
+
+  // ---- One friend (docs/SCREEN.md §5.2): the switch of §4, the friend's folder, the shares to them, and the red buttons ----
+  function renderPerson(far) {
+    if (!personOpen) return;
+    const c = state.contacts.filter((x) => x.dap_id === personOpen)[0];
+    if (!c) { personOpen = null; if (view === "person") go("friends"); return; }
+    const friend = c.lane === "friend";
+    const on = !!c.receive_without_button;
+    setHtml($("personHead"), `<h2 class="t">${esc(c.display_name)}</h2><div class="addr"><span class="mono">${esc(c.dap_id)}</span> <button class="quiet tiny" data-copy="${esc(c.dap_id)}">${esc(tr("Kopiera"))}</button></div>${c.interests ? `<div class="likes">${esc(tr("Gillar: "))}${esc(c.interests)}</div>` : ""}`
+      + (friend ? `<div class="srow" style="margin-top:14px"><span>${esc(tr("Gröna filer från {name} går rakt in", { name: c.display_name }))}<span class="small why">${esc(tr("Bara filer granskningen fann rena, aldrig program. Gula och röda väntar alltid på ditt tryck. Pausas om {name} skickar något rött eller gult.", { name: c.display_name }))}</span></span><span class="sset"><span class="badge${on ? "" : " off"}">${esc(tr(on ? "på" : "av"))}</span> <button class="quiet tiny" data-direction="${esc(c.dap_id)}" data-on="${on ? "0" : "1"}"${far && !on ? " disabled" : ""}>${esc(tr(on ? "Stäng av" : "Slå på"))}</button></span></div>` : "")
+      + (c.paused ? pausedHtml(c, far) : ""));
+    // The friend's folder, as the shelf draws it: live and picked marks, Fetch per item, Fetch all.
+    const sh = (state.shelves || []).filter((x) => x.dap_id === c.dap_id)[0];
+    setHtml($("personShelf"), friend && state.me.live_folder !== undefined ? `<div class="srow" style="margin-top:14px"><span>${esc(tr("{name}s mapp · hämtas till din Mac", { name: c.display_name }))}</span><button class="quiet tiny" data-browse="${esc(c.dap_id)}">${esc(tr(sh ? "Uppdatera" : "Visa mappen"))}</button></div>` : "");
+    if (view === "person" && sh) rememberSeen(c.dap_id, sh.items.filter((it) => it.live).length);
+    const shelfRow = (it) => `<tr><td>${esc(it.filename)}<div class="small">${esc(or(KIND_NAMES[it.kind], it.kind))} · ${kb(it.size_bytes)}${it.picked ? " · " + esc(tr("Utvalt åt dig")) : it.live ? " · " + esc(tr("I mappen")) : ""}</div></td><td style="text-align:right">${it.have ? esc(tr("du har den")) : `<button class="quiet" data-fetch="${esc(it.id)}">${esc(tr("Hämta"))}</button>`}</td></tr>`;
+    const missing = sh ? sh.items.filter((it) => !it.have).length : 0;
+    setHtml($("shelf"), sh
+      ? (sh.items.length ? `<table><tbody>${sh.items.map(shelfRow).join("")}</tbody></table>` : `<div class="empty">${esc(tr("Inget just nu."))}</div>`) + (missing ? `<button class="quiet full" data-fetch-all="1">${esc(tr("Hämta alla ({n})", { n: missing }))}</button>` : "")
+      : "");
+    // Shares that name only this friend, and the ways to end the friendship.
+    const forThem = state.policies.filter((p) => p.audience === "LISTED" && p.listed && p.listed.length && p.listed.every((id) => id === c.dap_id)); // only this friend, however many times
+    setHtml($("personFoot"), (forThem.length ? `<div class="srow" style="margin-top:14px"><span>${esc(tr("Delningar till {name}: {n} ute", { name: c.display_name, n: forThem.length }))}</span><button class="danger tiny" data-remove-for="${esc(c.dap_id)}">${esc(tr("Stoppa alla"))}</button></div>` : "")
+      + `<div class="row" style="margin-top:18px">${friend ? `<button class="quiet" data-demote="${esc(c.dap_id)}">${esc(tr("Gör till främling"))}</button>` : ""}<button class="danger" data-remove="${esc(c.dap_id)}">${esc(tr("Ta bort"))}</button><button class="danger" data-block="${esc(c.dap_id)}" data-block-name="${esc(c.display_name)}">${esc(tr("Blockera"))}</button></div>`);
+  }
+
+  // ---- Share (docs/SCREEN.md §6): what is out now, with Stop per share ----
+  function renderShare() {
+    const aud = AUD();
+    const byAdvisor = new Set(((state.advisor && state.advisor.shares) || []).map((s) => s.index));
+    $("shareNext").hidden = !state.policies.length;
+    $("sendBox").hidden = !state.policies.length;
+    // The code of the share just made, large, for reading out loud. Only this page knows it.
+    $("codeBig").hidden = !(lastCode && state.policies.some((p) => p.audience === "ANYONE_WITH_CODE"));
+    $("codeBig").textContent = lastCode || "";
+    if (view === "send" && step === 3 && !state.policies.length) setStep(1); // the last share was stopped
+    $("policies").className = state.policies.length ? "" : "empty";
+    setHtml($("policies"), state.policies.length
+      ? state.policies.map((p, i) => `<div class="meeting"><div><b>${p.items.map((it) => esc(it.filename)).join(", ")}</b><div class="small">${esc(tr("till {who}", { who: or(aud[p.audience], p.audience) }))}${p.context ? " · " + esc(p.context) : ""}${p.listed ? " · " + esc(tr("{n} identiteter", { n: p.listed.length })) : ""} · ${esc(tr("till {when}", { when: new Date(p.valid_until).toLocaleString(LOCALE) }))}${byAdvisor.has(i) ? " · <b>" + esc(tr("delat av rådgivaren")) + "</b>" : ""}</div></div><button class="danger" data-unshare="${i}" data-what="${esc(policyKey(p))}">${esc(tr("Stoppa"))}</button></div>`).join("")
+      : esc(tr("inget")));
+    $("liveNote").hidden = state.me.live_folder !== true;
+  }
+
+  // ---- Settings (docs/SCREEN.md §7): the value of each row, and the standing yes per friend ----
+  function renderSettings(far) {
+    const adv = state.advisor, comp = far ? undefined : state.me.computer;
+    $("rowAdvisor").hidden = !adv;
+    if (adv) $("advisorVal").textContent = levelWord(adv) + (!adv.off && adv.read_library !== false ? " · " + tr("läser biblioteket") : "");
+    $("rowLikes").hidden = state.me.interests === undefined;
+    const dir = state.me.directory;
+    const friends = state.contacts.filter((c) => c.lane === "friend");
+    const allow = [];
+    if (dir && dir.listed) allow.push(tr("hitta dig"));
+    if (state.me.live_folder) allow.push(tr("se mappen"));
+    if (friends.some((c) => c.receive_without_button)) allow.push(tr("rakt in"));
+    $("allowVal").textContent = allow.join(" · ");
+    $("rowConnect").hidden = !(adv && adv.connect && !adv.off && !far);
+    $("rowComputer").hidden = far;
+    const cv = [];
+    if (comp && comp.keep_awake && comp.keep_awake.on) cv.push(tr("vaken"));
+    if (comp && comp.start_at_login && comp.start_at_login.on) cv.push(tr("startar vid inloggning"));
+    $("computerVal").textContent = cv.join(" · ");
+    $("aboutVal").textContent = LANG === "en" ? "English" : "Svenska";
+    setHtml($("allowFriends"), friends.map((c) => {
+      const on = !!c.receive_without_button;
+      return `<div class="srow"><span>${esc(c.display_name)}${c.paused ? `<span class="small why">${esc(tr("Pausad: något {colour} kom", { colour: tr(c.paused.colour === "red" ? "rött" : "gult") }))}</span>` : ""}</span><span class="sset"><span class="badge${on ? "" : " off"}">${esc(tr(on ? "på" : "av"))}</span> <button class="quiet tiny" data-direction="${esc(c.dap_id)}" data-on="${on ? "0" : "1"}"${far && !on ? " disabled" : ""}>${esc(tr(on ? "Stäng av" : "Slå på"))}</button></span></div>`;
+    }).join("") || `<div class="empty">${esc(tr("Inga vänner än."))}</div>`);
+  }
+
+  // ---- The inbox and the journal as one table (docs/SCREEN.md §7): what came in with its report, what went out today ----
+  function renderJournal() {
+    const friendIds = {}; state.contacts.forEach((c) => { if (c.lane === "friend") friendIds[c.dap_id] = true; });
+    const jrows = state.journal || [];
+    const rows = [];
+    state.inbox.forEach((d) => {
+      if (d.status === "discarded") return;
+      const j = jrows.filter((x) => x.time === d.received_at && x.dap_id === d.sender.dap_id)[0] || {};
+      const straight = d.released_by === "standing_yes" || j.by === "standing_yes";
+      const words = [].concat(or(d.report.findings, []), or(d.report.notes, [])).map((x) => esc(trServer(x))).join("<br>");
+      const status = d.status === "held" ? tr("väntar") : d.status === "released" ? (straight ? tr("gick rakt in") : tr("i hubben ({f})", { f: d.released_to })) : d.status;
+      rows.push({ time: d.received_at, colour: d.report.colour, file: d.item.filename, who: or(d.sender.display_name, d.sender.dap_id), what: esc(trServer(d.report.what)) + (words ? "<br>" + words : ""),
+        status: status + (j.paused ? " · " + tr("pausade det gröna flödet") : ""), kind: "received", friend: d.lane === "friend", straight });
+    });
+    ((state.today && state.today.lines) || []).forEach((l) => {
+      if (l.kind !== "picked" && l.kind !== "out") return;
+      rows.push({ time: l.time, colour: "", file: or(l.filename, ""), who: or(l.display_name, l.dap_id), what: esc(tr(l.kind === "picked" ? "vald av din agent" : "delning ute")), status: "", kind: "sent", friend: !!friendIds[l.dap_id], straight: false });
+    });
+    rows.sort((a, b) => (a.time < b.time ? 1 : a.time > b.time ? -1 : 0));
+    const f = journalFilter;
+    const shown = rows.filter((r) => f === "all" || (f === "received" && r.kind === "received") || (f === "sent" && r.kind === "sent") || (f === "friends" && r.friend) || (f === "straight_in" && r.straight)).slice(0, 50);
+    [].forEach.call(document.querySelectorAll("#journalFilter button"), (b) => { b.className = "quiet" + (b.getAttribute("data-filter") === f ? " on" : ""); });
+    setHtml($("inbox"), shown.map((r) => `<tr><td>${r.colour ? `<span class="dot ${esc(r.colour)}"></span>` : ""}</td><td class="small">${esc(when(r.time))}</td><td>${esc(r.file)}</td><td>${esc(r.who)}</td><td class="small">${r.what}</td><td class="small">${esc(r.status)}</td></tr>`).join("") || '<tr><td colspan="6" class="empty">' + esc(tr("Tomt.")) + "</td></tr>");
+  }
+
+  // The state is asked for and the whole screen drawn from it. With `stale` the screen is drawn
+  // again from the state already here (a press that changes only the screen), without asking the agent.
+  async function refresh(stale) {
+    if (!stale) {
+      const at = Date.now();
+      let now;
+      try { now = await api("GET", "state"); } catch { return; }
+      if (!now || !now.me) return; // not an answer about the agent (a refusal, or a line that is not up yet)
+      state = now;
+      stateAsked = at;
+    }
+    if (!state) return;
+    const asked = stateAsked;
     // The owner's phone as a remote: the agent says so (me.remote). What a remote may not do
     // (docs/REMOTE.md §4) is not offered there, and where one is stays in view.
     const far = !!state.me.remote;
     $("remoteHere").hidden = !far;
     $("remoteNote").hidden = !far;
     if (far) {
-      $("remoteHere").textContent = tr("Fjärrkontroll: din telefon når {name}, krypterat hela vägen.", { name: state.me.display_name });
+      $("remoteHere").textContent = tr("Från din telefon");
       $("remoteNoteText").textContent = tr("Det här är din telefon som fjärrkontroll för {name}. Inställningarna ändrar du på datorn: AI-agenten, det du gillar, vem som hittar dig, vad dina vänner ser, telefonerna och att stänga av.", { name: state.me.display_name });
     }
     renderRemote(far ? undefined : state.me.remote_control, asked);
     $("who").textContent = state.me.display_name;
     $("myId").textContent = state.me.dap_id;
     $("openFolderBtn").disabled = !state.me.can_open_folder;
+    // The three folders (docs/SCREEN.md §1): a button only where this screen can open that folder. On
+    // the computer's own screen and a lan screen: where the state names the folder and the computer
+    // can show it. On a remote: where the page around the screen has its own way and the state names
+    // the folder (an agent started without a library has none to look in). Otherwise (the Node
+    // agent, which opens no folders) none, and then the bar is not there either.
+    const opens = far ? { share: !!(FOLDER && state.me.folder), received: !!(FOLDER && state.me.received), library: !!(FOLDER && state.me.library) }
+      : { share: !!(state.me.folder && state.me.can_open_folder), received: !!(state.me.received && state.me.can_open), library: !!(state.me.library && state.me.can_open) };
+    [].forEach.call(document.querySelectorAll("#folderBar button"), (b) => { b.hidden = !opens[b.getAttribute("data-folder")]; });
+    $("folderBar").hidden = !(opens.share || opens.received || opens.library);
     $("quitBtn").hidden = !state.me.can_quit;
     $("quitRow").hidden = far;
     // The two settings of the computer itself: only the computer's own screen is told of them
@@ -630,39 +1045,15 @@
     $("mdnsBadge").textContent = tr(state.me.discovery ? "syns på nätverket" : "syns inte på nätverket");
     $("mdnsBadge").title = tr(state.me.discovery ? "mDNS: andra agenter på samma nätverk ser den här" : "mDNS: andra agenter på samma nätverk ser inte den här");
     $("mdnsBadge").className = "badge" + (state.me.discovery ? "" : " off");
-
-    const waiting = state.meetings.reduce((n, m) => n + (m.awaiting_press || 0), 0);
-    $("homeNotice").hidden = !waiting || view === "receive";
-    $("homeNotice").textContent = tr(waiting === 1 ? "{n} fil väntar på ditt ja. Visa" : "{n} filer väntar på ditt ja. Visa", { n: waiting });
-    const byId = {}; state.inbox.forEach((d) => { byId[d.id] = d; }); // not Object.fromEntries: Chrome 73+
-    $("meetings").innerHTML = state.meetings.length
-      ? state.meetings.map((m) => `<div class="meeting"><div><span class="dot ${m.red ? "red" : "green"}"></span><span class="line">${esc(meetingLine(m))}</span><div class="small">${esc(tr(m.lane === "friend" ? "vän" : "främling"))} · ${m.deliveries.map((id) => esc(byId[id] && byId[id].item.filename)).join(", ")}</div></div>` +
-          (m.awaiting_press ? `<button class="big" data-release="${esc(m.meeting_id)}">${esc(tr("Släpp in de gröna ({n})", { n: m.awaiting_press }))}</button>` : "") + `</div>`).join("")
-      : '<div class="empty">' + esc(tr("Här visas det du tar emot.")) + "</div>";
-
-    $("inbox").innerHTML = state.inbox.filter((d) => d.status !== "discarded").map((d) => `<tr>
-      <td><span class="dot ${esc(d.report.colour)}"></span></td>
-      <td>${esc(d.item.filename)}<div class="small">${esc(d.item.title)}</div></td>
-      <td>${esc(or(d.sender.display_name, d.sender.dap_id))}</td>
-      <td>${esc(trServer(d.report.what))}</td>
-      <td>${[...d.report.findings, ...d.report.notes].map((x) => esc(trServer(x))).join("<br>")}</td>
-      <td>${esc(d.status === "held" ? tr("väntar") : d.status === "released" ? tr("i hubben ({f})", { f: d.released_to }) : d.status)}</td>
-      <td>${d.status === "held" ? `<button class="quiet" data-item="${esc(d.id)}">${esc(tr("Släpp in"))}</button> <button class="danger" data-discard="${esc(d.id)}">${esc(tr("Kasta"))}</button>` : ""}</td>
-    </tr>`).join("") || '<tr><td colspan="7" class="empty">' + esc(tr("Tomt.")) + "</td></tr>";
-
-    $("requests").innerHTML = state.friend_requests.map((r) => `<div class="meeting"><div>${esc(tr("Vänförfrågan från"))} <b>${esc(r.display_name)}</b><div class="mono">${esc(r.dap_id)}</div></div><div><button data-accept="${esc(r.dap_id)}">${esc(tr("Acceptera"))}</button> <button class="quiet" data-decline="${esc(r.dap_id)}">${esc(tr("Avböj"))}</button> <button class="quiet" data-block="${esc(r.dap_id)}" data-block-name="${esc(r.display_name)}">${esc(tr("Blockera"))}</button></div></div>`).join("")
-      + (state.requests_held_back ? `<div class="small" style="margin:0 0 8px">${esc(tr(state.requests_held_back === 1 ? "1 vänförfrågan till hölls tillbaka den senaste timmen (högst 10 nya i timmen)." : "{n} vänförfrågningar till hölls tillbaka den senaste timmen (högst 10 nya i timmen).", { n: state.requests_held_back }))}</div>` : "");
-    $("contacts").innerHTML = state.contacts.map((c) => `<tr><td><b>${esc(c.display_name)}</b><div class="mono">${esc(c.dap_id)}</div>${c.interests ? `<div class="likes">${esc(tr("Gillar: "))}${esc(c.interests)}</div>` : ""}</td><td>${esc(tr(c.lane === "friend" ? (c.receive_without_button ? "vän, utan knapp" : "vän, med knapp") : "främling"))}</td><td>${c.lane === "friend" && state.me.live_folder !== undefined ? `<button data-browse="${esc(c.dap_id)}">${esc(tr("Visa mappen"))}</button> ` : ""}${c.lane === "friend" ? `<button class="quiet" data-demote="${esc(c.dap_id)}">${esc(tr("Gör till främling"))}</button>` : ""} <button class="danger" data-remove="${esc(c.dap_id)}">${esc(tr("Ta bort"))}</button> <button class="quiet" data-block="${esc(c.dap_id)}" data-block-name="${esc(c.display_name)}">${esc(tr("Blockera"))}</button></td></tr>`).join("") || '<tr><td class="empty">' + esc(tr("Inga kontakter.")) + "</td></tr>";
-    // ---- friends see the share folder as it is: asked once, changed under Friends. An agent that
-    // does not have it (the Node agent) says nothing about it, and nothing is shown. ----
-    // ---- being found: asked once, changed under Friends. Only when this relay keeps a directory. ----
+    $("codeWhy").textContent = tr(far ? "Koden är datorns adress. Den andra skannar den, och mötet går genom reläet." : "Den andra personen skannar koden i rummet. Den gäller en gång, i fem minuter, och bevisar att ni verkligen träffades.");
+    // ---- being found (the directory on the relay) and friends seeing the share folder: each asked
+    // once, on the computer, and changed under Settings. An agent that does not have them (the Node
+    // agent) says nothing about them, and nothing is shown. ----
     const dir = state.me.directory;
     const mayList = !!(dir && dir.available);
-    $("goFriends").hidden = state.me.live_folder === undefined; // an agent without friends' folders or a directory (the Node agent)
     $("findCard").hidden = !dir;
-    $("listAsk").innerHTML = mayList && dir.listed === null && !far // on a remote the two questions are not asked: they are answered on the computer
-      ? `<div class="meeting"><div><b>${esc(tr("Ska andra kunna hitta dig?"))}</b><div class="small">${esc(tr("Den som har appen kan se ditt namn och skicka en vänförfrågan. Bara vänner du accepterar ser dina filer. Du kan ändra dig under Vänner."))} <a href="${esc(PRIVACY)}" target="_blank" rel="noopener">${esc(tr("Vad som visas och sparas"))}</a></div></div><div><button data-listed="yes">${esc(tr("Ja, gör mig synlig"))}</button> <button class="quiet" data-listed="no">${esc(tr("Nej"))}</button></div></div>`
-      : "";
+    const askList = mayList && dir.listed === null && !far; // on a remote the two questions are not asked: they are answered on the computer
+    $("listAsk").innerHTML = askList ? questionList() : "";
     if (dir) {
       $("findHint").innerHTML = esc(tr(mayList ? "Sök bland dem som valt att synas. Skicka en vänförfrågan; när den andra säger ja ser ni varandras delningsmappar." : "Katalogen finns inte på det här reläet än. Du kan fortfarande lägga till en vän med en kod eller när ni möts.")) + ` <a href="${esc(PRIVACY)}" target="_blank" rel="noopener">${esc(tr("Vad som visas och sparas"))}</a>`;
       $("listedRow").hidden = !mayList;
@@ -676,68 +1067,33 @@
     const friendIds = {}; state.contacts.forEach((c) => { friendIds[c.dap_id] = true; });
     const askedIds = {}; (state.asked || []).forEach((a) => { askedIds[a] = true; });
     const askingIds = {}; state.friend_requests.forEach((r) => { askingIds[r.dap_id] = true; });
-    $("found").innerHTML = found === null ? "" : found.entries.length
+    setHtml($("found"), found === null ? "" : found.entries.length
       ? found.entries.map((p) => `<div class="meeting"><div><b>${esc(p.display_name)}</b><div class="mono">${esc(p.dap_id)}</div></div><div>${
           (state.blocked || []).some((b) => b.dap_id === p.dap_id) ? esc(tr("blockerad"))
           : friendIds[p.dap_id] ? esc(tr("vän"))
           : askingIds[p.dap_id] ? `<button data-accept="${esc(p.dap_id)}">${esc(tr("Acceptera"))}</button>`
           : askedIds[p.dap_id] ? esc(tr("frågad, väntar på svar"))
-          : `<button data-ask="${esc(p.dap_id)}">${esc(tr("Bli vänner"))}</button>`}</div></div>`).join("") + (found.total > found.entries.length ? `<div class="small">${esc(tr("Visar {a} av {b}. Sök på ett namn för att hitta fler.", { a: found.entries.length, b: found.total }))}</div>` : "")
-      : `<div class="empty">${esc(tr("Ingen hittades."))}</div>`;
-    const blockedNow = state.blocked || [];
-    $("blockedList").innerHTML = blockedNow.length
-      ? `<div class="small" style="margin-top:12px">${esc(tr("Blockerade. De får inget från dig och deras förfrågningar visas inte. De får inte veta att de är blockerade."))}</div>` +
-        blockedNow.map((b) => `<div class="srow"><span>${esc(b.display_name)} <span class="mono small">${esc(b.dap_id)}</span></span><button class="quiet tiny" data-unblock="${esc(b.dap_id)}">${esc(tr("Häv blockering"))}</button></div>`).join("")
-      : "";
-    const waitingFor = (state.asked || []).filter((a) => !friendIds[a]);
-    $("asked").innerHTML = waitingFor.length ? esc(tr("Väntar på svar från: ")) + waitingFor.map((a) => `<span class="mono">${esc(a)}</span>`).join(", ") : "";
+          : `<button data-ask="${esc(p.dap_id)}" data-ask-name="${esc(p.display_name)}">${esc(tr("Bli vänner"))}</button>`}</div></div>`).join("") + (found.total > found.entries.length ? `<div class="small">${esc(tr("Visar {a} av {b}. Sök på ett namn för att hitta fler.", { a: found.entries.length, b: found.total }))}</div>` : "")
+      : `<div class="empty">${esc(tr("Ingen hittades."))}</div>`);
     const live = state.me.live_folder;
-    $("liveAsk").innerHTML = live === null && !far && !$("listAsk").innerHTML
-      ? `<div class="meeting"><div><b>${esc(tr("Ska dina vänner se din delningsmapp?"))}</b><div class="small">${esc(tr("Då kan vänner du har accepterat hämta det som ligger i mappen, utan att du delar fil för fil. Ingen annan ser den. Du kan ändra dig under Vänner."))}</div></div><div><button data-live="yes">${esc(tr("Ja, visa den för mina vänner"))}</button> <button class="quiet" data-live="no">${esc(tr("Nej, jag väljer själv varje gång"))}</button></div></div>`
-      : "";
+    const askLive = live === null && !far;
+    $("liveAsk").innerHTML = askLive ? questionLive() : "";
+    $("firstStart").hidden = !(askList || askLive);
     $("liveRow").hidden = live === undefined;
     $("liveBadge").textContent = live ? tr(state.me.live_files === 1 ? "på: {n} fil" : "på: {n} filer", { n: state.me.live_files }) : tr("av");
     $("liveBadge").className = "badge" + (live ? "" : " off");
     $("liveBtn").textContent = tr(live ? "Stäng av" : "Slå på");
     $("liveBtn").dataset.live = live ? "no" : "yes";
     $("liveBtn").hidden = far;
-    // What the friend the owner is looking at holds out: picked for them, shared with them, and the friend's folder.
-    const sh = (state.shelves || []).filter((x) => x.dap_id === shelfOpen)[0];
-    const shelfRow = (it) => `<tr><td>${esc(it.filename)}<div class="small">${esc(or(KIND_NAMES[it.kind], it.kind))} · ${kb(it.size_bytes)}</div></td><td style="text-align:right">${it.have ? esc(tr("du har den")) : `<button class="quiet" data-fetch="${esc(it.id)}">${esc(tr("Hämta"))}</button>`}</td></tr>`;
-    const shelfPart = (title, items) => (items.length ? `<div class="small" style="margin-top:10px">${esc(title)}</div><table><tbody>${items.map(shelfRow).join("")}</tbody></table>` : "");
-    $("shelf").innerHTML = sh
-      ? `<div class="meeting" style="display:block"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><b>${esc(tr("Hos {name}", { name: or(sh.display_name, "") }))}</b><span>${sh.items.some((it) => !it.have) ? `<button data-fetch-all="1">${esc(tr("Hämta alla"))}</button> ` : ""}<button class="quiet" data-shelf-close="1">${esc(tr("Stäng"))}</button></span></div>` +
-        (sh.items.length
-          ? shelfPart(tr("Utvalt åt dig"), sh.items.filter((it) => it.picked)) + shelfPart(tr("Delat med dig"), sh.items.filter((it) => !it.picked && !it.live)) + shelfPart(tr("I mappen"), sh.items.filter((it) => it.live && !it.picked))
-          : `<div class="empty">${esc(tr("Inget just nu."))}</div>`) + `</div>`
-      : "";
-    const metOnly = state.met.filter((m) => !state.contacts.some((c) => c.dap_id === m.dap_id));
-    $("met").innerHTML = metOnly.length ? esc(tr("Träffade: ")) + metOnly.map((m) => `${esc(m.display_name)} <button class="quiet" data-befriend="${esc(m.dap_id)}">${esc(tr("gör till vän"))}</button>`).join(" · ") : "";
-    $("journal").innerHTML = state.journal.slice(-30).reverse().map((j) => `<tr><td class="small">${when(j.time)}</td><td class="mono">${esc(j.dap_id)}</td><td>${esc(j.kind)} ${kb(j.size_bytes)}</td><td class="small">${esc(or(j.outcome, or(j.colour, "")))}</td></tr>`).join("") || '<tr><td class="empty">' + esc(tr("Tomt.")) + "</td></tr>";
-
-    const AUD = { MET_IN_PERSON: tr("den jag träffar fysiskt"), FRIENDS: tr("vänner"), LISTED: tr("namngivna"), ANYONE_WITH_CODE: tr("den som har koden") };
-    const byAdvisor = new Set(((state.advisor && state.advisor.shares) || []).map((s) => s.index));
-    $("policies").className = state.policies.length ? "" : "empty";
-    $("policies").hidden = !state.policies.length;
-    $("shareNext").hidden = !state.policies.length;
-    $("sendBox").hidden = !state.policies.length;
-    // The code of the share just made, large, for reading out loud. Only this page knows it.
-    $("codeBig").hidden = !(lastCode && state.policies.some((p) => p.audience === "ANYONE_WITH_CODE"));
-    $("codeBig").textContent = lastCode || "";
-    if (view === "send" && step === 3 && !state.policies.length) setStep(1); // the last share was stopped
-    $("policies").innerHTML = state.policies.length
-      ? state.policies.map((p, i) => `<div class="meeting"><div><b>${p.items.map((it) => esc(it.filename)).join(", ")}</b><div class="small">${esc(tr("till {who}", { who: or(AUD[p.audience], p.audience) }))}${p.context ? " · " + esc(p.context) : ""}${p.listed ? " · " + esc(tr("{n} identiteter", { n: p.listed.length })) : ""} · ${esc(tr("till {when}", { when: new Date(p.valid_until).toLocaleString(LOCALE) }))}${byAdvisor.has(i) ? " · <b>" + esc(tr("delat av rådgivaren")) + "</b>" : ""}</div></div><button class="danger" data-unshare="${i}" data-what="${esc(policyKey(p))}">${esc(tr("Sluta dela"))}</button></div>`).join("")
-      : esc(tr("inget"));
 
     // ---- the AI agent (the advisor): a model that may look, propose or share inside the owner's rules; never more ----
     const adv = state.advisor;
     $("advisorPanel").hidden = !adv;
-    $("asks").innerHTML = "";
     if (adv) {
-      const LEVEL = { 0: tr("nivå 0, titta: ser mappen och läget, inget mer"), 1: tr("nivå 1, föreslå: lägger förslag här, du säger ja eller nej"), 2: tr("nivå 2, inom regler: delar själv, men bara inom dina regler"), 3: tr("nivå 3: delar själv med vänner, utan gränser") };
+      const aud = AUD();
       $("advisorHint").textContent = adv.off
         ? tr("Avstängd. Ingen AI-agent kommer åt DAP-Share.")
-        : tr("En modell kan tala med agenten ({level}). Den når aldrig knappen, slussen, vännerna eller innehållet.", { level: LEVEL[adv.level] }) + (adv.level === 2 && adv.rules ? tr(" Regler: {aud}, högst {h} h, högst {f} filer åt gången", { aud: adv.rules.audiences.map((a) => or(AUD[a], a)).join(", "), h: adv.rules.max_hours, f: adv.rules.max_files }) + (adv.rules.kinds ? tr(", bara {x}", { x: adv.rules.kinds.join(", ") }) : "") + (adv.rules.files ? tr(", bara {x}", { x: adv.rules.files.join(", ") }) : "") + "." : "");
+        : tr("En modell kan tala med agenten ({level}). Den når aldrig knappen, slussen, vännerna eller innehållet.", { level: LEVEL()[adv.level] }) + (adv.level === 2 && adv.rules ? tr(" Regler: {aud}, högst {h} h, högst {f} filer åt gången", { aud: adv.rules.audiences.map((a) => or(aud[a], a)).join(", "), h: adv.rules.max_hours, f: adv.rules.max_files }) + (adv.rules.kinds ? tr(", bara {x}", { x: adv.rules.kinds.join(", ") }) : "") + (adv.rules.files ? tr(", bara {x}", { x: adv.rules.files.join(", ") }) : "") + "." : "");
       // The level can be chosen here when the agent lets the screen choose it (the Python agent and the Mac app).
       $("levelRow").hidden = !adv.connect || far;
       $("readLibRow").hidden = !adv.connect || far;
@@ -750,13 +1106,19 @@
         const toml = (v) => JSON.stringify(v); // a TOML basic string is written like a JSON string
         $("codexCfg").textContent = "[mcp_servers.dap-share]\ncommand = " + toml(c.command) + "\nargs = [" + c.args.map(toml).join(", ") + "]\n";
       }
-      const pending = adv.proposals.filter((p) => p.status === "pending");
       const decided = adv.proposals.filter((p) => p.status !== "pending").slice(-5).reverse();
       const STATUS = { accepted: tr("du sa ja"), declined: tr("du sa nej"), withdrawn: tr("togs tillbaka") };
-      // What waits for the owner's yes or no is shown at the top, like a friend request.
-      $("asks").innerHTML = pending.map((p) => `<div class="meeting"><div>${esc(tr("Din AI-agent föreslår att du delar"))} <b>${p.files.map(esc).join(", ")}</b><div class="small">${esc(tr("till {who} i {h} h", { who: or(AUD[p.audience], p.audience), h: p.hours }))}${p.context ? " · " + esc(p.context) : ""}${p.listed ? " · " + esc(tr("{n} identiteter", { n: p.listed.length })) : ""}${p.note ? " · ”" + esc(p.note) + "”" : ""} · ${when(p.at)}</div>${p.audience === "ANYONE_WITH_CODE" ? `<div class="row"><input data-code-for="${esc(p.id)}" placeholder="${esc(tr("kod (minst 6 tecken) – du väljer den, inte rådgivaren"))}"></div>` : ""}</div><div><button data-accept-proposal="${esc(p.id)}">${esc(tr("Dela"))}</button> <button class="quiet" data-reject-proposal="${esc(p.id)}">${esc(tr("Avböj"))}</button></div></div>`).join("");
+      $("proposalsHead").hidden = !decided.length;
       $("proposals").innerHTML = decided.length ? `<div class="small">${decided.map((p) => `${when(or(p.decided_at, p.at))} ${p.files.map(esc).join(", ")} → ${or(STATUS[p.status], esc(p.status))}`).join("<br>")}</div>` : "";
     }
+    const w = waitingNow();
+    renderHome(far, w);
+    renderWaiting(far, w, (askList ? questionList() : "") + (askLive ? questionLive() : ""));
+    renderFriends(far, w);
+    renderPerson(far);
+    renderShare();
+    renderSettings(far);
+    renderJournal();
   }
 
   // ---- the share folder: what is in it, and what the owner chooses to offer ----
@@ -769,6 +1131,7 @@
       folderSeen = true;
       $("sharePanel").hidden = !r.folder;
       $("goSend").hidden = !r.folder; // an agent without a share folder has nothing to send from
+      $("openFolderBtn").hidden = !r.folder;
       if (!r.folder) return;
       $("openFolderBtn").disabled = !(state && state.me.can_open_folder);
       $("folderHint").textContent = r.folder.split(/[\\/]/).slice(-2).join("/");
@@ -795,6 +1158,22 @@
   $("libraryBtn").onclick = async () => { const r = await post("library/open"); if (!r.ok) toast(tr("Mappen gick inte att öppna")); };
   $("receivedBtn").onclick = async () => { const r = await post("received/open"); if (!r.ok) toast(tr("Mappen gick inte att öppna")); };
   $("openFolderBtn").onclick = async () => { const r = await post("folder/open"); if (!r.ok) toast(tr("Mappen gick inte att öppna")); };
+  // The same three from the bar at the top (docs/SCREEN.md §1). On the owner's phone the page around
+  // the screen shows the folder its own way, and the agent is asked nothing. That way is not this
+  // screen's code: what it throws, or a promise of it that fails, is said as a folder that did not open.
+  const FOLDER_OPEN = { share: "folder/open", received: "received/open", library: "library/open" };
+  async function openFolder(place) {
+    if (!FOLDER_OPEN[place] || !state) return;
+    if (state.me.remote) {
+      try { if (FOLDER) await FOLDER(place); } catch (e) { toast(tr("Mappen gick inte att öppna")); }
+      return;
+    }
+    const r = await post(FOLDER_OPEN[place]);
+    if (!r.ok) toast(tr("Mappen gick inte att öppna"));
+  }
+  // The sheet under the owner's name: the address, as text and as a code, the relay, the agent, the version.
+  $("who").onclick = () => { meOpen = !meOpen; $("meSheet").hidden = !meOpen; };
+  $("idQrBtn").onclick = () => { if (!state) return; drawQr(state.me.dap_id, $("idQr")); $("idQrBox").hidden = false; };
   // Only the field the chosen audience needs is shown.
   function audienceFields() {
     const a = $("audienceIn").value;
@@ -821,8 +1200,9 @@
     setStep(3);
   };
 
-  // ---- the screens: one question first (home), then one thing at a time ----
-  const VIEWS = ["home", "send", "receive", "meet", "friends", "settings"];
+  // ---- the views (docs/SCREEN.md §1): four reached with the icons, the places under them one tap away ----
+  const PARENT = { waiting: "home", person: "friends", meet: "friends", send: "share", receive: "share", advisor: "settings", likes: "settings", allow: "settings", phone: "settings", connect: "settings", computer: "settings", journal: "settings", about: "settings" };
+  const VIEWS = ["home", "waiting", "friends", "person", "meet", "share", "send", "receive", "settings", "advisor", "likes", "allow", "phone", "connect", "computer", "journal", "about"];
   let view = "home";
   let step = 1;
   function setStep(n) {
@@ -835,18 +1215,42 @@
       if (!$("shareCodeIn").value) $("shareCodeIn").value = newCode();
     }
   }
+  // Discard with five seconds of undo (docs/SCREEN.md §3): nothing is posted before the five seconds
+  // are over, or before the owner leaves the view. Undo within them posts nothing. A page closed
+  // before the post leaves the file held, which is the safe side.
+  function discardLater(id) {
+    if (discarding[id]) return;
+    discarding[id] = setTimeout(() => discardNow(id), 5000);
+  }
+  function discardNow(id) {
+    if (!discarding[id]) return;
+    clearTimeout(discarding[id]);
+    delete discarding[id];
+    post("discard", { delivery_id: id }).then((r) => { if (!(r && r.ok)) toast(tr("Gick inte att kasta: filen var inte längre förseglad")); return refresh(); }, () => {});
+  }
+  function flushDiscards() { Object.keys(discarding).forEach(discardNow); }
   function go(to) {
     if (VIEWS.indexOf(to) < 0) to = "home";
+    if (to === "person" && !personOpen) to = "friends";
+    if (view === "waiting" && to !== "waiting") flushDiscards();
     view = to;
     [].forEach.call(document.querySelectorAll(".view"), (el) => { el.hidden = el.getAttribute("data-view") !== to; });
-    $("backBtn").hidden = to === "home";
+    const top = or(PARENT[to], to);
+    [].forEach.call(document.querySelectorAll("#tabs button"), (b) => { b.classList.toggle("on", b.getAttribute("data-go") === top); });
+    $("backBtn").hidden = PARENT[to] === undefined; // not on the four views themselves, where the icons already lead (docs/SCREEN.md §1)
+    $("backBtn").dataset.go = or(PARENT[to], "home"); // back goes to the view the place belongs to
     if (to === "send") setStep(state && state.policies.length ? 3 : 1);
-    if (to === "meet" && $("qrBox").hidden) $("tokenBtn").click(); // the code is what this screen is for: show it at once
-    if (TRANSPORT && to === "meet") nearby();
+    if (to === "meet") { $("codeBody").hidden = false; $("codeFold").classList.add("open"); if ($("qrBox").hidden) $("tokenBtn").click(); } // the code is what this screen is for: show it at once
+    if (TRANSPORT && (to === "meet" || to === "friends")) nearby();
     if (TRANSPORT && to === "send") folder();
     try { if (location.hash.slice(1) !== (to === "home" ? "" : to)) history.pushState(null, "", to === "home" ? location.pathname + location.search : "#" + to); } catch (e) {}
     window.scrollTo(0, 0);
     if (state) refresh();
+  }
+  function openPerson(dap_id) {
+    personOpen = dap_id;
+    shelfOpen = dap_id;
+    go("person");
   }
   window.addEventListener("popstate", () => go(location.hash.slice(1) || "home"));
   $("toStep2").onclick = () => {
@@ -868,6 +1272,7 @@
   // ?invite: messengers keep a link's card for a long time, so a new card goes with a new link.
   const LANDING = "https://dapshare.app/?invite";
   const PRIVACY = "https://dapshare.app/privacy.html";
+  $("privacyLink").href = PRIVACY;
   let lastCode = null; // the code of the last share, in this page only: the agent never shows a code back
   // The link goes first: WhatsApp, Telegram and iMessage show the first link's card (the logo and
   // the line under it, from the landing page's Open Graph tags) above the text.
@@ -905,34 +1310,64 @@
   }
 
   document.addEventListener("click", async (e) => {
-    const b = e.target.closest("button"); if (!b) return;
+    const b = e.target.closest("button");
+    if (!b) {
+      // A row in Waiting, tapped beside its buttons: the review's words (or Block) open under it.
+      const row = e.target.closest ? e.target.closest("[data-item]") : null;
+      if (row) { const id = row.getAttribute("data-item"); if (expanded[id]) delete expanded[id]; else expanded[id] = true; refresh(true); }
+      return;
+    }
     const d = b.dataset;
     if (d.send) return sendInvite(d.send);
     if (d.go) return go(d.go);
+    if (d.folder) return openFolder(d.folder);
     if (d.stepGo) return setStep(Number(d.stepGo));
-    if (d.release) { const r = await post("release", { meeting_id: d.release }); toast(tr("{a} släpptes in, {b} väntar", { a: r.released.length, b: r.kept.length })); }
-    else if (d.item) { await post("release", { delivery_id: d.item }); toast(tr("Insläppt i hubben")); }
-    else if (d.discard) { await post("discard", { delivery_id: d.discard }); toast(tr("Kastad")); }
+    if (d.fold) { const body = $(d.fold); body.hidden = !body.hidden; b.classList.toggle("open", !body.hidden); return; }
+    if (d.filter) { journalFilter = d.filter; return refresh(true); }
+    if (d.journal) { journalFilter = d.journal; return go("journal"); }
+    if (d.person) return openPerson(d.person);
+    if (d.copy) return copyText(d.copy).then((ok) => toast(tr(ok ? "Adressen är kopierad" : "Markera adressen och kopiera den själv")));
+    if (d.undo) { clearTimeout(discarding[d.undo]); delete discarding[d.undo]; return refresh(true); }
+    if (d.discard) { discardLater(d.discard); return refresh(true); }
+    if (d.release) { await post("release", { delivery_id: d.release }); toast(tr("Insläppt i hubben")); }
+    else if (d.greenAll) {
+      // Up to ten the green ones go in with this press, each by its own id: exactly the files the bar
+      // counted, never one the owner threw away whose discard is still on its way. Above ten the
+      // owner sees the list first.
+      if (Number(d.greenAll) > 10) return go("waiting");
+      const w = waitingNow();
+      let a = 0;
+      for (let i = 0; i < w.green.length; i++) {
+        const r = await post("release", { delivery_id: w.green[i].id });
+        if (r && r.ok) a++;
+      }
+      toast(tr("{a} släpptes in, {b} väntar", { a, b: w.held.length - a }));
+    }
     else if (d.accept) { await post("friends", { dap_id: d.accept }); toast(tr("Vän tillagd")); }
     else if (d.decline) { await post("friends/decline", { dap_id: d.decline }); }
     else if (d.block) {
       if (!confirm(tr("Blockera {name}? De får inget från dig, och deras förfrågningar visas inte. De får inte veta det.", { name: d.blockName || d.block }))) return;
       const r = await post("friends/block", { dap_id: d.block, display_name: d.blockName });
-      if (r.error) toast(tr("Gick inte: ") + r.error); else { toast(tr("Blockerad")); if (shelfOpen === d.block) shelfOpen = null; }
+      if (r.error) toast(tr("Gick inte: ") + r.error); else { toast(tr("Blockerad")); if (shelfOpen === d.block) shelfOpen = null; if (personOpen === d.block) { personOpen = null; if (view === "person") go("friends"); } }
     }
     else if (d.unblock) { await post("friends/unblock", { dap_id: d.unblock }); toast(tr("Blockeringen är hävd")); }
     else if (d.demote) { await post("friends/demote", { dap_id: d.demote }); }
-    else if (d.remove) { await post("friends/remove", { dap_id: d.remove }); }
+    else if (d.remove) { await post("friends/remove", { dap_id: d.remove }); if (personOpen === d.remove) { personOpen = null; if (view === "person") go("friends"); } }
     else if (d.befriend) { await post("friends", { dap_id: d.befriend }); toast(tr("Vän tillagd")); }
     else if (d.listed) { await post("listed", { on: d.listed === "yes" }); toast(tr(d.listed === "yes" ? "Nu kan andra hitta dig" : "Du syns inte i katalogen")); }
     else if (d.ask) {
       busy(tr("skickar vänförfrågan …"));
       try {
-        const r = await post("friends/ask", { dap_id: d.ask });
+        // The directory's name goes with the ask, so the row "Frågad · väntar på svar" can carry it (docs/SCREEN.md §5.1, §8.1).
+        const r = await post("friends/ask", { dap_id: d.ask, display_name: d.askName || null });
         if (r.error) toast(tr("Gick inte: ") + r.error);
         else toast(tr(r.friend_request === "accepted" ? "Ni är vänner nu" : r.later ? "Förfrågan skickas när de är online" : "Vänförfrågan skickad"));
       } finally { busy(null); }
     }
+    else if (d.unask) { const r = await post("friends/unask", { dap_id: d.unask }); if (r && r.error) toast(tr("Gick inte: ") + trServer(r.error)); else toast(tr("Förfrågan är tillbakatagen")); }
+    // The standing yes per friend (docs/SCREEN.md §4): on or off, and either answer clears the pause.
+    else if (d.direction) { const r = await post("friends/direction", { dap_id: d.direction, receive_without_button: d.on === "1" }); if (r && r.error) toast(tr("Gick inte: ") + trServer(r.error)); }
+    else if (d.removeFor) { const r = await post("policy/remove_for", { dap_id: d.removeFor }); toast(r && r.ok ? tr(r.removed === 1 ? "{n} delning stoppad" : "{n} delningar stoppade", { n: r.removed }) : tr("Gick inte: ") + trServer(r && r.error)); }
     else if (d.live) { await post("live", { on: d.live === "yes" }); toast(tr(d.live === "yes" ? "Dina vänner ser nu din delningsmapp" : "Dina vänner ser inte mappen")); }
     else if (d.browse) {
       busy(tr("tittar i mappen …"));
@@ -953,7 +1388,7 @@
       } finally { busy(null); }
     }
     else if (d.shelfClose) { shelfOpen = null; }
-    else if (d.meetNearby) { const a = JSON.parse(d.meetNearby); await meet({ host: a.host, port: a.port }); }
+    else if (d.meetNearby) { const a = JSON.parse(d.meetNearby); await meet({ host: a.host, port: a.port, nearby: true }); }
     else if (d.unshare !== undefined) { const gone = await post("policy/remove", { index: Number(d.unshare), what: d.what }); toast(tr(gone && gone.ok ? "Delas inte längre" : "Den delningen fanns inte kvar")); }
     else if (d.acceptProposal) {
       const codeIn = document.querySelector(`[data-code-for="${d.acceptProposal}"]`);
@@ -1137,15 +1572,18 @@
 
   async function meet(extra) {
     const body = { ...extra };
+    // The checkbox of the view the meeting comes from: Add a friend (a scanned code, somebody nearby) or Fetch with a code.
+    const fromMeet = !!(body.qr || body.nearby);
+    delete body.nearby;
     if ($("codeIn").value) body.code = $("codeIn").value;
     if ($("ctxIn").value) body.context = $("ctxIn").value;
-    if ($("friendIn").checked || $("friendIn2").checked) body.friendRequest = true;
+    if (fromMeet ? $("friendIn2").checked : $("friendIn").checked) body.friendRequest = true;
     $("meetBtn").disabled = true;
     busy(extra.qr || extra.dap_id ? tr("möter {id} …", { id: String(or(extra.qr && extra.qr.dap_id, extra.dap_id)).slice(-6) }) : tr("möter …"));
     try {
       const r = await post("meet", body);
       if (r.error) return toast(tr("Mötet misslyckades: ") + r.error);
-      if (view !== "receive") go("receive"); // what arrived is shown there
+      if (r.received.length && view !== "waiting") go("waiting"); // what arrived waits there
       toast(tr("Möte med {name}", { name: r.peer.display_name }) + (r.via === "relay" ? tr(" (via relä)") : "") + tr(": tog emot {a}, erbjöd {b}", { a: r.received.length, b: r.offered.length }) + (r.friend_request ? tr(", vänförfrågan {s}", { s: r.friend_request }) : ""));
     } finally { busy(null); $("meetBtn").disabled = false; refresh(); }
   }
@@ -1158,12 +1596,21 @@
     if ($("relayIn").value.trim()) return toast(tr("Ange den andras dap:crypto:… bredvid reläet"));
     toast(tr("Fyll i den andras adress, en dator på nätverket eller en skannad kod"));
   };
+  // An address typed in under Add a friend: a meeting through the owner's own relay, with a friend request.
+  $("addFriendBtn").onclick = () => {
+    const dap_id = $("addrIn").value.trim();
+    if (!dap_id) return toast(tr("Skriv den andras adress, dap:crypto:…"));
+    const relay = state && state.me.relay ? state.me.relay.relay : null;
+    if (!relay) return toast(tr("inget relä: möten över internet går inte"));
+    return meet({ relay: { host: relay.host, port: relay.port }, dap_id, friendRequest: true });
+  };
 
   async function nearby() {
     try {
       const { agents } = await api("GET", "nearby");
+      $("nearbyBox").hidden = !agents.length; // the heading is there only while somebody is nearby
       $("nearby").className = agents.length ? "" : "empty";
-      $("nearby").innerHTML = agents.length ? agents.map((a) => `<div class="meeting"><div><b>${esc(a.display_name)}</b> <span class="small">${esc(a.host)}:${esc(a.port)}</span><div class="mono">${esc(a.dap_id)}</div></div><button class="quiet" data-meet-nearby='${esc(JSON.stringify(a))}'>${esc(tr("Möt"))}</button></div>`).join("") : esc(tr("Ingen annan agent syns på det här nätverket just nu."));
+      $("nearby").innerHTML = agents.length ? agents.map((a) => `<div class="meeting"><div><b>${esc(a.display_name)}</b> <span class="small">${esc(a.host)}:${esc(a.port)}</span><div class="mono">${esc(a.dap_id)}</div></div><button class="quiet" data-meet-nearby='${esc(JSON.stringify(a))}'>${esc(tr("Mötas"))}</button></div>`).join("") : esc(tr("Ingen annan agent syns på det här nätverket just nu."));
     } catch { $("nearby").textContent = tr("kunde inte söka"); }
   }
   // What a page around this screen may use (the page at /remote/, docs/REMOTE.md §5): the screen's own
@@ -1186,5 +1633,5 @@
   if (!TRANSPORT) nearby();
   folder();
   setInterval(poll, 2000);
-  setInterval(() => { if (!TRANSPORT || view === "meet") nearby(); }, 15000);
+  setInterval(() => { if (!TRANSPORT || view === "meet" || view === "friends") nearby(); }, 15000);
   setInterval(() => { if (!TRANSPORT || !folderSeen || view === "send") folder(); }, 5000);

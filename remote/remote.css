@@ -4,7 +4,12 @@
    phone is connected, and the view for files. */
 body { padding-top: max(16px, env(safe-area-inset-top)); padding-bottom: max(16px, env(safe-area-inset-bottom)); }
 .rcover { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 12; background: var(--bg); overflow-y: auto; -webkit-overflow-scrolling: touch; padding: max(20px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom)); box-sizing: border-box; }
-#remoteFiles { z-index: 11; }
+#remoteFiles { z-index: 11; padding-top: 0; } /* its top padding is in the row with Tillbaka, which stays at the top (below) */
+/* The screen's four icons stay in front of the files, as a bar at the bottom: the view ends above it, as the screen itself does. */
+#remoteFiles { padding-bottom: 76px; padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+/* From 700 px the screen's four icons are a rail at the left (84 px and its line), in front of the files: the view starts beside it. */
+@media (min-width: 700px) { #remoteFiles { left: 85px; } }
+@media (min-width: 700px) { #remoteFiles { padding-bottom: max(24px, env(safe-area-inset-bottom)); } }
 /* The screen behind the cover is put away while the cover is in front (the build starts the page that way). */
 body.rcovered > .container { display: none; }
 /* What the screen says and its camera stay in front of the cover. */
@@ -35,10 +40,33 @@ body.rcovered > .container { display: none; }
 @keyframes rlate { to { opacity: 1; } }
 /* ---- files on the computer ---- */
 .rfiles { max-width: 660px; margin: 0 auto; }
+/* The row with Tillbaka stays at the top while the cards move under it. The view's top padding is in this row,
+   so that it looks the same moved or not, and Tillbaka keeps clear of the phone's own top edge. */
+.rtop { position: sticky; top: 0; z-index: 1; background: var(--bg); padding: max(20px, env(safe-area-inset-top)) 0 10px; }
+/* The card a folder button on the screen asked for. */
+.rcard.rasked { border-color: rgba(57,255,20,.6); }
 .rfiles h2 { font-size: 1.5rem; color: var(--text); text-transform: none; letter-spacing: 0; font-weight: 700; margin: 10px 0 14px; }
-.rfile { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+/* A file's row: its name, then what can be done with it. Where both do not fit side by side (a phone, a long name)
+   the buttons go under the name, so nothing reaches past the card. */
+.rfile { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; padding: 10px 0; border-top: 1px solid var(--border); }
 .rfile:first-child { border-top: 0; }
-.rfile .rfname { overflow-wrap: anywhere; min-width: 0; } .rfile button { flex: none; }
+.rfile .rfname { overflow-wrap: anywhere; min-width: 0; flex: 1 1 170px; } .rfile button { flex: none; }
+.ract { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; margin-left: auto; max-width: 100%; }
+/* What is pressed in a row is the size of a thumb (44 px), on a phone held in one hand. */
+.rfile .ract button { min-height: 44px; padding: 10px 14px; }
+/* The question before a file is removed, in place of the row's buttons. Its text takes the height the buttons had, so
+   that a second tap where Ta bort was lands on the question and not on an answer; and the two answers are apart. */
+.rsure { flex: 1 1 100%; min-width: 0; text-align: right; }
+.rsure p { margin: 0 0 8px; min-height: 44px; display: flex; align-items: center; justify-content: flex-end; overflow-wrap: anywhere; color: var(--text); }
+.rsure .ract { gap: 16px 24px; }
+/* What became of the file that was last removed in a place. */
+.rsaid { border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; margin: 10px 0 4px; overflow-wrap: anywhere; }
+.rsaid[data-state="done"] { border-color: rgba(57,255,20,.45); } .rsaid[data-state="failed"] { border-color: rgba(251,191,36,.5); }
+/* Where a file from the phone lands: one of two. */
+.rwhere { display: flex; align-items: flex-start; gap: 10px; margin: 0 0 10px; cursor: pointer; }
+.rwhere input { width: auto; flex: none; margin: 3px 0 0; accent-color: var(--accent); }
+.rwhere b { display: block; font-size: .95rem; } .rwhere .small { display: block; line-height: 1.5; }
+#remoteSend { margin-top: 4px; }
 .rjob { border-top: 1px solid var(--border); padding: 10px 0 0; margin-top: 10px; }
 .rjob:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
 .rjob .rbar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin: 8px 0; }
