@@ -440,6 +440,8 @@
       <button class="sbtn" id="rowAllow" data-go="allow"><span>Vänner får</span><span class="small" id="allowVal"></span></button>
       <button class="sbtn" id="rowPhone" data-go="phone" hidden><span>Din telefon, var du än är</span><span class="small" id="phoneVal"></span></button>
       <button class="sbtn" id="rowConnect" data-go="connect" hidden><span>Koppla Claude eller Codex</span><span class="small"></span></button>
+      <!-- The cloud (docs/CLOUD.md §9.6): on the computer's own screen only, where the agent tells it (me.deputy). -->
+      <button class="sbtn" id="cloudRow" data-go="cloud" hidden><span>Molnet</span><span class="small" id="cloudVal"></span></button>
       <button class="sbtn" id="rowComputer" data-go="computer"><span>Den här datorn</span><span class="small" id="computerVal"></span></button>
       <button class="sbtn" id="rowJournal" data-go="journal"><span>Inkorg och journal</span><span class="small"></span></button>
       <button class="sbtn" id="rowAbout" data-go="about"><span>Språk · Om · Integritet</span><span class="small" id="aboutVal"></span></button>
@@ -545,6 +547,16 @@
            where they can work (a Mac with caffeinate; the app started from its bundle). Hidden until the state says so. -->
       <div class="srow" id="awakeRow" hidden><span>Håll den här Macen vaken medan DAP-Share är igång<span class="small why">Då når telefonen den dygnet runt, när den sitter i laddaren med locket öppet. En bärbar Mac med stängt lock sover ändå, och utan laddare tar batteriet slut.</span></span><span class="sset"><span class="badge off" id="awakeBadge"></span> <button class="quiet tiny" id="awakeBtn"></button></span></div>
       <div class="srow" id="loginRow" hidden><span>Starta DAP-Share när jag loggar in<span class="small why" id="loginWhy">Gäller från nästa gång du loggar in. Den startar tyst, utan att öppna skärmen. Den pekar på där appen ligger nu: flyttar du appen, stäng av och slå på igen.</span></span><span class="sset"><span class="badge off" id="loginBadge"></span> <button class="quiet tiny" id="loginBtn"></button></span></div>
+    </section>
+  </section>
+
+  <!-- The cloud (docs/CLOUD.md §9.6): the switch, and each line below only when it applies. Every line is drawn
+       from me.deputy, which the agent gives only to the computer's own screen; nothing a deputy says is shown. -->
+  <section class="view" data-view="cloud" id="cloudPage" hidden>
+    <section class="scard swide">
+      <div class="srow" id="cloudSwitch"><span>Molnet<span class="small why">Dina vänner kan hämta det du delar även när datorn är av. Allt ligger förseglat; servern kan inte läsa något.</span></span><span class="sset"><span class="badge off" id="cloudBadge"></span> <button class="quiet tiny" id="cloudOnBtn" hidden>Slå på</button></span></div>
+      <div id="cloudLines"></div>
+      <button class="danger full" id="cloudOffBtn" hidden>Stäng av molnet</button>
     </section>
   </section>
 

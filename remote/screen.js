@@ -193,6 +193,8 @@
       "{g} gröna, {r} röda": "{g} green, {r} red",
       "väntar på ditt tryck": "waiting for your press",
       "det röda väntar i inkorgen": "the red ones wait in the inbox",
+      "det gula väntar i inkorgen": "the yellow ones wait in the inbox",
+      "det röda och gula väntar i inkorgen": "the red and yellow ones wait in the inbox",
       "i hubben": "in the hub",
       "väntar": "waiting",
       "i hubben ({f})": "in the hub ({f})",
@@ -305,6 +307,10 @@
       "Delat med dig": "Shared with you",
       "I mappen": "In the folder",
       "Inget just nu.": "Nothing right now.",
+      "Som det var {date}": "As it was on {date}",
+      " och {n} till när {name}s dator är på": " and {n} more when {name}'s computer is on",
+      "Väntar på att nå {name}": "Waiting to reach {name}",
+      "Kom inte fram innan det tog slut": "Did not arrive before it ended",
       "Dina vänner ser nu din delningsmapp": "Your friends now see your share folder",
       "Dina vänner ser inte mappen": "Your friends do not see the folder",
       "tittar i mappen …": "looking in the folder …",
@@ -433,7 +439,54 @@
       "Hem": "Home",
       "Agent på": "Agent on",
       "Agent av": "Agent off",
-      "Ställföreträdare på": "Deputy on",
+      "Molnet på": "Cloud on",
+      "Molnet görs": "Cloud being made",
+      "görs": "being made",
+      "Molnet görs.": "The cloud is being made.",
+      "Molnet kunde inte göras än; försöker igen.": "The cloud could not be made yet; trying again.",
+      // A make refused for want of an invitation (docs/CLOUD.md §9.2, §9.6).
+      "Molnet väntar på en inbjudan": "Cloud waits for an invitation",
+      "väntar på inbjudan": "waiting for an invitation",
+      "Molnet väntar på plats": "Cloud waits for room",
+      "väntar på plats": "waiting for room",
+      "Molnet behöver en inbjudan: en vän som redan har molnet. Datorn frågar igen av sig själv.": "The cloud needs an invitation: a friend who already has it. The computer asks again by itself.",
+      "Du är inbjuden, men molnet tar inte in fler just nu. Datorn frågar igen av sig själv.": "You are invited, but the cloud takes no more for now. The computer asks again by itself.",
+      "Molnet {p} %": "Cloud {p} %",
+      "Molnet behöver dig": "Cloud needs you",
+      // The cloud's row and page (docs/CLOUD.md §9.6), word for word.
+      "Molnet": "Cloud",
+      "Dina vänner kan hämta det du delar även när datorn är av. Allt ligger förseglat; servern kan inte läsa något.": "Your friends can fetch what you share even when this computer is off. Everything is sealed; the server cannot read any of it.",
+      "skickar {p} %": "sending {p} %",
+      "{n} ändring på väg": "{n} change on its way",
+      "{n} ändringar på väg": "{n} changes on their way",
+      "fullt": "full",
+      "behöver dig": "needs you",
+      "inget moln här": "no cloud here",
+      "Det här skickas: {size}. Hur lång tid det tar visas när det har börjat.": "To be sent: {size}. How long it takes shows once it has started.",
+      "Skickar {p} % · cirka {m} min kvar": "Sending {p} % · about {m} min left",
+      "{size} finns bara på datorn": "{size} is only on this computer",
+      "Vänner ser din mapp till {date}": "Friends see your folder until {date}",
+      "1 vän har en äldre DAP-Share och ser inget när datorn är av": "1 friend has an older DAP-Share and sees nothing while this computer is off",
+      "{n} vänner har en äldre DAP-Share och ser inget när datorn är av": "{n} friends have an older DAP-Share and see nothing while this computer is off",
+      "1 ändring på väg till molnet": "1 change on its way to the cloud",
+      "{n} ändringar på väg till molnet": "{n} changes on their way to the cloud",
+      "Molnet är fullt. Det som inte får plats finns bara på datorn.": "The cloud is full. What does not fit is only on this computer.",
+      "Datorns klocka skiljer sig från molnets med {m} min. Inget stoppas; kontrollera tiden i Systeminställningar.": "This computer's clock differs from the cloud's by {m} min. Nothing is stopped; check the time in System Settings.",
+      "Datorns klocka gick fel; vännerna tar emot igen {date}.": "This computer's clock was wrong; friends accept again on {date}.",
+      "DAP-Share används nu på en annan dator med samma nyckel.": "DAP-Share is now used on another computer with the same key.",
+      "Använd den här igen": "Use this one again",
+      "Telefonen är borttagen här och i molnet. {a} av {b} vänner vet det; de andra litar på den till {date}.": "The phone is removed here and in the cloud. {a} of {b} friends know; the others trust it until {date}.",
+      "Försegla allt igen (cirka {m} min)": "Seal everything again (about {m} min)",
+      "1 ändring från en borttagen telefon": "1 change from a removed phone",
+      "{n} ändringar från en borttagen telefon": "{n} changes from a removed phone",
+      "Behåll": "Keep",
+      "Borttaget i molnet de senaste 7 dagarna: {n}": "Removed in the cloud in the last 7 days: {n}",
+      "Det äldsta borttagna raderades tidigare, för att platsen tog slut.": "The oldest removed items were deleted early, because the room ran out.",
+      "Molnet hade raderats efter 180 dagar utan kontakt. Ett nytt är gjort och allt skickas igen.": "The cloud was deleted after 180 days without contact. A new one is made and everything is sent again.",
+      "Den här reläservern har inget moln.": "This relay has no cloud.",
+      "Stäng av molnet": "Turn off the cloud",
+      "Det som ligger i molnet raderas. Slår du på igen skickas allt på nytt.": "What is in the cloud is deleted. If you switch on again, everything is sent again.",
+      "Görs i molnet när datorn når det": "Done in the cloud when the computer reaches it",
       "Offline": "Offline",
       "Offline · {h} h": "Offline · {h} h",
       "{n} väntar": "{n} waiting",
@@ -535,6 +588,7 @@
     [/^program: läses inte$/, () => "a program: not read"],
     [/^granskaren svarade inte \((.*)\)$/, (m) => `the reviewer did not answer (${m[1]})`],
     [/^(\S+) utan läsbar text \((\d+) byte\)$/, (m) => `${m[1]} without readable text (${m[2]} bytes)`],
+    [/^text som inte går att läsa hela \((\d+) byte\)$/, (m) => `text that cannot be read in full (${m[1]} bytes)`],
     [/^ett program \(binärt\)$/, () => "a program (binary)"],
     [/^ett skript \(#!\)$/, () => "a script (#!)"],
     [/^okänt format$/, () => "unknown format"],
@@ -579,6 +633,9 @@
     [/^DAP-Share kan inte startas vid inloggning härifrån$/, () => "DAP-Share cannot be started at login from here"],
     [/^kan inte skriva inloggningsfilen: (.*)$/, (m) => `cannot write the login file: ${m[1]}`],
     [/^bara på datorn$/, () => "only on the computer"],
+    // The cloud's switch (docs/CLOUD.md §9.6, §9.2).
+    [/^Den här reläservern har inget moln\.$/, () => "This relay has no cloud."],
+    [/^Den här DAP-Share känner inte molntjänsten\.$/, () => "This DAP-Share does not know the cloud service."],
   ];
   function trServer(text) {
     if (LANG !== "en" || typeof text !== "string") return text;
@@ -648,6 +705,9 @@
     const b = pressed;
     pressed = null;
     const asked = api("POST", p, body);
+    // A press from the owner's phone whose withdrawal from the cloud waits for the computer to reach it
+    // (docs/CLOUD.md §5.6): said after whatever the press itself says.
+    asked.then((r) => { if (r && r.cloud_later === true) setTimeout(() => toast(tr("Görs i molnet när datorn når det")), 0); }, () => {});
     if (!b || b.disabled) return asked;
     b.disabled = true;
     b.setAttribute("aria-busy", "true");
@@ -748,7 +808,9 @@
     const adv = state.advisor;
     const parts = [];
     if (adv) parts.push(tr(adv.off ? "Agent av" : "Agent på"));
-    if (state.me.deputy && state.me.deputy.on) parts.push(tr("Ställföreträdare på"));
+    // The cloud's one part (docs/CLOUD.md §9.6), only when it is on; the agent tells only the computer's own screen.
+    const dep = far ? null : state.me.deputy;
+    if (dep && dep.on) parts.push(cloudNeedsYou(dep) ? tr("Molnet behöver dig") : !dep.deputy ? tr(dep.invite === 429 ? "Molnet väntar på plats" : dep.invite ? "Molnet väntar på en inbjudan" : "Molnet görs") : dep.sending ? tr("Molnet {p} %", { p: cloudPercent(dep.sending) }) : tr("Molnet på"));
     const online = state.me.relay_status === "registered" || state.me.relay_status === "connected";
     if (state.me.relay && !online) {
       if (!offlineSince) offlineSince = Date.now();
@@ -891,8 +953,10 @@
     if (view === "person" && sh) rememberSeen(c.dap_id, sh.items.filter((it) => it.live).length);
     const shelfRow = (it) => `<tr><td>${esc(it.filename)}<div class="small">${esc(or(KIND_NAMES[it.kind], it.kind))} · ${kb(it.size_bytes)}${it.picked ? " · " + esc(tr("Utvalt åt dig")) : it.live ? " · " + esc(tr("I mappen")) : ""}</div></td><td style="text-align:right">${it.have ? esc(tr("du har den")) : `<button class="quiet" data-fetch="${esc(it.id)}">${esc(tr("Hämta"))}</button>`}</td></tr>`;
     const missing = sh ? sh.items.filter((it) => !it.have).length : 0;
+    // Through a friend's deputy: the folder as it was when their computer last signed it (docs/CLOUD.md §6.3, 6).
+    const asOf = sh && sh.via === "deputy" && sh.as_of ? `<div class="small">${esc(tr("Som det var {date}", { date: day(Date.parse(sh.as_of) / 1000) }))}${sh.left_out > 0 ? esc(tr(" och {n} till när {name}s dator är på", { n: sh.left_out, name: c.display_name })) : ""}</div>` : "";
     setHtml($("shelf"), sh
-      ? (sh.items.length ? `<table><tbody>${sh.items.map(shelfRow).join("")}</tbody></table>` : `<div class="empty">${esc(tr("Inget just nu."))}</div>`) + (missing ? `<button class="quiet full" data-fetch-all="1">${esc(tr("Hämta alla ({n})", { n: missing }))}</button>` : "")
+      ? asOf + (sh.items.length ? `<table><tbody>${sh.items.map(shelfRow).join("")}</tbody></table>` : `<div class="empty">${esc(tr("Inget just nu."))}</div>`) + (missing ? `<button class="quiet full" data-fetch-all="1">${esc(tr("Hämta alla ({n})", { n: missing }))}</button>` : "")
       : "");
     // Shares that name only this friend, and the ways to end the friendship.
     const forThem = state.policies.filter((p) => p.audience === "LISTED" && p.listed && p.listed.length && p.listed.every((id) => id === c.dap_id)); // only this friend, however many times
@@ -937,10 +1001,75 @@
     if (comp && comp.start_at_login && comp.start_at_login.on) cv.push(tr("startar vid inloggning"));
     $("computerVal").textContent = cv.join(" · ");
     $("aboutVal").textContent = LANG === "en" ? "English" : "Svenska";
+    renderCloud(far);
     setHtml($("allowFriends"), friends.map((c) => {
       const on = !!c.receive_without_button;
       return `<div class="srow"><span>${esc(c.display_name)}${c.paused ? `<span class="small why">${esc(tr("Pausad: något {colour} kom", { colour: tr(c.paused.colour === "red" ? "rött" : "gult") }))}</span>` : ""}</span><span class="sset"><span class="badge${on ? "" : " off"}">${esc(tr(on ? "på" : "av"))}</span> <button class="quiet tiny" data-direction="${esc(c.dap_id)}" data-on="${on ? "0" : "1"}"${far && !on ? " disabled" : ""}>${esc(tr(on ? "Stäng av" : "Slå på"))}</button></span></div>`;
     }).join("") || `<div class="empty">${esc(tr("Inga vänner än."))}</div>`);
+  }
+
+  // ---- The cloud (docs/CLOUD.md §9.6): one row under Settings and its page. `d` is me.deputy, which
+  // the agent gives only to the computer's own screen; a remote and a lan screen have neither. ----
+  const cloudNeedsYou = (d) => !!(d.other_install || d.removed_changes > 0);
+  const cloudPercent = (s) => Math.min(100, Math.floor((s.done / Math.max(1, s.total)) * 100));
+  // An amount of bytes as the page says it: "1,4 GB" in Swedish, "1.4 GB" in English.
+  const cloudSize = (n) => {
+    const units = [[1073741824, "GB"], [1048576, "MB"], [1024, "kB"]];
+    for (let i = 0; i < units.length; i++) if (n >= units[i][0]) return (n / units[i][0]).toLocaleString(LOCALE, { maximumFractionDigits: 1 }) + " " + units[i][1];
+    return n + " B";
+  };
+  // A day as the page says it: "14 dec" / "14 Dec".
+  const cloudDay = (iso) => { const t = Date.parse(iso); return isNaN(t) ? "" : new Date(t).toLocaleDateString(LOCALE, { day: "numeric", month: "short" }).replace(/\.$/, ""); };
+  let cloudOpen = {};      // the lists on the cloud page the owner opened: "only", "dropped", "removed"
+  function renderCloud(far) {
+    const d = far ? undefined : state.me.deputy;
+    $("cloudRow").hidden = !d;
+    if (!d) { setHtml($("cloudLines"), ""); if (view === "cloud") go("settings"); return; }
+    const n = (x) => (typeof x === "number" && x > 0 ? x : 0);
+    $("cloudVal").textContent = !d.on && !d.relay_has ? tr("inget moln här")
+      : !d.on ? tr("av")
+      : cloudNeedsYou(d) ? tr("behöver dig")
+      : !d.deputy ? tr(d.invite === 429 ? "väntar på plats" : d.invite ? "väntar på inbjudan" : "görs")
+      : d.full ? tr("fullt")
+      : d.sending ? tr("skickar {p} %", { p: cloudPercent(d.sending) })
+      : n(d.waiting) ? tr(n(d.waiting) === 1 ? "{n} ändring på väg" : "{n} ändringar på väg", { n: n(d.waiting) })
+      : tr("på");
+    // The switch: there to turn on where the relay has a cloud; the red button at the end turns it off.
+    $("cloudSwitch").hidden = !d.on && !d.relay_has;
+    $("cloudBadge").textContent = tr(d.on ? "på" : "av");
+    $("cloudBadge").className = "badge" + (d.on ? "" : " off");
+    $("cloudOnBtn").hidden = d.on || !d.relay_has;
+    $("cloudOffBtn").hidden = !d.on;
+    const lines = [];
+    const line = (html) => lines.push(`<div class="srow cloudLine"><span>${html}</span></div>`);
+    const list = (key, head, rows) => lines.push(`<button class="fold${cloudOpen[key] ? " open" : ""}" data-cloud-list="${key}">${head}</button>` + (cloudOpen[key] ? `<div class="foldBody">${rows}</div>` : ""));
+    if (d.sending && d.sending.eta === null) line(esc(tr("Det här skickas: {size}. Hur lång tid det tar visas när det har börjat.", { size: cloudSize(d.sending.total) })));
+    if (d.sending && d.sending.eta !== null) line(esc(tr("Skickar {p} % · cirka {m} min kvar", { p: cloudPercent(d.sending), m: Math.max(1, Math.ceil(d.sending.eta / 60)) })));
+    if (d.on && n(d.only_here)) list("only", esc(tr("{size} finns bara på datorn", { size: cloudSize(d.only_here) })),
+      (d.only_here_files || []).map((f) => `<div class="srow"><span>${esc(f.name)}</span><span class="small">${esc(cloudSize(f.size))}</span></div>`).join(""));
+    // No deputy yet (the service said no, or has not answered): nothing is said that is not so.
+    if (d.on && !d.deputy) line(esc(tr(d.invite === 429 ? "Du är inbjuden, men molnet tar inte in fler just nu. Datorn frågar igen av sig själv."
+      : d.invite ? "Molnet behöver en inbjudan: en vän som redan har molnet. Datorn frågar igen av sig själv."
+      : d.error ? "Molnet kunde inte göras än; försöker igen." : "Molnet görs.")));
+    if (d.on && d.deputy && d.until) line(esc(tr("Vänner ser din mapp till {date}", { date: cloudDay(d.until) })));
+    if (d.on && n(d.old_friends)) line(esc(tr(n(d.old_friends) === 1 ? "1 vän har en äldre DAP-Share och ser inget när datorn är av" : "{n} vänner har en äldre DAP-Share och ser inget när datorn är av", { n: n(d.old_friends) })));
+    if (n(d.waiting)) line(esc(tr(n(d.waiting) === 1 ? "1 ändring på väg till molnet" : "{n} ändringar på väg till molnet", { n: n(d.waiting) })));
+    if (d.on && d.full) line(esc(tr("Molnet är fullt. Det som inte får plats finns bara på datorn.")));
+    if (d.on && typeof d.clock_off === "number") line(esc(tr("Datorns klocka skiljer sig från molnets med {m} min. Inget stoppas; kontrollera tiden i Systeminställningar.", { m: Math.max(1, Math.round(Math.abs(d.clock_off) / 60)) })));
+    if (d.clock_ahead_until) line(esc(tr("Datorns klocka gick fel; vännerna tar emot igen {date}.", { date: cloudDay(d.clock_ahead_until) })));
+    if (d.on && d.other_install) lines.push(`<div class="srow cloudLine"><span>${esc(tr("DAP-Share används nu på en annan dator med samma nyckel."))}</span><button data-cloud-again="1">${esc(tr("Använd den här igen"))}</button></div>`);
+    if (d.removal) {
+      line(esc(tr("Telefonen är borttagen här och i molnet. {a} av {b} vänner vet det; de andra litar på den till {date}.", { a: n(d.removal.known), b: n(d.removal.friends), date: cloudDay(d.removal.until) })));
+      lines.push(`<button class="quiet full" data-cloud-reseal="1">${esc(tr("Försegla allt igen (cirka {m} min)", { m: Math.max(1, n(d.reseal_minutes)) }))}</button>`);
+    }
+    if (n(d.removed_changes)) list("removed", esc(tr(n(d.removed_changes) === 1 ? "1 ändring från en borttagen telefon" : "{n} ändringar från en borttagen telefon", { n: n(d.removed_changes) })),
+      (d.removed_items || []).map((c) => `<div class="srow"><span>${esc(or(c.name, ""))}</span><span><button class="quiet tiny" data-cloud-keep="${esc(c.id)}" data-keep="1">${esc(tr("Behåll"))}</button> <button class="quiet tiny" data-cloud-keep="${esc(c.id)}" data-keep="0">${esc(tr("Ångra"))}</button></span></div>`).join(""));
+    if (n(d.dropped)) list("dropped", esc(tr("Borttaget i molnet de senaste 7 dagarna: {n}", { n: n(d.dropped) })),
+      (d.dropped_items || []).map((x) => `<div class="srow"><span class="small">${esc(cloudSize(n(x.bytes)))} · ${esc(cloudDay(x.at))}</span><button class="quiet tiny" data-cloud-undrop="${esc(x.slot)}">${esc(tr("Ta tillbaka"))}</button></div>`).join(""));
+    if (d.dropped_early) line(esc(tr("Det äldsta borttagna raderades tidigare, för att platsen tog slut.")));
+    if (d.on && d.deputy && d.remade) line(esc(tr("Molnet hade raderats efter 180 dagar utan kontakt. Ett nytt är gjort och allt skickas igen.")));
+    if (!d.relay_has) line(esc(tr("Den här reläservern har inget moln.")));
+    setHtml($("cloudLines"), lines.join(""));
   }
 
   // ---- The inbox and the journal as one table (docs/SCREEN.md §7): what came in with its report, what went out today ----
@@ -960,6 +1089,12 @@
     ((state.today && state.today.lines) || []).forEach((l) => {
       if (l.kind !== "picked" && l.kind !== "out") return;
       rows.push({ time: l.time, colour: "", file: or(l.filename, ""), who: or(l.display_name, l.dap_id), what: esc(tr(l.kind === "picked" ? "vald av din agent" : "delning ute")), status: "", kind: "sent", friend: !!friendIds[l.dap_id], straight: false });
+    });
+    // What waits to reach a friend whose computer is off, and what did not arrive before its share ended (docs/CLOUD.md §7).
+    (state.left || []).forEach((l) => {
+      if (l.status !== "waiting" && l.status !== "not_arrived") return;
+      rows.push({ time: l.time, colour: "", file: or(l.filename, ""), who: or(l.display_name, l.dap_id), what: esc(tr("delning ute")),
+        status: l.status === "waiting" ? tr("Väntar på att nå {name}", { name: or(l.display_name, l.dap_id) }) : tr("Kom inte fram innan det tog slut"), kind: "sent", friend: !!friendIds[l.dap_id], straight: false });
     });
     rows.sort((a, b) => (a.time < b.time ? 1 : a.time > b.time ? -1 : 0));
     const f = journalFilter;
@@ -1141,6 +1276,18 @@
       $("folder").innerHTML = r.files.map((f) => `<tr><td><input type="checkbox" value="${esc(f.filename)}" ${f.shareable ? "" : "disabled"} ${checked.has(f.filename) ? "checked" : ""}></td><td>${esc(f.filename)}</td><td class="small">${[KIND_NAMES[f.kind], trServer(f.label), kb(f.size_bytes)].filter(Boolean).map(esc).join(" · ")}</td><td class="small">${f.shareable ? "" : esc(tr("delas inte: ") + trServer(f.reason))}</td></tr>`).join("") || '<tr><td class="empty">' + esc(tr("Mappen är tom.")) + "</td></tr>";
     } catch {}
   }
+  // The cloud's switch and its red last button (docs/CLOUD.md §9.6, §9.2, §9.3): the computer's own screen only.
+  $("cloudOnBtn").onclick = async () => {
+    const r = await post("deputy/on");
+    if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error));
+    refresh(true);
+  };
+  $("cloudOffBtn").onclick = async () => {
+    if (!confirm(tr("Det som ligger i molnet raderas. Slår du på igen skickas allt på nytt."))) return;
+    const r = await post("deputy/off");
+    if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error));
+    refresh(true);
+  };
   $("quitBtn").onclick = async () => {
     if (!confirm(tr("Stäng av DAP-Share? Ingen kan nå dig förrän du öppnar appen igen."))) return;
     try { await post("quit"); } catch (e) {}
@@ -1201,8 +1348,8 @@
   };
 
   // ---- the views (docs/SCREEN.md §1): four reached with the icons, the places under them one tap away ----
-  const PARENT = { waiting: "home", person: "friends", meet: "friends", send: "share", receive: "share", advisor: "settings", likes: "settings", allow: "settings", phone: "settings", connect: "settings", computer: "settings", journal: "settings", about: "settings" };
-  const VIEWS = ["home", "waiting", "friends", "person", "meet", "share", "send", "receive", "settings", "advisor", "likes", "allow", "phone", "connect", "computer", "journal", "about"];
+  const PARENT = { waiting: "home", person: "friends", meet: "friends", send: "share", receive: "share", advisor: "settings", likes: "settings", allow: "settings", phone: "settings", connect: "settings", computer: "settings", cloud: "settings", journal: "settings", about: "settings" };
+  const VIEWS = ["home", "waiting", "friends", "person", "meet", "share", "send", "receive", "settings", "advisor", "likes", "allow", "phone", "connect", "computer", "cloud", "journal", "about"];
   let view = "home";
   let step = 1;
   function setStep(n) {
@@ -1323,6 +1470,12 @@
     if (d.folder) return openFolder(d.folder);
     if (d.stepGo) return setStep(Number(d.stepGo));
     if (d.fold) { const body = $(d.fold); body.hidden = !body.hidden; b.classList.toggle("open", !body.hidden); return; }
+    if (d.cloudList) { cloudOpen[d.cloudList] = !cloudOpen[d.cloudList]; return refresh(true); }
+    if (d.cloudAgain) { const r = await post("deputy/again"); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); }
+    else if (d.cloudReseal) { const r = await post("deputy/reseal"); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); }
+    else if (d.cloudUndrop) { const r = await post("deputy/undrop", { slots: [d.cloudUndrop] }); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); }
+    else if (d.cloudKeep) { const r = await post("deputy/keep", { id: d.cloudKeep, keep: d.keep === "1" }); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); }
+    if (d.cloudAgain || d.cloudReseal || d.cloudUndrop || d.cloudKeep) return refresh(true);
     if (d.filter) { journalFilter = d.filter; return refresh(true); }
     if (d.journal) { journalFilter = d.journal; return go("journal"); }
     if (d.person) return openPerson(d.person);

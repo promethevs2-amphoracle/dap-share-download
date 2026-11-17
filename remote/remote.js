@@ -124,6 +124,7 @@
     "Flyttad till papperskorgen på {name}.": "Moved to the Trash on {name}.",
     "Flyttad till DAP-Shares egen papperskorg på {name}.": "Moved to DAP-Share's own trash on {name}.",
     "Den ligger i mappen {folder} på datorn.": "It is in the folder {folder} on the computer.",
+    "Görs i molnet när datorn når det": "Done in the cloud when the computer reaches it",
     "Datorn svarade inte. Filen kan vara borta eller ligga kvar: titta i listan.": "The computer did not answer. The file may be gone or still there: look at the list.",
     "Datorn kunde inte säga hur det gick. Filen kan vara borta eller ligga kvar: titta i listan.": "The computer could not say how it went. The file may be gone or still there: look at the list.",
     "Tar bort {name} …": "Removing {name} …",
@@ -696,7 +697,8 @@
     say(place, null);
     remote.removeFile({ place: place, name: f.name, size: f.size, modified: f.modified }).then(function (r) {
       var text = r.where === "kept" ? N("Flyttad till DAP-Shares egen papperskorg på {name}.") : N("Flyttad till papperskorgen på {name}.");
-      say(place, "done", f.name, t(text, { name: name }), r.where === "kept" && r.folder ? t("Den ligger i mappen {folder} på datorn.", { folder: r.folder }) : null);
+      var more = [r.where === "kept" && r.folder ? t("Den ligger i mappen {folder} på datorn.", { folder: r.folder }) : "", r.later ? t("Görs i molnet när datorn når det") : ""].filter(Boolean).join(" ");
+      say(place, "done", f.name, t(text, { name: name }), more || null);
       return true;
     }, function (e) {
       var code = e && e.code;
