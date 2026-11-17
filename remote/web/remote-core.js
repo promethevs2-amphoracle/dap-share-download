@@ -896,9 +896,11 @@ export function createRemote({ storage, name = "phone", onState = null, openLink
      * main line, so it waits its turn there and, when the line dies with it on it, is asked
      * again on the next one with the same `once` (the agent does it once). `place` is received,
      * share or library. `size` and `modified` are what the list said of the file when the owner
-     * pressed: the agent removes only a file that is still that one. Resolves { where, folder }:
+     * pressed: the agent removes only a file that is still that one. Resolves { where, folder, later }:
      * `where` is "trash" (the computer's own Trash) or "kept" (the agent's own trash; `folder`
-     * is where that is on the computer). The file is moved there, never destroyed. Rejects with
+     * is where that is on the computer); `later` is true when the computer says the file's
+     * withdrawal from its cloud waits until it reaches the cloud (docs/CLOUD.md §5.6). The file is
+     * moved there, never destroyed. Rejects with
      * refused when the agent says in so many words that no file was removed (`status` 404: not
      * in that place's listing now, or no longer the file that was shown; 400 and 403: the
      * agent's words, and the file is where it was), with not-connected or too-much-waiting when
@@ -922,8 +924,10 @@ export function createRemote({ storage, name = "phone", onState = null, openLink
       const said = a.body && typeof a.body === "object" ? a.body : {};
       if (a.status === 200) {
         // Only an answer that says where the file went is taken as "it is in a trash now".
-        if (said.ok === true && said.where === "trash") return { where: "trash", folder: null };
-        if (said.ok === true && said.where === "kept") return { where: "kept", folder: typeof said.folder === "string" ? said.folder : null };
+        // `later`: the file's withdrawal from the cloud waits until the computer reaches it (docs/CLOUD.md §5.6).
+        const later = said.cloud_later === true;
+        if (said.ok === true && said.where === "trash") return { where: "trash", folder: null, later };
+        if (said.ok === true && said.where === "kept") return { where: "kept", folder: typeof said.folder === "string" ? said.folder : null, later };
       }
       // Only the three answers that mean "no file was removed" are taken as that.
       if (a.status === 404 || a.status === 400 || a.status === 403) throw remoteError("refused", a.status !== 404 && typeof said.error === "string" ? said.error : "", { status: a.status });
