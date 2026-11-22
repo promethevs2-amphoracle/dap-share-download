@@ -381,6 +381,24 @@
       "Den kallar sig {name}": "It calls itself {name}",
       "Tryck ja bara om din egen telefon just nu visar samma fyra siffror. Visar den något annat, eller ingenting: tryck nej. En fjärrkontroll får göra allt du gör här, utom att ändra inställningarna.": "Press yes only if your own phone is showing the same four digits right now. If it shows anything else, or nothing: press no. A remote may do everything you do here, except change the settings.",
       "Ja, tillåt": "Yes, allow",
+      "Ska telefonen fungera även när datorn är av? Den får då nycklarna till det som ligger i molnet.": "Should the phone work when the computer is off too? It is then given the keys to what lies in the cloud.",
+      "Ja": "Yes",
+      "Bara när datorn är på": "Only when the computer is on",
+      "Fungerar även när datorn är av": "Works when the computer is off too",
+      "Fungerar bara när datorn är på": "Works only when the computer is on",
+      "Slå på": "Turn on",
+      "Stäng av": "Turn off",
+      "säger att den är {p}": "says it is {p}",
+      "annat": "something else",
+      "ny nyckel {d}": "new key {d}",
+      "Den här telefonen kan inte fungera utan datorn: {why}": "This phone cannot work without the computer: {why}",
+      "öppna DAP-Share från hemskärmen": "open DAP-Share from the Home Screen",
+      "den här webbläsaren kan inte hålla nycklar säkert": "this browser cannot keep keys safely",
+      "koppla telefonen igen": "connect the phone again",
+      "Koppla igen": "Connect again",
+      "{name} kunde inte läggas till: koppla den igen": "{name} could not be added: connect it again",
+      "Telefonen fungerar även när datorn är av": "The phone works when the computer is off too",
+      "Telefonen fungerar bara när datorn är på": "The phone works only when the computer is on",
       "Telefonen är ansluten": "The phone is connected",
       "Telefonen släpptes inte in": "The phone was not let in",
       "Den frågan gäller inte längre": "That question no longer stands",
@@ -478,6 +496,33 @@
       "Telefonen är borttagen här och i molnet. {a} av {b} vänner vet det; de andra litar på den till {date}.": "The phone is removed here and in the cloud. {a} of {b} friends know; the others trust it until {date}.",
       "Försegla allt igen (cirka {m} min)": "Seal everything again (about {m} min)",
       "1 ändring från en borttagen telefon": "1 change from a removed phone",
+      "{name} stängdes ute av {by} {date}.": "{name} was shut out by {by} on {date}.",
+      "låskoden": "the lock code",
+      "Telefon": "Phone",
+      "datorn": "the computer",
+      "{name} bestämde {a} saker och ändrade {b} filer innan den stängdes ute.": "{name} decided {a} things and changed {b} files before it was shut out.",
+      "Släpp in igen och gör det": "Let back in and do it",
+      "Släpp in igen men gör det inte": "Let back in but do not do it",
+      "Ta bort telefonen": "Remove the phone",
+      "Servern säger att {name} är utestängd": "The server says {name} is shut out",
+      "Släpp in igen": "Let back in",
+      "Stäng ute på datorn också": "Shut out on the computer too",
+      "1 beslut från telefonen gjordes inte": "1 decision from the phone was not done",
+      "{n} beslut från telefonen gjordes inte": "{n} decisions from the phone were not done",
+      "1 fil från telefonen lades i mappen": "1 file from the phone was put in the folder",
+      "{n} filer från telefonen lades i mappen": "{n} files from the phone were put in the folder",
+      "{name} från telefonen gick inte att öppna": "{name} from the phone could not be opened",
+      "Låskod": "Lock code",
+      "Gör en låskod": "Make a lock code",
+      "Ta tillbaka låskoden": "Take the lock code back",
+      "Den som hittar koden kan stänga ute dina telefoner ur molnet tills du är hemma, inget mer. Vännerna ser din mapp som de senast såg den tills datorn är på.": "Whoever finds the code can shut your phones out of the cloud until you are home, nothing more. Friends see your folder as they last saw it until the computer is on.",
+      "Koden visas bara nu. Skriv ut den eller skriv av den.": "The code is shown only now. Print it or copy it down.",
+      "någon annan enhet bestämde annat": "another device decided otherwise",
+      "finns inte längre": "is no longer there",
+      "telefonen är inte kvar i molnet": "the phone is no longer in the cloud",
+      "den var utestängd": "it was shut out",
+      "datorn såg en annan färg": "the computer saw another colour",
+      "inte ett beslut": "not a decision",
       "{n} ändringar från en borttagen telefon": "{n} changes from a removed phone",
       "Behåll": "Keep",
       "Borttaget i molnet de senaste 7 dagarna: {n}": "Removed in the cloud in the last 7 days: {n}",
@@ -602,6 +647,9 @@
     [/^det går inte från en fjärrkontroll, bara på datorn$/, () => "that cannot be done from a remote, only on the computer"],
     [/^bara på datorns egen skärm$/, () => "only on the computer's own screen"],
     [/^bara på datorns egen skärm eller från en fjärrkontroll$/, () => "only on the computer's own screen or from a remote"],
+    // docs/CLOUD.md §10.3: get device is a phone's question about itself.
+    [/^bara från en telefon, om sig själv$/, () => "only from a phone, about itself"],
+    [/^inte en fjärrkontroll$/, () => "not a remote"],
     [/^inställningen relay_web är ingen adress som telefonen kan använda \(skriv reläets namn, utan något framför, eller en hel wss:\/\/-adress\)$/, () => "the setting relay_web is not an address the phone can use (write the relay's name, with nothing in front of it, or a whole wss:// address)"],
     [/^inställningen relay_web börjar med ws:\/\/: en telefon når bara ett relä över wss:\/\/$/, () => "the setting relay_web begins with ws://: a phone only reaches a relay over wss://"],
     [/^telefonen kunde inte sparas: det går inte att skriva i DAP-Shares mapp just nu \(är disken full\?\)\. Frågan står kvar\.$/, () => "the phone could not be stored: DAP-Share's folder cannot be written to right now (is the disk full?). The question is still there."],
@@ -741,6 +789,22 @@
 
   // ---- the owner's phone as a remote (docs/REMOTE.md §2): the phones, the code to scan, and the
   // question with the four digits. `rc` is undefined everywhere but on the computer's own screen. ----
+  // docs/CLOUD.md §10.2: what a phone said it is (shown, never trusted), and whether it works when the computer is off.
+  const PLATFORM_NAME = { ios: "iPhone/iPad", android: "Android", mac: "Mac", windows: "Windows", linux: "Linux", other: "annat" };
+  const CANNOT_WHY = { home: "öppna DAP-Share från hemskärmen", crypto: "den här webbläsaren kan inte hålla nycklar säkert", again: "koppla telefonen igen" };
+  function phoneDeviceHtml(x, rc) {
+    let out = "";
+    if (x.ask) {
+      // A phone paired before the cloud was on: its row asks once, and nothing changes until the owner answers.
+      out += `<div class="small"><b>${esc(tr("Ska telefonen fungera även när datorn är av? Den får då nycklarna till det som ligger i molnet."))}</b></div>` +
+        `<div><button class="tiny" data-phone-device="${esc(x.dap_id)}" data-on="1">${esc(tr("Ja"))}</button> <button class="quiet tiny" data-phone-device="${esc(x.dap_id)}" data-on="0">${esc(tr("Bara när datorn är på"))}</button></div>`;
+    } else if (x.device !== null && (rc.cloud || x.device)) {
+      out += `<div class="small">${esc(tr(x.device ? "Fungerar även när datorn är av" : "Fungerar bara när datorn är på"))} <button class="quiet tiny" data-phone-device="${esc(x.dap_id)}" data-on="${esc(x.device ? "0" : "1")}">${esc(tr(x.device ? "Stäng av" : "Slå på"))}</button></div>`;
+    }
+    if (x.device && x.can === false) out += `<div class="small">${esc(tr("Den här telefonen kan inte fungera utan datorn: {why}", { why: tr(CANNOT_WHY[x.why] || CANNOT_WHY.again) }))}` + (x.why === "again" ? " · " + esc(tr("Koppla igen")) : "") + "</div>";
+    if (x.left_off) out += `<div class="small">${esc(tr("{name} kunde inte läggas till: koppla den igen", { name: x.name }))}</div>`;
+    return out;
+  }
   function renderRemote(rc, asked) {
     $("remoteCard").hidden = !rc;
     $("rowPhone").hidden = !rc;
@@ -751,7 +815,12 @@
     const p = rc.pairing;
     const left = p && p.asked_at ? Math.max(0, Math.ceil((p.asked_at + 300 - Date.now() / 1000) / 60)) : null;
     pairAskHtml = p
-      ? `<div class="meeting"><div><b>${esc(tr("En telefon vill bli din fjärrkontroll"))}</b><div class="pairName">${esc(tr("Den kallar sig {name}", { name: p.name }))}</div><div class="digits" id="pairDigits">${esc(p.digits)}</div><div class="small">${esc(tr("Tryck ja bara om din egen telefon just nu visar samma fyra siffror. Visar den något annat, eller ingenting: tryck nej. En fjärrkontroll får göra allt du gör här, utom att ändra inställningarna."))}</div><div class="small">${esc(left === null ? "" : tr("{m} min kvar att svara", { m: left }))}</div></div><div><button data-pair-yes="${esc(p.id)}">${esc(tr("Ja, tillåt"))}</button> <button class="quiet" data-pair-no="${esc(p.id)}">${esc(tr("Nej"))}</button></div></div>`
+      ? `<div class="meeting"><div><b>${esc(tr("En telefon vill bli din fjärrkontroll"))}</b><div class="pairName">${esc(tr("Den kallar sig {name}", { name: p.name }))}</div><div class="digits" id="pairDigits">${esc(p.digits)}</div><div class="small">${esc(tr("Tryck ja bara om din egen telefon just nu visar samma fyra siffror. Visar den något annat, eller ingenting: tryck nej. En fjärrkontroll får göra allt du gör här, utom att ändra inställningarna."))}</div><div class="small">${esc(left === null ? "" : tr("{m} min kvar att svara", { m: left }))}</div>` +
+        (p.ask_device ? '<div class="small"><b>' + esc(tr("Ska telefonen fungera även när datorn är av? Den får då nycklarna till det som ligger i molnet.")) + "</b></div>" : "") + `</div>` +
+        // docs/CLOUD.md §10.2: while the cloud is on, the yes says too whether the phone works when the computer is off.
+        (p.ask_device
+          ? `<div><button data-pair-yes="${esc(p.id)}" data-device="1">${esc(tr("Ja"))}</button> <button data-pair-yes="${esc(p.id)}" data-device="0">${esc(tr("Bara när datorn är på"))}</button> <button class="quiet" data-pair-no="${esc(p.id)}">${esc(tr("Nej"))}</button></div></div>`
+          : `<div><button data-pair-yes="${esc(p.id)}">${esc(tr("Ja, tillåt"))}</button> <button class="quiet" data-pair-no="${esc(p.id)}">${esc(tr("Nej"))}</button></div></div>`)
       : "";
     setHtml($("pairAsk"), pairAskHtml);
     // The code stays up while the agent says that very code is out: used, run out or taken back, it goes.
@@ -770,7 +839,9 @@
     $("phoneVal").textContent = tr(rc.phones.length === 1 ? "{n} telefon" : "{n} telefoner", { n: rc.phones.length });
     if (removeAsk && !rc.phones.some((x) => x.dap_id === removeAsk)) removeAsk = null;
     setHtml($("remotePhones"), rc.phones.length
-      ? rc.phones.map((x) => `<div class="srow"><span><b>${esc(x.name)}</b> <span class="badge${x.online ? "" : " off"}">${esc(tr(x.online ? "ansluten nu" : "inte ansluten nu"))}</span><div class="small">${esc(tr("Tillagd {a} · senast använd {b}", { a: day(x.added), b: dayTime(x.last_seen) }))}</div></span>` +
+      ? rc.phones.map((x) => `<div class="srow"><span><b>${esc(x.name)}</b> <span class="badge${x.online ? "" : " off"}">${esc(tr(x.online ? "ansluten nu" : "inte ansluten nu"))}</span><div class="small">${esc(tr("Tillagd {a} · senast använd {b}", { a: day(x.added), b: dayTime(x.last_seen) }))}` +
+          (x.platform ? " · " + esc(tr("säger att den är {p}", { p: tr(PLATFORM_NAME[x.platform] || "annat") })) : "") + (x.new_key ? " · " + esc(tr("ny nyckel {d}", { d: day(x.new_key) })) : "") +
+          "</div>" + phoneDeviceHtml(x, rc) + "</span>" +
           (removeAsk === x.dap_id
             ? `<span class="confirm"><span class="small">${esc(tr("Ta bort {name}? Den kommer inte in igen förrän du ansluter den på nytt.", { name: x.name }))}</span><button class="danger tiny" data-phone-remove-yes="${esc(x.dap_id)}">${esc(tr("Ja, ta bort"))}</button> <button class="quiet tiny" data-phone-remove-no="1">${esc(tr("Avbryt"))}</button></span>`
             : `<button class="danger tiny" data-phone-remove="${esc(x.dap_id)}">${esc(tr("Ta bort"))}</button>`) + `</div>`).join("")
@@ -1010,7 +1081,10 @@
 
   // ---- The cloud (docs/CLOUD.md §9.6): one row under Settings and its page. `d` is me.deputy, which
   // the agent gives only to the computer's own screen; a remote and a lan screen have neither. ----
-  const cloudNeedsYou = (d) => !!(d.other_install || d.removed_changes > 0);
+  const cloudNeedsYou = (d) => !!(d.other_install || d.removed_changes > 0 || (d.shut && d.shut.length));
+  // Why a decision from a phone was not done (docs/CLOUD.md §10.9): its word, in the owner's words.
+  const DECISION_WHY = { conflict: "någon annan enhet bestämde annat", gone: "finns inte längre", card: "telefonen är inte kvar i molnet", shut: "den var utestängd", colour: "datorn såg en annan färg", kind: "inte ett beslut" };
+  let lockShown = null;    // a lock code just made: shown once, on this page, until it is left
   const cloudPercent = (s) => Math.min(100, Math.floor((s.done / Math.max(1, s.total)) * 100));
   // An amount of bytes as the page says it: "1,4 GB" in Swedish, "1.4 GB" in English.
   const cloudSize = (n) => {
@@ -1062,14 +1136,41 @@
       line(esc(tr("Telefonen är borttagen här och i molnet. {a} av {b} vänner vet det; de andra litar på den till {date}.", { a: n(d.removal.known), b: n(d.removal.friends), date: cloudDay(d.removal.until) })));
       lines.push(`<button class="quiet full" data-cloud-reseal="1">${esc(tr("Försegla allt igen (cirka {m} min)", { m: Math.max(1, n(d.reseal_minutes)) }))}</button>`);
     }
+    // Devices shut out (docs/CLOUD.md §10.11): one the computer can check with its three answers,
+    // one only the server lists with its two.
+    (d.shut || []).forEach((x) => {
+      const by = x.by === "lock" ? tr("låskoden") : x.by === "owner" ? tr("datorn") : or(x.by_name, tr("Telefon"));
+      if (x.signed) {
+        line(esc(tr("{name} stängdes ute av {by} {date}.", { name: x.name, by, date: cloudDay(x.at) })));
+        if (n(x.decided) || n(x.changed)) line(esc(tr("{name} bestämde {a} saker och ändrade {b} filer innan den stängdes ute.", { name: x.name, a: n(x.decided), b: n(x.changed) })));
+        lines.push(`<div class="srow cloudLine"><span><button class="quiet tiny" data-cloud-unshut="${esc(x.key)}" data-keep="1">${esc(tr("Släpp in igen och gör det"))}</button> <button class="quiet tiny" data-cloud-unshut="${esc(x.key)}" data-keep="0">${esc(tr("Släpp in igen men gör det inte"))}</button> <button class="quiet tiny" data-cloud-remove="${esc(x.dap_id)}">${esc(tr("Ta bort telefonen"))}</button></span></div>`);
+      } else {
+        lines.push(`<div class="srow cloudLine"><span>${esc(tr("Servern säger att {name} är utestängd", { name: x.name }))}</span><span><button class="quiet tiny" data-cloud-unshut="${esc(x.key)}" data-keep="1">${esc(tr("Släpp in igen"))}</button> <button class="quiet tiny" data-cloud-shut="${esc(x.key)}">${esc(tr("Stäng ute på datorn också"))}</button></span></div>`);
+      }
+    });
+    if ((d.refused_items || []).length) list("refused", esc(tr(d.refused_items.length === 1 ? "1 beslut från telefonen gjordes inte" : "{n} beslut från telefonen gjordes inte", { n: d.refused_items.length })),
+      d.refused_items.map((r) => `<div class="srow"><span>${esc(or(r.name, ""))} · ${esc(r.kind || "")} <span class="small">(${esc(tr(DECISION_WHY[r.word] || "inte ett beslut"))})</span></span></div>`).join(""));
+    if ((d.added_items || []).length) list("added", esc(tr(d.added_items.length === 1 ? "1 fil från telefonen lades i mappen" : "{n} filer från telefonen lades i mappen", { n: d.added_items.length })),
+      d.added_items.map((f) => `<div class="srow"><span>${esc(or(f.name, ""))}</span></div>`).join(""));
+    // A phone the owner made a device whose keys would break the card (docs/CLOUD.md §10.2): named here and on its row.
+    (d.left_off || []).forEach((x) => line(esc(tr("{name} kunde inte läggas till: koppla den igen", { name: or(x.name, tr("Telefon")) }))));
+    (d.unopened_items || []).forEach((f) => lines.push(`<div class="srow cloudLine"><span>${esc(tr("{name} från telefonen gick inte att öppna", { name: or(f.name, "") }))}</span><button class="quiet tiny" data-cloud-keep="${esc(f.id)}" data-keep="0">${esc(tr("Ta bort"))}</button></div>`));
     if (n(d.removed_changes)) list("removed", esc(tr(n(d.removed_changes) === 1 ? "1 ändring från en borttagen telefon" : "{n} ändringar från en borttagen telefon", { n: n(d.removed_changes) })),
       (d.removed_items || []).map((c) => `<div class="srow"><span>${esc(or(c.name, ""))}</span><span><button class="quiet tiny" data-cloud-keep="${esc(c.id)}" data-keep="1">${esc(tr("Behåll"))}</button> <button class="quiet tiny" data-cloud-keep="${esc(c.id)}" data-keep="0">${esc(tr("Ångra"))}</button></span></div>`).join(""));
     if (n(d.dropped)) list("dropped", esc(tr("Borttaget i molnet de senaste 7 dagarna: {n}", { n: n(d.dropped) })),
       (d.dropped_items || []).map((x) => `<div class="srow"><span class="small">${esc(cloudSize(n(x.bytes)))} · ${esc(cloudDay(x.at))}</span><button class="quiet tiny" data-cloud-undrop="${esc(x.slot)}">${esc(tr("Ta tillbaka"))}</button></div>`).join(""));
     if (d.dropped_early) line(esc(tr("Det äldsta borttagna raderades tidigare, för att platsen tog slut.")));
     if (d.on && d.deputy && d.remade) line(esc(tr("Molnet hade raderats efter 180 dagar utan kontakt. Ett nytt är gjort och allt skickas igen.")));
+    // The lock code (docs/CLOUD.md §10.11), for an owner whose phone works when the computer is off.
+    const devicePhones = ((state.me.remote_control || {}).phones || []).some((p) => p.device === true);
+    if (d.on && d.deputy && (devicePhones || d.lock)) {
+      lines.push(`<div class="srow cloudLine"><span>${esc(tr("Låskod"))}</span>${d.lock ? `<button class="quiet tiny" data-cloud-lock="0">${esc(tr("Ta tillbaka låskoden"))}</button>` : `<button class="quiet tiny" data-cloud-lock="1">${esc(tr("Gör en låskod"))}</button>`}</div>`);
+      line(`<span class="small">${esc(tr("Den som hittar koden kan stänga ute dina telefoner ur molnet tills du är hemma, inget mer. Vännerna ser din mapp som de senast såg den tills datorn är på."))}</span>`);
+      if (lockShown) lines.push(`<div class="srow cloudLine"><span><span class="small">${esc(tr("Koden visas bara nu. Skriv ut den eller skriv av den."))}</span><br><code id="lockText">${esc(lockShown)}</code><br><canvas id="lockQr" class="qr"></canvas></span></div>`);
+    }
     if (!d.relay_has) line(esc(tr("Den här reläservern har inget moln.")));
     setHtml($("cloudLines"), lines.join(""));
+    if (lockShown && $("lockQr")) { try { drawQr(lockShown, $("lockQr")); } catch (e) { /* the text is there */ } }
   }
 
   // ---- The inbox and the journal as one table (docs/SCREEN.md §7): what came in with its report, what went out today ----
@@ -1377,6 +1478,7 @@
   }
   function flushDiscards() { Object.keys(discarding).forEach(discardNow); }
   function go(to) {
+    if (to !== "cloud") lockShown = null; // a lock code is shown once: leaving the page forgets it
     if (VIEWS.indexOf(to) < 0) to = "home";
     if (to === "person" && !personOpen) to = "friends";
     if (view === "waiting" && to !== "waiting") flushDiscards();
@@ -1475,7 +1577,11 @@
     else if (d.cloudReseal) { const r = await post("deputy/reseal"); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); }
     else if (d.cloudUndrop) { const r = await post("deputy/undrop", { slots: [d.cloudUndrop] }); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); }
     else if (d.cloudKeep) { const r = await post("deputy/keep", { id: d.cloudKeep, keep: d.keep === "1" }); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); }
-    if (d.cloudAgain || d.cloudReseal || d.cloudUndrop || d.cloudKeep) return refresh(true);
+    else if (d.cloudUnshut) { const r = await post("deputy/unshut", { key: d.cloudUnshut, keep: d.keep === "1" }); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); }
+    else if (d.cloudShut) { const r = await post("deputy/shut", { key: d.cloudShut }); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); }
+    else if (d.cloudRemove) { removeAsk = d.cloudRemove; return go("phone"); } // the existing Remove, asked in the phone's row (docs/REMOTE.md §2.1)
+    else if (d.cloudLock) { const r = await post("deputy/lock", { on: d.cloudLock === "1" }); if (!(r && r.ok)) toast(tr("Gick inte: ") + trServer(r && r.error)); lockShown = r && r.ok && r.code ? r.code : null; }
+    if (d.cloudAgain || d.cloudReseal || d.cloudUndrop || d.cloudKeep || d.cloudUnshut || d.cloudShut || d.cloudLock) return refresh(true);
     if (d.filter) { journalFilter = d.filter; return refresh(true); }
     if (d.journal) { journalFilter = d.journal; return go("journal"); }
     if (d.person) return openPerson(d.person);
@@ -1552,8 +1658,14 @@
     else if (d.pairYes || d.pairNo) {
       // The owner's answer to the phone that asks. It names the pairing it was shown: an answer to one that no longer waits is an answer to nothing.
       const yes = !!d.pairYes;
-      const r = await post("remote/answer", { id: d.pairYes || d.pairNo, yes });
+      const r = await post("remote/answer", yes && d.device !== undefined ? { id: d.pairYes, yes, device: d.device === "1" } : { id: d.pairYes || d.pairNo, yes });
       toast(r.error ? tr("Gick inte: ") + trServer(r.error) : !r.ok ? tr("Den frågan gäller inte längre") : tr(yes ? "Telefonen är ansluten" : "Telefonen släpptes inte in"));
+    }
+    else if (d.phoneDevice) {
+      // docs/CLOUD.md §10.2, remote/device: off takes the phone off the card, with a new vault key.
+      const on = d.on === "1";
+      const r = await post("remote/device", { dap_id: d.phoneDevice, on });
+      toast(r.error ? tr("Gick inte: ") + trServer(r.error) : tr(on ? "Telefonen fungerar även när datorn är av" : "Telefonen fungerar bara när datorn är på"));
     }
     else if (d.phoneRemove) { removeAsk = d.phoneRemove; } // the first press only asks
     else if (d.phoneRemoveNo) { removeAsk = null; }
